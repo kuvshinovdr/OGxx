@@ -4,14 +4,13 @@
 #ifndef OGXX_MATRIX_HPP_INCLUDED
 #define OGXX_MATRIX_HPP_INCLUDED
 
-#include <cstddef>
+#include "primitive_definitions.hpp"
+#include "iterator.hpp" // TBD
+
 
 /// Root namespace of the OGxx library.
 namespace ogxx
 {
-
-  /// @brief Linear sequence size.
-  using Scalar_size = std::ptrdiff_t;
 
   /// @brief Matrix shape description (just two sizes).
   struct Matrix_shape
@@ -31,9 +30,6 @@ namespace ogxx
     }
   };
 
-
-  /// @brief Linear random-access sequence index.
-  using Scalar_index = std::ptrdiff_t;
 
   /// @brief Index of an item of a matrix.
   /// Negative indices are to be interpreted as offsets from the right end
