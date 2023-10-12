@@ -29,14 +29,26 @@ namespace ogxx
   /// @brief Iterating over a bit sequence.
   using Bit_iterator = Basic_iterator<bool>;
 
+  /// @brief An owning pointer to a bit iterator object.
+  using Bit_iterator_uptr = std::unique_ptr<Bit_iterator>;
+
   /// @brief Iterating over an index sequence.
   using Index_iterator = Basic_iterator<Scalar_index>;
+
+  /// @brief An owning pointer to a index iterator object.
+  using Index_iterator_uptr = std::unique_ptr<Index_iterator>;
 
   /// @brief Iterating over an integer number sequence.
   using Int_iterator = Basic_iterator<Int>;
 
+  /// @brief An owning pointer to a integer iterator object.
+  using Int_iterator_uptr = std::unique_ptr<Int_iterator>;
+
   /// @brief Iterating over a floating point number sequence.
   using Float_iterator = Basic_iterator<Float>;
+
+  /// @brief An owning pointer to a float iterator object.
+  using Float_iterator_uptr = std::unique_ptr<Float_iterator>;
 
 }
 

@@ -7,6 +7,8 @@
 #include <cstddef>
 #include <cstdint>
 #include <limits>
+#include <memory>
+
 
 /// Root namespace of the OGxx library.
 namespace ogxx
