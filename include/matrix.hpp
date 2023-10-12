@@ -1,6 +1,6 @@
 /// @file matrix.hpp
 /// @brief Abstract matrix interface
-/// @author Kuvshinov D.R.
+/// @author Kuvshinov D.R. kuvshinovdr at yandex.ru
 #ifndef OGXX_MATRIX_HPP_INCLUDED
 #define OGXX_MATRIX_HPP_INCLUDED
 
@@ -41,6 +41,50 @@ namespace ogxx
     /// @brief The second index of a matrix item (zero-based).
     Scalar_index col = 0;
   };
+
+
+  /// @brief Rectangular matrix window coordinates: position and shape.
+  struct Matrix_window
+  {
+    /// @brief The position of the left upper corner (minimal row and column).
+    Matrix_index position;
+    /// @brief The size of a matrix.
+    Matrix_shape shape;
+
+    /// @brief Create a square matrix window.
+    /// @param position where is the left upper corner
+    /// @param size rows and columns in the window
+    /// @return square Matrix_window object
+    [[nodiscard]] constexpr static auto square(Matrix_index position, Scalar_size size) noexcept
+      -> Matrix_window
+    {
+      return { position, Matrix_shape::square(size) };
+    }
+
+    /// @brief Create a rectangular window positioned at (0, 0).
+    /// @param shape sizes of the window
+    /// @return Matrix_window object
+    [[nodiscard]] constexpr static auto main(Matrix_shape shape) noexcept
+      -> Matrix_window
+    {
+      return { {}, shape };
+    }
+
+    /// @brief Create a square window positioned at (0, 0)
+    /// @param size square window size
+    /// @return square Matrix_window object
+    [[nodiscard]] constexpr static auto main(Scalar_size size) noexcept
+      -> Matrix_window
+    {
+      return main(Matrix_shape::square(size));
+    }
+  };
+
+
+  class Abstract_bit_matrix;
+
+  /// @brief Owning pointer to an bit matrix object.
+  using Bit_matrix_uptr = std::unique_ptr<Abstract_bit_matrix>;
 
 
   /// @brief Bit matrix interface.
