@@ -12,6 +12,9 @@
 namespace ogxx
 {
 
+  /////////////////////////////////////////////////////////////////////////////
+  // Auxiliary structures
+
   /// @brief Matrix shape description (just two sizes).
   struct Matrix_shape
   {
@@ -19,6 +22,14 @@ namespace ogxx
     Scalar_size rows = 0;
     /// @brief Quantity of columns in a matrix.
     Scalar_size cols = 0;
+
+    /// @brief Check if the size representation is valid.
+    /// @return true if both rows and cols are positive or both are zero
+    [[nodiscard]] constexpr auto is_valid() const noexcept
+      -> bool
+    {
+      return (rows > 0 && cols > 0) || (rows == 0 && cols == 0);
+    }
 
     /// @brief Make square matrix shape.
     /// @param size size of the square matrix (the same number of rows and columns)
@@ -40,6 +51,16 @@ namespace ogxx
     Scalar_index row = 0;
     /// @brief The second index of a matrix item (zero-based).
     Scalar_index col = 0;
+
+    /// @brief Check if the current index is valid if applied to a matrix of the given shape.
+    /// @param shape matrix sizes
+    /// @return true if the index is valid (points within the matrix)
+    [[nodiscard]] constexpr auto is_valid_for(Matrix_shape shape) const noexcept
+      -> bool
+    {
+      return is_within(row, -shape.rows, shape.rows - 1)
+          && is_within(col, -shape.cols, shape.cols - 1);
+    }
   };
 
 
@@ -47,6 +68,7 @@ namespace ogxx
   struct Matrix_window
   {
     /// @brief The position of the left upper corner (minimal row and column).
+    /// Negative index inverses the corresponding extent.
     Matrix_index position;
     /// @brief The size of a matrix.
     Matrix_shape shape;
@@ -81,17 +103,21 @@ namespace ogxx
   };
 
 
-  class Abstract_bit_matrix;
+  /////////////////////////////////////////////////////////////////////////////
+  // Matrix_base interface
 
-  /// @brief Owning pointer to an bit matrix object.
-  using Bit_matrix_uptr = std::unique_ptr<Abstract_bit_matrix>;
+  /// @brief Owning pointer to a matrix object (Matrix_base).
+  using Matrix_uptr = std::unique_ptr<class Matrix_base>;
 
-
-  /// @brief Bit matrix interface.
-  class Abstract_bit_matrix
+  /// @brief Common matrix function independent of matrix item type.
+  class Matrix_base
   {
+  protected:
+    Matrix_base& operator=(Matrix_base const&) = default;
+    Matrix_base& operator=(Matrix_base&&)      = default;
+  
   public:
-    virtual ~Abstract_bit_matrix() {}
+    virtual ~Matrix_base() {}
 
     /// @brief Get sizes of the matrix.
     /// @return Matrix_shape object containing rows and columns count.
@@ -103,40 +129,6 @@ namespace ogxx
     /// May throw bad_alloc if new_shape is too large.
     /// @param new_shape new matrix sizes: rows and columns
     virtual void reshape(Matrix_shape new_shape) = 0;
-
-    /// @brief Get the item of a matrix at the given position.
-    /// @param position matrix item position (row, column)
-    /// @return true or false according the bit value, false if position is out of range
-    [[nodiscard]] virtual auto operator()(Matrix_index position) const noexcept
-      -> bool = 0;
-
-    /// @brief Get the item of a matrix at the given position (row, col).
-    /// @param row the first index of the item (zero-based)
-    /// @param col the second index of the item (zero-based)
-    /// @return true or false according the bit value, false if position is out of range
-    [[nodiscard]] auto operator()(Scalar_index row, Scalar_index col) const noexcept
-      -> bool { return (*this)(Matrix_index{row, col}); }
-
-    /// @brief Set an item of the matrix.
-    /// Throws std::out_of_range if position is out of range.
-    /// @param position matrix item position (row, column)
-    /// @param value true (by default) or false, the new value
-    /// @return the old value of the set bit
-    virtual auto set(Matrix_index position, bool value = true) 
-      -> bool = 0;
-
-    /// @brief A shortcut for set(position, false).
-    /// @param position matrix item position (row, column)
-    /// @return the old value of the set bit 
-    auto reset(Matrix_index position)
-      -> bool { return set(position, false); }
-
-    /// @brief Effectively returns set(position, !operator()(position)) but in one virtual call.
-    /// Throws std::out_of_range if position is out of range.
-    /// @param position matrix item position (row, column)
-    /// @return the old value of the flipped bit
-    virtual auto flip(Matrix_index position)
-      -> bool = 0;
   };
 
 }
