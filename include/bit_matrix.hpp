@@ -51,6 +51,10 @@ namespace ogxx
     /// @return the old value of the flipped bit
     virtual auto flip(Matrix_index position)
       -> bool = 0;
+
+    /// @brief Assigns all elements of the matrix the same value.
+    /// @param value the value to be assigned
+    virtual void fill(bool value) noexcept = 0;
   };
 
 
