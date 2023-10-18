@@ -1,6 +1,6 @@
 /// @file bit_matrix.hpp
 /// @brief Bit_matrix interface
-/// @author Kuvshinov D.R kuvshinovdr at yandex.ru
+/// @author Kuvshinov D.R. kuvshinovdr at yandex.ru
 #ifndef OGXX_BIT_MATRIX_HPP_INCLUDED
 #define OGXX_BIT_MATRIX_HPP_INCLUDED
 

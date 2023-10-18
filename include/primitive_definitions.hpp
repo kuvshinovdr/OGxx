@@ -9,6 +9,7 @@
 #include <limits>
 #include <type_traits>
 #include <memory>
+#include <utility>
 
 
 /// Root namespace of the OGxx library.
@@ -33,6 +34,9 @@ namespace ogxx
 
   /////////////////////////////////////////////////////////////////////////////
   // Constants
+
+  /// @brief Invalid position in a container with zero-based indexing.
+  constexpr Scalar_index npos = -1;
 
   /// @brief Infinity float value for convenience.
   constexpr Float infinity = std::numeric_limits<Float>::infinity();
