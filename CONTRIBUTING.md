@@ -22,7 +22,12 @@
 
 # OGxx directories
 
-* __include__ for public interfaces declared in .hpp files;
+* __include__/__ogxx__ for public interfaces declared in .hpp files;
 * __source__ for all implementation (.hpp and .cpp files);
 * __tests__ for regression tests;
 * __samples__ for sample applications.
+
+# OGxx code decisions
+
+1. Use references (better) or primitive pointers (when references can not be used) to provide access but not ownership. Use unique_ptr to hand over ownership (e.g. fabric methods should return unique_ptr).
+2. No special read-only interfaces. An implementation class may be read-only, then it shall implement modifiers as no-op or throwing stubs. Such objects must be returned by a const-reference or a pointer to a constant, casting its constness away implies undefined behaviour in general case.
