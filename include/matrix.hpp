@@ -111,11 +111,7 @@ namespace ogxx
 
   /// @brief Common matrix function independent of matrix item type.
   class Matrix_base
-  {
-  protected:
-    Matrix_base& operator=(Matrix_base const&) = default;
-    Matrix_base& operator=(Matrix_base&&)      = default;
-  
+  {  
   public:
     virtual ~Matrix_base() {}
 
@@ -129,6 +125,10 @@ namespace ogxx
     /// May throw bad_alloc if new_shape is too large.
     /// @param new_shape new matrix sizes: rows and columns
     virtual void reshape(Matrix_shape new_shape) = 0;
+
+  protected:
+    Matrix_base& operator=(Matrix_base const&) = default;
+    Matrix_base& operator=(Matrix_base&&) = default;
   };
 
 }
