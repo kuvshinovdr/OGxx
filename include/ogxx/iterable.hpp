@@ -24,6 +24,11 @@ namespace ogxx
     virtual auto iterate() const
       -> Basic_iterator_uptr<Item> = 0;
 
+    /// @brief Check if this iterable range is actually empty.
+    /// @return true if it is empty, false otherwise
+    virtual auto is_empty() const noexcept
+      -> bool = 0;
+
   protected:
     Iterable& operator=(Iterable const&) noexcept = default;
     Iterable& operator=(Iterable&&) noexcept      = default;
@@ -33,7 +38,7 @@ namespace ogxx
   /// @brief Not only iterable but we know in advance, how many items it contains.
   /// @tparam Item the type of the object items that can be iterated
   template <typename Item>
-  class Sized_iterable : public Iterable<Item>
+  class Sized_iterable : public virtual Iterable<Item>
   {
   public:
     /// @brief Get the size of the collection.
@@ -46,7 +51,7 @@ namespace ogxx
   /// @brief Finally, the linear zero-based integer-indexed iterable collection.
   /// @tparam Item the type of the object items that can be iterated
   template <typename Item>
-  class Indexed_iterable : public Sized_iterable<Item>
+  class Indexed_iterable : public virtual Sized_iterable<Item>
   {
   public:
     /// @brief Get an item by its index by value.
