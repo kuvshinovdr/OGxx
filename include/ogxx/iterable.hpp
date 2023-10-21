@@ -16,10 +16,6 @@ namespace ogxx
   template <typename Item>
   class Iterable
   {
-  protected:
-    Iterable& operator=(Iterable const&) = default;
-    Iterable& operator=(Iterable&&) = default;
-
   public:
     virtual ~Iterable() {}
 
@@ -27,6 +23,10 @@ namespace ogxx
     /// @return an object of the iterator
     virtual auto iterate() const
       -> Basic_iterator_uptr<Item> = 0;
+
+  protected:
+    Iterable& operator=(Iterable const&) noexcept = default;
+    Iterable& operator=(Iterable&&) noexcept      = default;
   };
 
 
