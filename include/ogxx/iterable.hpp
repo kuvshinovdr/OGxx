@@ -68,6 +68,34 @@ namespace ogxx
       -> Item = 0;
   };
 
+
+  /// @brief Generic linear container interface with inserts and erases.
+  /// @tparam Item container item type
+  template <typename Item>
+  class List : public virtual Indexed_iterable<Item>
+  {
+  public:
+    /// @brief Append item to the end of the container (i.e. push_back).
+    /// @param item the value to append
+    virtual void put(Item item) = 0;
+
+    /// @brief Insert an item at the given position moving all the following items one position up.
+    /// Should throw on bad index.
+    /// @param at    the position where to insert, insert(0, item) does prepend(item)
+    /// @param item  the value to insert
+    virtual void put(Scalar_index at, Item item) = 0;
+
+    /// @brief Remove the last item and return it.
+    /// @return the value removed, the function may return some default value or throw if the container is empty, but no UB please
+    virtual auto take()
+      -> Item = 0;
+
+    /// @brief Remove the item from the given position and return it.
+    /// @return the value removed, the function may return some default value or throw if the container is empty, but no UB please
+    virtual auto take(Scalar_index from)
+      -> Item = 0;
+  };
+
 }
 
 #endif//OGXX_ITERABLE_HPP_INCLUDED
