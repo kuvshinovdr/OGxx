@@ -20,6 +20,11 @@ namespace ogxx
   template <typename ST>
   using St_matrix_uptr = std::unique_ptr<St_matrix<ST>>;
 
+  /// @brief Owning pointer to a read-only simple-type matrix object.
+  /// @tparam ST item type
+  template <typename ST>
+  using St_matrix_const_uptr = std::unique_ptr<St_matrix<ST> const>;
+
   /// @brief Simple type matrix interface.
   /// @tparam ST item type
   template <typename ST>
@@ -42,10 +47,19 @@ namespace ogxx
     /// @brief Set an item of the matrix.
     /// Throws std::out_of_range if position is out of range.
     /// @param position matrix item position (row, column)
-    /// @param value the new value of the item
-    /// @return the old value of the set item
+    /// @param value    the new value of the item
+    /// @return the old value of the item
     virtual auto set(Matrix_index position, ST value)
       -> ST = 0;
+
+    /// @brief Set a (row, col) item of the matrix.
+    /// Throws std::out_of_range if position is out of range.
+    /// @param row    the row index of the element
+    /// @param col    the column index of the element
+    /// @param value  the new value of the item
+    /// @return the old value of the item
+    auto set(Scalar_index row, Scalar_index col, ST value)
+      -> ST { return set(Matrix_index{ row, col }, value); }
 
     /// @brief Assigns all elements of the matrix the same value.
     /// @param value the value to be assigned, the default one (ST{}) if not passed explicitly

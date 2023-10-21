@@ -75,7 +75,7 @@ namespace ogxx
 
     /// @brief Create a square matrix window.
     /// @param position where is the left upper corner
-    /// @param size rows and columns in the window
+    /// @param size     rows and columns in the window
     /// @return square Matrix_window object
     [[nodiscard]] constexpr static auto square(Matrix_index position, Scalar_size size) noexcept
       -> Matrix_window
@@ -106,8 +106,13 @@ namespace ogxx
   /////////////////////////////////////////////////////////////////////////////
   // Matrix_base interface
 
+  class Matrix_base;
+
   /// @brief Owning pointer to a matrix object (Matrix_base).
-  using Matrix_uptr = std::unique_ptr<class Matrix_base>;
+  using Matrix_uptr = std::unique_ptr<Matrix_base>;
+
+  /// @brief Owning pointer to a read-only matrix object (Matrix_base).
+  using Matrix_const_uptr = std::unique_ptr<Matrix_base const>;
 
   /// @brief Common matrix function independent of matrix item type.
   class Matrix_base
@@ -127,8 +132,8 @@ namespace ogxx
     virtual void reshape(Matrix_shape new_shape) = 0;
 
   protected:
-    Matrix_base& operator=(Matrix_base const&) = default;
-    Matrix_base& operator=(Matrix_base&&) = default;
+    Matrix_base& operator=(Matrix_base const&) noexcept = default;
+    Matrix_base& operator=(Matrix_base&&) noexcept      = default;
   };
 
 }

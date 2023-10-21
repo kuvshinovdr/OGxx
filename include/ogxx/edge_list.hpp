@@ -5,7 +5,7 @@
 #define OGXX_EDGE_LIST_HPP_INCLUDED
 
 #include "primitive_definitions.hpp"
-#include "iterator.hpp"
+#include "iterable.hpp"
 
 
 namespace ogxx
@@ -24,36 +24,17 @@ namespace ogxx
   using Vertex_pair_iterator_uptr = std::unique_ptr<Vertex_pair_iterator>;
 
   /// @brief Interface (abstract base class) for storing an edge list of a graph.
-  class Edge_list
+  /// Indexed_iterable of Vertex_pair, throws on out-of-range?
+  class Edge_list: public Indexed_iterable<Vertex_pair>
   {
   public:
     virtual ~Edge_list() {}
 
-    /// @brief Get the size of the list.
-    /// @return how many edges we store here
-    virtual auto size() const noexcept
-      -> Scalar_size = 0;
-
-    /// @brief Get an edge description by its index in the list
-    /// @param edge_index which edge we want to get
-    /// @return the edge represented by a pair of vertex indices, TODO: throw on out of range?
-    virtual auto get(Scalar_index edge_index) const
-      -> Vertex_pair = 0;
-
     /// @brief Finds the index of an edge in the list
     /// @param edge the pair of indices of the vertices comprising the edge
-    /// @return found index or npos if the edge has not been found
+    /// @return found index or ogxx::npos if the edge has not been found
     virtual auto find(Vertex_pair edge) const noexcept
       -> Scalar_index = 0;
-
-    /// @brief Create an iterator to go through all vertex pairs (edges) stored in the list.
-    /// @return an owning pointer to an iterator
-    virtual auto iterate() const
-      -> Vertex_pair_iterator_uptr = 0;
-
-  protected:
-    Edge_list& operator=(Edge_list const&) = default;
-    Edge_list& operator=(Edge_list&&) = default;
   };
 
 }
