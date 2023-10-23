@@ -25,7 +25,7 @@ namespace ogxx
 
   /// @brief Interface (abstract base class) for storing an edge list of a graph.
   /// Indexed_iterable of Vertex_pair, throws on out-of-range?
-  class Edge_list: public List<Vertex_pair>
+  class Edge_list: public virtual List<Vertex_pair>
   {
   public:
     virtual ~Edge_list() {}

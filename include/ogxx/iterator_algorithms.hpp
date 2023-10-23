@@ -27,6 +27,19 @@ namespace ogxx
 
 
   template <typename Item>
+  auto skip_n(Basic_iterator_uptr<Item>& iterator, Scalar_index n)
+    -> bool
+  {
+    while (n-- != 0)
+      if (Item item; !iterator->next(item))
+        return false;
+    return true;
+  }
+
+  // skip_while, skip_until...
+
+
+  template <typename Item>
   auto count(Basic_iterator_uptr<Item> iterator, Item item)
     -> Scalar_size
   {

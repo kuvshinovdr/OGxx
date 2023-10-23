@@ -28,7 +28,7 @@ namespace ogxx
   /// @brief Simple type matrix interface.
   /// @tparam ST item type
   template <typename ST>
-  class St_matrix : public Matrix_base
+  class St_matrix : public virtual Matrix_base
   {
   public:
     /// @brief Get the item of a matrix at the given position.

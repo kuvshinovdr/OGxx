@@ -38,3 +38,4 @@
 
 1. Use references (better) or primitive pointers (when references can not be used) to provide access but not ownership. Use unique_ptr to hand over ownership (e.g. fabric methods should return unique_ptr).
 2. No special read-only interfaces. An implementation class may be read-only, then it shall implement modifiers as no-op or throwing stubs. Such objects must be returned by a const-reference or a pointer to a constant, casting its constness away implies undefined behaviour in general case.
+3. We have two inheritance hierarchies: that of no-data abstract base classes (interfaces) and that of implementation classes. Interfaces should use virtual inheritance for more robust results.
