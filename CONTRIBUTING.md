@@ -21,11 +21,11 @@
 7. Header file header.hpp should have OGXX_HEADER_HPP_INCLUDED include guard.
 8. The first three lines in each C++ code file must be a documenting comment of the following form:
 
-~~~~~~~~~{.cpp}
+```cpp
 /// @file filename
 /// @brief Description of the file contents.
 /// @author Surname N.P.
-~~~~~~~~~
+```
 
 # OGxx directories
 
