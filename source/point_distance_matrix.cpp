@@ -1,92 +1,56 @@
+#include <iostream>
 #include <vector>
-#include <cmath>
 #include <algorithm>
+#include "ogxx/st_matrix.hpp"
 
-namespace ogxx {
-    typedef double Float;
+// Функция, которая возвращает итератор на первый нулевой элемент в строке
+std::vector<int>::iterator find_first_zero(std::vector<int>& row) {
+    return std::find(row.begin(), row.end(), 0);
+}
 
-    template<class T>
-    class St_matrix {
-    public:
-        virtual T get_value(int i, int j) const = 0;
-        virtual int size() const = 0;
-    };
+// Функция, которая переносит нули в начало строки и сдвигает остальные элементы вправо
+void rotate_row(std::vector<int>& row) {
+    auto first_zero = find_first_zero(row);
+    if (first_zero == row.end()) {
+        // Если нулей в строке нет, то ничего делать не нужно
+        return;
+    }
 
-    class Point_distance_matrix: public St_matrix<Float> {
-    public:
-        Point_distance_matrix(const std::vector<std::vector<Float>>& points)
-            : points(points), metric(0) {}
-
-        void set_points(const std::vector<std::vector<Float>>& new_points) {
-            points = new_points;
+    for (auto it = first_zero + 1; it != row.end(); ++it) {
+        if (*it != 0) {
+            std::rotate(first_zero, it, row.end());
+            // Обновляем значение итератора на первый нулевой элемент
+            first_zero = find_first_zero(row);
         }
+    }
+}
 
-        void set_metric(int new_metric) {
-            metric = new_metric;
+int main() {
+    // Создаем матрицу 3x3 и заполняем ее случайными значениями
+    std::vector<std::vector<int>> matrix {{1, 2, 0}, {0, 3, 4}, {5, 0, 6}};
+
+    // Печатаем исходную матрицу
+    std::cout << "Original matrix:\n";
+    for (const auto& row : matrix) {
+        for (const auto& elem : row) {
+            std::cout << elem << " ";
         }
+        std::cout << "\n";
+    }
 
-        Float get_value(int i, int j) const override {
-            if (metric == 0) {
-                return hamming_distance(points[i], points[j]);
-            } else if (metric == 1) {
-                return manhattan_distance(points[i], points[j]);
-            } else if (metric == 2) {
-                return euclidean_distance(points[i], points[j]);
-            } else if (metric == 3) {
-                return chebyshev_distance(points[i], points[j]);
-            } else if (metric == 4) {
-                return french_railway_distance(points[i], points[j]);
-            }
+    // Сдвигаем элементы в каждой строке так, чтобы нули оказались на главной диагонали
+    for (auto& row : matrix) {
+        rotate_row(row);
+    }
 
-            throw std::invalid_argument("Invalid metric");
+    // Печатаем полученную матрицу
+    std::cout << "\nTransformed matrix:\n";
+    for (const auto& row : matrix) {
+        for (const auto& elem : row) {
+            std::cout << elem << " ";
         }
+        std::cout << "\n";
+    }
 
-        int size() const override {
-            return points.size();
-        }
-
-    private:
-        std::vector<std::vector<Float>> points;
-        int metric;
-
-        Float hamming_distance(const std::vector<Float>& p1, const std::vector<Float>& p2) const {
-            int mismatch_count = 0;
-            for (int i = 0; i < p1.size(); i++) {
-                if (p1[i] != p2[i]) {
-                    mismatch_count++;
-                }
-            }
-            return static_cast<Float>(mismatch_count);
-        }
-
-        Float manhattan_distance(const std::vector<Float>& p1, const std::vector<Float>& p2) const {
-            Float distance = 0;
-            for (int i = 0; i < p1.size(); i++) {
-                distance += std::abs(p1[i] - p2[i]);
-            }
-            return distance;
-        }
-
-        Float euclidean_distance(const std::vector<Float>& p1, const std::vector<Float>& p2) const {
-            Float distance = 0;
-            for (int i = 0; i < p1.size(); i++) {
-                distance += std::pow(p1[i] - p2[i], 2);
-            }
-            return std::sqrt(distance);
-        }
-
-        Float chebyshev_distance(const std::vector<Float>& p1, const std::vector<Float>& p2) const {
-            Float distance = 0;
-            for (int i = 0; i < p1.size(); i++) {
-                distance = std::max(distance, std::abs(p1[i] - p2[i]));
-            }
-            return distance;
-        }
-
-        Float french_railway_distance(const std::vector<Float>& p1, const std::vector<Float>& p2) const {
-            Float distance1 = euclidean_distance({0, 0, 0}, p1);
-            Float distance2 = euclidean_distance({0, 0, 0}, p2);
-            return distance1 + distance2;
-        }
-    };
+    return 0;
 }
