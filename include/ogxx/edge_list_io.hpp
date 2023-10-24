@@ -4,19 +4,13 @@
 #ifndef OGXX_EDGE_LIST_IO_HPP_INCLUDED
 #define OGXX_EDGE_LIST_IO_HPP_INCLUDED
 
+#include "io_head.hpp"
 #include "edge_list.hpp"
-
-#include <string_view>
-#include <istream>
-#include <ostream>
 
 
 /// IO operations for OGxx objects
 namespace ogxx::io
 {
-  using std::string_view;
-  using namespace std::string_view_literals;
-
 
   /// @brief Description of Edge_list IO format.
   struct Edge_list_format
@@ -28,6 +22,14 @@ namespace ogxx::io
     string_view pair_sep    = ", "sv;             ///< the separator inserted between vertex indices in the pair
   };
 
+  // An example of an edge list provided in the default format as stated above:
+  // 
+  //>   edge_list
+  //>   {
+  //>     (1, 2)
+  //>     (0, 2)
+  //>     (0, 3)
+  //>   }
 
   /// @brief Print an edge list representation into an ostream object.
   /// @param os      the output stream object, to which the printing is done
