@@ -72,7 +72,7 @@ namespace ogxx
 
     /// @brief Assigns all elements of the matrix the same value.
     /// @param value the value to be assigned
-    virtual void fill(bool value) noexcept = 0;
+    virtual void fill(bool value) = 0;
   };
 
 
