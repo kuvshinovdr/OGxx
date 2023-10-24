@@ -37,10 +37,18 @@ namespace ogxx
       -> Scalar_index = 0;
 
     /// @brief Compute maximal vertex index occuring in vertex pairs contained in this edge list.
+    /// This method might have been implemented as an external function calling iterate instead.
     /// @return maximal vertex index >= 0 or -1 if the edge list is empty
     virtual auto max_vertex_index() const noexcept
       -> Vertex_index = 0;
   };
+
+  
+  /// @brief Owning pointer to an edge list.
+  using Edge_list_uptr = std::unique_ptr<Edge_list>;
+
+  /// @brief Owning pointer to a read-only edge list.
+  using Edge_list_const_uptr = std::unique_ptr<Edge_list const>;
 
 }
 

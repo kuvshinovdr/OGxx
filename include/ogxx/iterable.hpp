@@ -98,6 +98,9 @@ namespace ogxx
     /// @return the value removed, the function may return some default value or throw if the container is empty, but no UB please
     virtual auto take(Scalar_index from)
       -> Item = 0;
+
+    /// @brief Make this list empty.
+    virtual void clear() = 0;
   };
 
 }
