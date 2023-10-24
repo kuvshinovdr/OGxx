@@ -67,6 +67,24 @@ namespace ogxx
     virtual void fill(ST value = ST{}) noexcept = 0;
   };
 
+  /// @brief Integer matrix interface.
+  using Int_matrix = St_matrix<Int>;
+
+  /// @brief Integer matrix owning pointer.
+  using Int_matrix_uptr = St_matrix_uptr<Int>;
+
+  /// @brief Read-only integer matrix owning pointer.
+  using Int_matrix_const_uptr = St_matrix_const_uptr<Int>;
+
+  /// @brief Floating point matrix interface.
+  using Float_matrix = St_matrix<Float>;
+
+  /// @brief Floating point matrix owning pointer.
+  using Float_matrix_uptr = St_matrix_uptr<Float>;
+
+  /// @brief Read-only floating point matrix owning pointer.
+  using Float_matrix_const_uptr = St_matrix_const_uptr<Float>;
+
 }
 
 #endif//OGXX_ST_MATRIX_HPP_INCLUDED
