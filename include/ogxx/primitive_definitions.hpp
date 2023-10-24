@@ -78,6 +78,7 @@ namespace ogxx
   }
 
 
+  /// @brief Forward the maximal value between first and second (by reference if it is passed by reference, by value otherwise).
   template <typename First, typename Second>
   [[nodiscard]] constexpr auto max(First&& first, Second&& second)
     -> std::common_type_t<First, Second>
@@ -88,6 +89,7 @@ namespace ogxx
   }
 
 
+  /// @brief Forward the maximal value between a1, a2 and args (by reference if it is passed by reference, by value otherwise).
   template <typename A1, typename A2, typename... Args>
   [[nodiscard]] constexpr auto max(A1&& a1, A2&& a2, Args&&... args)
     -> std::common_type_t<A1, A2, Args...>
@@ -99,7 +101,7 @@ namespace ogxx
   }
 
 
-
+  /// @brief Forward the minimal value between first and second (by reference if it is passed by reference, by value otherwise).
   template <typename First, typename Second>
   [[nodiscard]] constexpr auto min(First&& first, Second&& second)
     -> std::common_type_t<First, Second>
@@ -110,6 +112,7 @@ namespace ogxx
   }
 
 
+  /// @brief Forward the minimal value between a1, a2 and args (by reference if it is passed by reference, by value otherwise).
   template <typename A1, typename A2, typename... Args>
   [[nodiscard]] constexpr auto min(A1&& a1, A2&& a2, Args&&... args)
     -> std::common_type_t<A1, A2, Args...>

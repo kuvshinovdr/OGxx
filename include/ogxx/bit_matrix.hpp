@@ -20,7 +20,8 @@ namespace ogxx
   using Bit_matrix_const_uptr = std::unique_ptr<Bit_matrix const>;
 
   /// @brief Bit matrix interface.
-  class Bit_matrix: public virtual Matrix_base
+  class Bit_matrix
+    : public virtual Matrix_base
   {
   public:
     /// @brief Get the item of a matrix at the given position.

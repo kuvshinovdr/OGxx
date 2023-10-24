@@ -8,6 +8,7 @@
 #include "iterable.hpp"
 
 
+/// Root namespace of the OGxx library.
 namespace ogxx
 {
 
@@ -25,16 +26,20 @@ namespace ogxx
 
   /// @brief Interface (abstract base class) for storing an edge list of a graph.
   /// Indexed_iterable of Vertex_pair, throws on out-of-range?
-  class Edge_list: public virtual List<Vertex_pair>
+  class Edge_list
+    : public virtual List<Vertex_pair>
   {
   public:
-    virtual ~Edge_list() {}
-
     /// @brief Finds the index of an edge in the list
     /// @param edge the pair of indices of the vertices comprising the edge
     /// @return found index or ogxx::npos if the edge has not been found
     virtual auto find(Vertex_pair edge) const noexcept
       -> Scalar_index = 0;
+
+    /// @brief Compute maximal vertex index occuring in vertex pairs contained in this edge list.
+    /// @return maximal vertex index >= 0 or -1 if the edge list is empty
+    virtual auto max_vertex_index() const noexcept
+      -> Vertex_index = 0;
   };
 
 }

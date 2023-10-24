@@ -35,6 +35,7 @@ namespace ogxx
     Basic_iterator& operator=(Basic_iterator&&) noexcept      = default;
   };
 
+
   /// @brief An owning pointer to a basic iterator.
   /// @tparam Item basic iterator item type
   template <typename Item>

@@ -8,6 +8,7 @@
 #include "iterator.hpp"
 
 
+/// Root namespace of the OGxx library.
 namespace ogxx
 {
 
@@ -38,7 +39,8 @@ namespace ogxx
   /// @brief Not only iterable but we know in advance, how many items it contains.
   /// @tparam Item the type of the object items that can be iterated
   template <typename Item>
-  class Sized_iterable : public virtual Iterable<Item>
+  class Sized_iterable
+    : public virtual Iterable<Item>
   {
   public:
     /// @brief Get the size of the collection.
@@ -51,7 +53,8 @@ namespace ogxx
   /// @brief Finally, the linear zero-based integer-indexed iterable collection.
   /// @tparam Item the type of the object items that can be iterated
   template <typename Item>
-  class Indexed_iterable : public virtual Sized_iterable<Item>
+  class Indexed_iterable
+    : public virtual Sized_iterable<Item>
   {
   public:
     /// @brief Get an item by its index by value.
@@ -72,7 +75,8 @@ namespace ogxx
   /// @brief Generic linear container interface with inserts and erases.
   /// @tparam Item container item type
   template <typename Item>
-  class List : public virtual Indexed_iterable<Item>
+  class List
+    : public virtual Indexed_iterable<Item>
   {
   public:
     /// @brief Append item to the end of the container (i.e. push_back).
