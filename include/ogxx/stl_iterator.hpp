@@ -36,13 +36,13 @@ namespace ogxx
     /// @param range  reference to a range
     template <typename Range>
     Stl_iterator(Range&& range)
-      : Stl_iterator(std::ranges::begin(range), end(std::ranges::end(range)) {}
+      : Stl_iterator(std::ranges::begin(range), std::ranges::end(range)) {}
 
     /// @brief Get the next item of the sequence.
     /// @param out_item where to put the value of the next item (assigns a variable through the reference)
     /// @return true if out_item has been assigned, false otherwise
-    auto next(T& out_item) noexcept override 
-      -> bool
+    auto next(T& out_item) noexcept
+      -> bool              override
     {
       if (current == end) 
         return false;
@@ -57,6 +57,30 @@ namespace ogxx
     It    current;
     Sent  end;
   };
+
+
+  /// @brief Create an Stl_iterator object for the given begin, end pair.
+  template <typename It, typename Sent>
+  auto new_stl_iterator(It begin, Sent end)
+    -> Basic_iterator_uptr<std::iter_value_t<It>>
+  {
+    using Iterator = Stl_iterator<std::iter_value_t<It>, It, Sent>;
+    return std::make_unique<Iterator>(begin, end);
+  }
+
+
+  /// @brief Create an Stl_iterator object iterating over the given range.
+  template <typename Range>
+  auto new_stl_iterator(Range&& range)
+    -> Basic_iterator_uptr<std::ranges::range_value_t<Range>>
+  {
+    using Iterator = Stl_iterator<
+      std::ranges::range_value_t<Range>, 
+      std::ranges::iterator_t<Range>,
+      std::ranges::sentinel_t<Range>>;
+
+    return std::make_unique<Iterator>(std::forward<Range>(range));
+  }
 
 }
 

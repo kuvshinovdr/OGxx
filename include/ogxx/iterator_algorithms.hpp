@@ -67,8 +67,9 @@ namespace ogxx
   {
     Scalar_size result = 0;
     for (Item item; iterator->next(item);)
-      if (pred(item)
+      if (pred(item))
         ++result;
+
     return result;
   }
 
