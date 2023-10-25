@@ -8,6 +8,7 @@
 #include "primitive_definitions.hpp"
 
 
+/// Root namespace of the OGxx library.
 namespace ogxx
 {
 

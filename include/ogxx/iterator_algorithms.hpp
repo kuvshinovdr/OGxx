@@ -7,6 +7,7 @@
 #include "iterator.hpp"
 
 
+/// Root namespace of the OGxx library.
 namespace ogxx
 {
 
@@ -26,6 +27,11 @@ namespace ogxx
   }
 
 
+  /// @brief Skip the given quantity of items in an iterator object (just calls next() n times).
+  /// @tparam Item    the type of an item
+  /// @param iterator iterator object being fast forwarded
+  /// @param n        how many items to skip
+  /// @return false if the end of the sequence has been met before n items could have been skipped, true if n items have been skipped successfully
   template <typename Item>
   auto skip_n(Basic_iterator_uptr<Item>& iterator, Scalar_index n)
     -> bool
@@ -39,6 +45,11 @@ namespace ogxx
   // skip_while, skip_until...
 
 
+  /// @brief Count how many times an item occurs in the sequence represented by an iterator
+  /// @tparam Item    sequence item type
+  /// @param iterator object representing the sequence
+  /// @param item     the value being counted
+  /// @return         how many times the item occurs in the sequence 
   template <typename Item>
   auto count(Basic_iterator_uptr<Item> iterator, Item item)
     -> Scalar_size
@@ -56,8 +67,9 @@ namespace ogxx
   {
     Scalar_size result = 0;
     for (Item item; iterator->next(item);)
-      if (pred(item)
+      if (pred(item))
         ++result;
+
     return result;
   }
 
