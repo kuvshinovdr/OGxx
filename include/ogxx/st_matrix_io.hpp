@@ -17,10 +17,10 @@ namespace ogxx::io
   {
     string_view matrix_open  = "matrix\n{\n"sv; ///< the opening token for the entire matrix
     string_view matrix_close = "}\n"sv;         ///< the closing token for the entire matrix
-    string_view column_sep  = ", ";             ///< column separator inserted between elements
-    string_view row_sep     = ";\n";            ///< row separator inserted between rows
-    int precision           = 0;                ///< precision for floats, 0 means use the default one
-    int element_width       = 0;                ///< how many characters use for element value, 0 means minimal
+    string_view column_sep   = ", ";             ///< column separator inserted between elements
+    string_view row_sep      = ";\n";            ///< row separator inserted between rows
+    int precision            = 0;                ///< precision for floats, 0 means use the default one
+    int element_width        = 0;                ///< how many characters use for element value, 0 means minimal
   };
 
   // An example of an integer matrix (4x3) provided in the default format as stated above:
