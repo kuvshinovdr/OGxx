@@ -56,6 +56,7 @@ namespace ogxx::io
         
         }
         os<<format.matrix_close;
+        return os;
     }
   /// @brief Print a bit matrix representation into cout (standard output).
   /// @param bm      the Bit_matrix object being printed
@@ -65,7 +66,7 @@ namespace ogxx::io
     -> std::ostream&
     {
 
-        print(std::cout , bm, format);
+        return print(std::cout , bm, format);
 
     }
 
