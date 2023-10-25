@@ -24,6 +24,11 @@ namespace ogxx
     virtual auto iterate() const
       -> Basic_iterator_uptr<Item> = 0;
 
+    /// @brief Check if this iterable range is actually empty.
+    /// @return true if it is empty, false otherwise
+    virtual auto is_empty() const noexcept
+      -> bool = 0;
+
   protected:
     Iterable& operator=(Iterable const&) noexcept = default;
     Iterable& operator=(Iterable&&) noexcept      = default;
@@ -33,7 +38,7 @@ namespace ogxx
   /// @brief Not only iterable but we know in advance, how many items it contains.
   /// @tparam Item the type of the object items that can be iterated
   template <typename Item>
-  class Sized_iterable : public Iterable<Item>
+  class Sized_iterable : public virtual Iterable<Item>
   {
   public:
     /// @brief Get the size of the collection.
@@ -46,7 +51,7 @@ namespace ogxx
   /// @brief Finally, the linear zero-based integer-indexed iterable collection.
   /// @tparam Item the type of the object items that can be iterated
   template <typename Item>
-  class Indexed_iterable : public Sized_iterable<Item>
+  class Indexed_iterable : public virtual Sized_iterable<Item>
   {
   public:
     /// @brief Get an item by its index by value.
@@ -60,6 +65,34 @@ namespace ogxx
     /// @param value which value to assign the item
     /// @return old value of the item (if it existed), may throw or resize and return some default value if index is out-of-range
     virtual auto set(Scalar_index index, Item value)
+      -> Item = 0;
+  };
+
+
+  /// @brief Generic linear container interface with inserts and erases.
+  /// @tparam Item container item type
+  template <typename Item>
+  class List : public virtual Indexed_iterable<Item>
+  {
+  public:
+    /// @brief Append item to the end of the container (i.e. push_back).
+    /// @param item the value to append
+    virtual void put(Item item) = 0;
+
+    /// @brief Insert an item at the given position moving all the following items one position up.
+    /// Should throw on bad index.
+    /// @param at    the position where to insert, insert(0, item) does prepend(item)
+    /// @param item  the value to insert
+    virtual void put(Scalar_index at, Item item) = 0;
+
+    /// @brief Remove the last item and return it.
+    /// @return the value removed, the function may return some default value or throw if the container is empty, but no UB please
+    virtual auto take()
+      -> Item = 0;
+
+    /// @brief Remove the item from the given position and return it.
+    /// @return the value removed, the function may return some default value or throw if the container is empty, but no UB please
+    virtual auto take(Scalar_index from)
       -> Item = 0;
   };
 
