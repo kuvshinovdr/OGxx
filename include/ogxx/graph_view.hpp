@@ -93,6 +93,13 @@ namespace ogxx
     Graph_view& operator=(Graph_view&&) = default;
   };
 
+
+  /// @brief Read-write graph view object owning pointer.
+  using Graph_view_uptr = std::unique_ptr<Graph_view>;
+
+  /// @brief Read-only graph view object owning pointer.
+  using Graph_view_const_uptr = std::unique_ptr<Graph_view const>;
+
 }
 
 #endif//OGXX_GRAPH_VIEW_HPP_INCLUDED

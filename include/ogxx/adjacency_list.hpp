@@ -4,8 +4,8 @@
 #ifndef OGXX_ADJACENCY_LIST_HPP_INCLUDED
 #define OGXX_ADJACENCY_LIST_HPP_INCLUDED
 
-#include "iterable.hpp"
 #include "st_set.hpp"
+#include "graph_view.hpp"
 
 
 /// Root namespace of the OGxx library.
@@ -33,7 +33,46 @@ namespace ogxx
     /// @return the sum of vertex degrees
     virtual auto degrees_sum() const noexcept
       -> Scalar_size = 0;
+
+    // inserts and erases?
   };
+
+
+  /// Directed graph facilities.
+  namespace directed
+  {
+
+    /// @brief Create a read-only graph view for an adjacency list of a directed graph.
+    /// @param al viewed adjacency list, must live while the result graph view is being used
+    /// @return a graph view read-only object
+    [[nodiscard]] auto graph_view(Adjacency_list const& al)
+      -> Graph_view_const_uptr;
+
+    /// @brief Create a read-write graph view for an adjacency list of a directed graph.
+    /// @param al viewed adjacency list, must live while the result graph view is being used
+    /// @return a graph view read-write object
+    [[nodiscard]] auto graph_view(Adjacency_list& al)
+      -> Graph_view_uptr;
+
+  }
+
+  /// Undirected graph facilities.
+  namespace undirected
+  {
+
+    /// @brief Create a read-only graph view for an adjacency list of an undirected graph.
+    /// @param al viewed adjacency list, must live while the result graph view is being used
+    /// @return a graph view read-only object
+    [[nodiscard]] auto graph_view(Adjacency_list const& al)
+      -> Graph_view_const_uptr;
+
+    /// @brief Create a read-write graph view for an adjacency list of an undirected graph.
+    /// @param al viewed adjacency list, must live while the result graph view is being used
+    /// @return a graph view read-write object
+    [[nodiscard]] auto graph_view(Adjacency_list& al)
+      -> Graph_view_uptr;
+
+  }
 
 }
 

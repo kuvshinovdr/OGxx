@@ -72,11 +72,11 @@ namespace ogxx
   };
 
 
-  /// @brief Generic linear container interface with inserts and erases.
+  /// @brief Generic container interface with inserts and erases but no fixed ordering of items.
   /// @tparam Item container item type
   template <typename Item>
-  class List
-    : public virtual Indexed_iterable<Item>
+  class Bag
+    : public virtual Sized_iterable<Item>
   {
   public:
     /// @brief Append item to the end of the container (i.e. push_back).
@@ -102,6 +102,15 @@ namespace ogxx
     /// @brief Make this list empty.
     virtual void clear() = 0;
   };
+
+
+  /// @brief Generic container interface with inserts and erases and stores them in linear order as a list.
+  /// @tparam Item container item type
+  template <typename Item>
+  class List
+    : public Indexed_iterable<Item>
+    , public Bag<Item>
+  {};
 
 }
 
