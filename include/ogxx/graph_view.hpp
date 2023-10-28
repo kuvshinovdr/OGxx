@@ -39,10 +39,6 @@ namespace ogxx
     /// @param count how many vertices the graph should contain
     virtual void set_vertex_count(Scalar_size count) = 0;
 
-    /// @brief Provide the would-be edge count. May be used to reserve memory in advance.
-    /// @param count how many edges the graph should contain, aftermath edge_count() call may return another value
-    virtual void set_edge_count(Scalar_size count) = 0;
-
     /// @brief Connect the vertices of the pair edge.
     /// @param edge (first, second) pair of vertex indices
     /// @return true if edge has been added, false otherwise (e.g. the edge already exists)
@@ -78,7 +74,6 @@ namespace ogxx
       Scalar_size added_edges = 0;
       Scalar_size const verts = max(vertex_count(), gv.vertex_count());
       set_vertex_count(verts);
-      set_edge_count(edge_count() + gv.edge_count());
 
       auto gv_edge_iter = gv.iterate_edges();
       for (Vertex_pair vp; gv_edge_iter->next(vp);)
