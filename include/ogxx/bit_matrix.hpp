@@ -5,7 +5,7 @@
 #define OGXX_BIT_MATRIX_HPP_INCLUDED
 
 #include "matrix.hpp"
-#include "iterable.hpp"
+#include "graph_view.hpp"
 
 
 /// Root namespace of the OGxx library.
@@ -110,12 +110,45 @@ namespace ogxx
     /// @brief Make a copy of the full matrix.
     /// @return a clone of this matrix
     [[nodiscard]] auto copy() const
-      -> Bit_matrix_uptr
-    {
-      return copy(Matrix_window::main(shape()));
-    }
+      -> Bit_matrix_uptr { return copy(Matrix_window::main(shape())); }
   };
 
+
+  /// Directed graph facilities.
+  namespace directed
+  {
+
+    /// @brief Create a read-only graph view for an adjacency matrix of a directed graph.
+    /// @param am viewed adjacency matrix (square), must live while the result graph view is being used
+    /// @return a graph view read-only object
+    [[nodiscard]] auto graph_view(Bit_matrix const& am)
+      -> Graph_view_const_uptr;
+
+    /// @brief Create a read-write graph view for an adjacency matrix of a directed graph.
+    /// @param am viewed adjacency matrix (square), must live while the result graph view is being used
+    /// @return a graph view read-write object
+    [[nodiscard]] auto graph_view(Bit_matrix& am)
+      -> Graph_view_uptr;
+
+  }
+
+  /// Undirected graph facilities.
+  namespace undirected
+  {
+
+    /// @brief Create a read-only graph view for an adjacency matrix of an undirected graph.
+    /// @param el viewed adjacency matrix (square symmetric), must live while the result graph view is being used
+    /// @return a graph view read-only object
+    [[nodiscard]] auto graph_view(Bit_matrix const& am)
+      -> Graph_view_const_uptr;
+
+    /// @brief Create a read-write graph view for an adjacency matrix of an undirected graph.
+    /// @param el viewed adjacency matrix (square symmetric), must live while the result graph view is being used
+    /// @return a graph view read-write object
+    [[nodiscard]] auto graph_view(Bit_matrix& am)
+      -> Graph_view_uptr;
+
+  }
 
 }
 
