@@ -10,6 +10,7 @@
 #include <type_traits>
 #include <memory>
 #include <utility>
+#include <stdexcept>
 
 
 /// Root namespace of the OGxx library.

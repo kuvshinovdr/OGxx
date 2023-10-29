@@ -22,12 +22,12 @@ namespace ogxx
 
     /// @brief Organize an iteration by creating a new iterator for this iterable collection.
     /// @return an object of the iterator
-    virtual auto iterate() const
+    [[nodiscard]] virtual auto iterate() const
       -> Basic_iterator_uptr<Item> = 0;
 
     /// @brief Check if this iterable range is actually empty.
     /// @return true if it is empty, false otherwise
-    virtual auto is_empty() const noexcept
+    [[nodiscard]] virtual auto is_empty() const noexcept
       -> bool = 0;
 
   protected:
@@ -45,7 +45,7 @@ namespace ogxx
   public:
     /// @brief Get the size of the collection.
     /// @return how many items will we iterate through
-    virtual auto size() const noexcept
+    [[nodiscard]] virtual auto size() const noexcept
       -> Scalar_size = 0;
   };
 
@@ -60,7 +60,7 @@ namespace ogxx
     /// @brief Get an item by its index by value.
     /// @param index zero-based index < size()
     /// @return a copy of the item at the given index, may throw or return some default value if index is out-of-range
-    virtual auto get(Scalar_index index) const
+    [[nodiscard]] virtual auto get(Scalar_index index) const
       -> Item = 0;
 
     /// @brief Set an item at the specified index.
@@ -108,8 +108,8 @@ namespace ogxx
   /// @tparam Item container item type
   template <typename Item>
   class List
-    : public Indexed_iterable<Item>
-    , public Bag<Item>
+    : public virtual Indexed_iterable<Item>
+    , public virtual Bag<Item>
   {};
 
 }

@@ -33,6 +33,19 @@ namespace ogxx
     [[nodiscard]] virtual auto iterate_edges() const
       -> Vertex_pair_iterator_uptr = 0;
 
+    /// @brief Check if two vertices of the graph are connected by an edge.
+    /// @param edge a pair of vertex indices to be checked
+    /// @return true if the two vertices are connected by an edge, false otherwise (including the case of an invalid vertex index)
+    [[nodiscard]] virtual auto are_connected(Vertex_pair edge) const noexcept
+      -> bool = 0;
+
+    /// @brief Check if two vertices of the graph are connected by an edge.
+    /// @param from the index of the outcoming vertex
+    /// @param to   the index of the incoming vertex
+    /// @return true if the two vertices are connected by an edge, false otherwise (including the case of an invalid vertex index)
+    [[nodiscard]] auto are_connected(Vertex_index from, Vertex_index to) const noexcept
+      -> bool { return are_connected(Vertex_pair{ from, to }); }
+
     // Non-constant interface
 
     /// @brief Provide the would-be vertex count. May be used to reserve memory in advance.
@@ -46,8 +59,8 @@ namespace ogxx
       -> bool = 0;
 
     /// @brief Add edge from -> to.
-    /// @param from vertex index for the outcoming vertex
-    /// @param to vertex index for the incoming vertex
+    /// @param from the index of the outcoming vertex
+    /// @param to   the index of the incoming vertex
     /// @return true if edge has been added, false otherwise (e.g. the edge already exists)
     auto connect(Vertex_index from, Vertex_index to)
       -> bool { return connect(Vertex_pair{ from, to }); }
@@ -59,8 +72,8 @@ namespace ogxx
       -> bool = 0;
 
     /// @brief Remove edge from -> to.
-    /// @param from vertex index for the outcoming vertex
-    /// @param to vertex index for the incoming vertex
+    /// @param from the index of the outcoming vertex
+    /// @param to   the index of the incoming vertex
     /// @return true if edge has been removed, false otherwise (e.g. there was no such edge) 
     auto disconnect(Vertex_index from, Vertex_index to)
       -> bool { return disconnect(Vertex_pair{ from, to }); }

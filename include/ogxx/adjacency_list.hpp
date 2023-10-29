@@ -19,13 +19,13 @@ namespace ogxx
     , public virtual Sized_iterable<Scalar_index>
   {
   public:
-    
+    // Do we need to add anything here?
   };
 
 
   /// @brief Graph representation where, which maps vertex index to the adjacency of that vertex.
   class Adjacency_list 
-    : public virtual Indexed_iterable<Adjacency*>
+    : public virtual Indexed_iterable<Adjacency const*>
   {
   public:
     /// @brief Compute the sum of sizes of all adjacencies (vertex degrees).
@@ -34,7 +34,18 @@ namespace ogxx
     virtual auto degrees_sum() const noexcept
       -> Scalar_size = 0;
 
-    // inserts and erases?
+    /// @brief Add or remove vertices.
+    /// When removing vertices remove all edges incident with the removed vertices.
+    /// @param new_vertex_count how many vertices the list should represent after this call (vertices have indices 0, 1, ..., new_vertex_count - 1)
+    virtual void set_vertex_count(Scalar_size new_vertex_count) = 0;
+
+    using Indexed_iterable<Adjacency const*>::get;
+
+    /// @brief Allows to change an adjacency of the given vertex.
+    /// @param vertex zero-based index of a vertex < size()
+    /// @return a non-owning pointer to the adjacency of a vertex, may through or resize on out-of-range index
+    [[nodiscard]] virtual auto get(Vertex_index vertex)
+      -> Adjacency* = 0;
   };
 
 
