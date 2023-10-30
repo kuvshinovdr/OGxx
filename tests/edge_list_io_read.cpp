@@ -2,19 +2,29 @@
 /// @brief Testing the function "read" in the edge_list_io_read.cpp
 /// /// @author Artemenko I.V
 #include "testing_head.hpp"
-#include <source/parsing_utils.hpp>
+#include <parsing_utils.hpp>
 #include <edge_list_io_read.cpp>
-inline auto accept_tokens(string_view& input, string_view tokens) noexcept
--> bool
-{
-    for (string_view token; !(token = extract_next_token(tokens)).empty();)
-    {
-        if (!ltrim(input).starts_with(token))
-            return false;
-        input.remove_prefix(token.size());
-    }
+#include <sstream>
+#include <doctest/doctest.h>
 
-    return true;
+TEST_CASE("read reads edge list from input stream")
+{
+	// Create an input stream with the edge list representation
+	std::istringstream iss("edge_list\n{\n  (1, 2)\n  (2, 3)\n}");
+
+	// Create an empty Edge_list object
+	ogxx::Edge_list el;
+
+	// Call the read function
+	ogxx::io::Edge_list_format format;
+	ogxx::io::read(iss, el, format);
+	
+	// Check that the Edge_list object contains the expected edges
+	CHECK(el.size() == 2);
+	CHECK(el[0].first == 1);
+	CHECK(el[0].second == 2);
+	CHECK(el[1].first == 2);
+	CHECK(el[1].second == 3);
 }
 
- 
+

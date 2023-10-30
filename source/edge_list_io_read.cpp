@@ -1,6 +1,5 @@
 ﻿#ifndef OGXX_EDGE_LIST_IO_HPP_INCLUDED
 #define OGXX_EDGE_LIST_IO_HPP_INCLUDED
-
 #include "io_head.hpp"
 #include "edge_list.hpp"
 
