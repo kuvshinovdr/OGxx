@@ -2,7 +2,7 @@
 /// @brief Tests for Symmetric_dense_st_matrix.
 /// @author Martianov K.S
 #include "testing_head.hpp"
-#include <../source/symmetric_dense_st_matrix.cpp>
+#include <../source/symmetric_dense_st_matrix.hpp>
 
 
 TEST_SUITE("Initialization")
