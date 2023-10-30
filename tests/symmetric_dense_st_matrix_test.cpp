@@ -4,21 +4,13 @@
 #include "testing_head.hpp"
 #include <../source/symmetric_dense_st_matrix.cpp>
 
-/*
+
 TEST_SUITE("Initialization")
 {
   TEST_CASE("Initialization")
   {
-    Symmetric_dense_st_matrix A(5);
+    Symmetric_dense_st_matrix<int> A(5);
   }
 
  
-}
-
-*/
-namespace ogxx
-{
-int main(){
-    Symmetric_dense_st_matrix<int> A(5);
-}
 }
