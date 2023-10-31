@@ -27,13 +27,14 @@ namespace ogxx
     /// @endcode
     /// @param out_item the variable where to put the next item of the sequence if this item exists
     /// @return true if the item value was written to out_item, false if the sequence is empty
-    virtual auto next(Item& out_item) noexcept
+    virtual auto next(Item& out_item) noexcept(std::is_nothrow_assignable_v<Item, Item>)
       -> bool = 0;
 
   protected:
     Basic_iterator& operator=(Basic_iterator const&) noexcept = default;
     Basic_iterator& operator=(Basic_iterator&&) noexcept      = default;
   };
+
 
   /// @brief An owning pointer to a basic iterator.
   /// @tparam Item basic iterator item type
