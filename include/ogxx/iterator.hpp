@@ -12,19 +12,34 @@ namespace ogxx
 {
 
   /// @brief Generic iterator for traversing a sequence of items of a small easily-copyable or movable type.
-  /// @tparam T small easily-copyable or movable type
-  template <typename T>
+  /// @tparam Item small easily-copyable or movable type
+  template <typename Item>
   class Basic_iterator
   {
   public:
     virtual ~Basic_iterator() {}
 
     /// @brief Get the next item of the sequence.
+    /// Possible enumerating using this iterator may be done by the following loop:
+    /// @code{.cpp}
+    ///     for (Item val; iterator->next(val);)
+    ///       do_something_with(val);
+    /// @endcode
     /// @param out_item the variable where to put the next item of the sequence if this item exists
     /// @return true if the item value was written to out_item, false if the sequence is empty
-    virtual auto next(T& out_item) noexcept
+    virtual auto next(Item& out_item) noexcept(std::is_nothrow_assignable_v<Item, Item>)
       -> bool = 0;
+
+  protected:
+    Basic_iterator& operator=(Basic_iterator const&) noexcept = default;
+    Basic_iterator& operator=(Basic_iterator&&) noexcept      = default;
   };
+
+
+  /// @brief An owning pointer to a basic iterator.
+  /// @tparam Item basic iterator item type
+  template <typename Item>
+  using Basic_iterator_uptr = std::unique_ptr<Basic_iterator<Item>>;
 
   /// @brief Iterating over a bit sequence.
   using Bit_iterator = Basic_iterator<bool>;

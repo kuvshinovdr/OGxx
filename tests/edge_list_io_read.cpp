@@ -19,7 +19,7 @@ TEST_CASE("read reads edge list from input stream")
 	// Call the read function
 	ogxx::io::Edge_list_format format;
 	ogxx::io::read(iss, el, format);
-
+	
 	// Check that the Edge_list object contains the expected edges
 	CHECK(el.size() == 2);
 	CHECK(el[0].first == 1);
@@ -27,3 +27,5 @@ TEST_CASE("read reads edge list from input stream")
 	CHECK(el[1].first == 2);
 	CHECK(el[1].second == 3);
 }
+
+
