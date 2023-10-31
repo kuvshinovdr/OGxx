@@ -2,6 +2,7 @@
 #include <ogxx/st_matrix.hpp>
 #include <vector>
 #include <stdexcept>
+
 namespace ogxx
 {
   
@@ -32,7 +33,7 @@ namespace ogxx
         throw std::invalid_argument("Symmetric matrix must have equal rows and cols.");
       
       size_ = new_shape.rows;
-      data_.resize(size * (size + 1) / 2, ST{});
+      data_.resize(size_ * (size_ + 1) / 2, ST{});
     }
     auto iterate() const
       -> Basic_iterator_uptr<ST> override
@@ -79,13 +80,16 @@ namespace ogxx
     auto copy(Matrix_window window)
       -> St_matrix_uptr<ST> override
     {
-    throw std::logic_error("Symmetric_dense_st_matrix::view not implemented.");
+      if (!window.position.is_valid_for(shape())){
+        throw std::out_of_range("Invalid matrix window.");
+      }
+    throw std::logic_error("Symmetric_dense_st_matrix::copy not implemented.");
     }
 
     // Метод get
     [[nodiscard]] auto get(Matrix_index position) const noexcept -> ST override
     {
-      if (position.row >= size || position.col >= size)
+      if (position.row >= size_ || position.col >= size_)
         return ST{}; // Значение по умолчанию, когда оно выходит за пределы диапазона
 
       if (position.row > position.col)
@@ -122,4 +126,6 @@ namespace ogxx
       std::fill(data_.begin(), data_.end(), value);
     }
   };
+  
+
 }
