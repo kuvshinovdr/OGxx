@@ -1,9 +1,10 @@
 /// @file edge_list_io_read.cpp
 /// @brief Testing the function "read" in the edge_list_io_read.cpp
 /// /// @author Artemenko I.V
+/// 
 #include "testing_head.hpp"
 #include <parsing_utils.hpp>
-#include <edge_list_io_read.cpp>
+#include <edge_list_io.hpp>
 #include <sstream>
 #include <doctest/doctest.h>
 
