@@ -41,9 +41,15 @@ namespace ogxx
     }
 
     /// Compute total element count of a matrix with this shape.
-    [[nodiscard]] constexpr auto element_count() const
+    /// Throws on overflow.
+    [[nodiscard]] auto element_count() const
+      -> Scalar_size
     {
-      return rows * cols; // TODO: overflow check
+      Scalar_size result = 0;
+      if (checked_multiply(rows, cols, result))
+        return result;
+
+      throw std::out_of_range("Matrix_shape::element_count: overflow");
     }
   };
 
@@ -77,6 +83,7 @@ namespace ogxx
         row += shape.rows;
       if (col < 0)
         col += shape.cols;
+
       return is_valid_for(shape);
     }
   };
