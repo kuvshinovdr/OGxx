@@ -47,7 +47,7 @@ namespace ogxx::io
     -> std::ostream&;
 
   /// @brief Read (parse) a bit matrix representation from an istream object.
-  /// @param in      the input character sequence, remove the prefix that was read (on success)
+  /// @param in      the input character sequence, remove the prefix that was read
   /// @param bm      the Bit_matrix object being filled with the ones and zeroes from is
   /// @param format  bit matrix format description
   /// @return true on successful reading, false otherwise

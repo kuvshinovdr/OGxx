@@ -35,57 +35,51 @@ namespace ogxx::io
 
   /// @brief Print an integer matrix representation into an ostream object.
   /// @param os      the output stream object, to which the printing is done
-  /// @param bm      the Int_matrix object being printed
+  /// @param m       the Int_matrix object being printed
   /// @param format  matrix format description
   /// @return os
-  auto print(std::ostream& os, ogxx::Int_matrix const& bm, St_matrix_format const& format = {})
+  auto print(std::ostream& os, ogxx::Int_matrix const& m, St_matrix_format const& format = {})
     -> std::ostream&;
 
   /// @brief Print an integer matrix representation into cout (standard output).
-  /// @param bm      the Int_matrix object being printed
+  /// @param m       the Int_matrix object being printed
   /// @param format  matrix format description
   /// @return reference to std::cout
-  auto print(ogxx::Int_matrix const& bm, St_matrix_format const& format = {})
+  auto print(ogxx::Int_matrix const& m, St_matrix_format const& format = {})
     -> std::ostream&;
 
   /// @brief Read (parse) an integer matrix representation from an istream object.
-  /// @param is      the input stream object
-  /// @param bm      the Int_matrix object being read
+  /// @param in      the input character sequence, remove the prefix that was read
+  /// @param m       the Int_matrix object being read
   /// @param format  matrix format description
-  /// @return is
-  auto read(std::istream& is, ogxx::Int_matrix& bm, St_matrix_format const& format)
-    -> std::istream&;
+  /// @return true on successful reading, false otherwise
+  auto read(std::string_view& in, ogxx::Int_matrix& m, St_matrix_format const& format)
+    -> bool;
 
-  /// @brief Read (parse) an integer matrix representation from std::cin.
-  /// @param bm      the Int_matrix object being read
-  /// @param format  matrix format description
-  /// @return reference to std::cin
-  auto read(ogxx::Int_matrix& bm, St_matrix_format const& format)
-    -> std::istream&;
 
   /////////////////////////////////////////////////////////////////////////////
 
   /// @brief Print a float matrix representation into an ostream object.
   /// @param os      the output stream object, to which the printing is done
-  /// @param bm      the Float_matrix object being printed
+  /// @param m       the Float_matrix object being printed
   /// @param format  matrix format description
   /// @return os
-  auto print(std::ostream& os, ogxx::Float_matrix const& bm, St_matrix_format const& format = {})
+  auto print(std::ostream& os, ogxx::Float_matrix const& m, St_matrix_format const& format = {})
     -> std::ostream&;
 
   /// @brief Print a float matrix representation into cout (standard output).
-  /// @param bm      the Float_matrix object being printed
+  /// @param m       the Float_matrix object being printed
   /// @param format  matrix format description
   /// @return reference to std::cout
-  auto print(ogxx::Float_matrix const& bm, St_matrix_format const& format = {})
+  auto print(ogxx::Float_matrix const& m, St_matrix_format const& format = {})
     -> std::ostream&;
 
   /// @brief Read (parse) a float matrix representation from an istream object.
-  /// @param in      the input character sequence, remove the prefix that was read (on success)
-  /// @param bm      the Float_matrix object being read
+  /// @param in      the input character sequence, remove the prefix that was read
+  /// @param m       the Float_matrix object being read
   /// @param format  matrix format description
   /// @return true on successful reading, false otherwise
-  auto read(std::string_view& in, ogxx::Float_matrix& bm, St_matrix_format const& format)
+  auto read(std::string_view& in, ogxx::Float_matrix& m, St_matrix_format const& format)
     -> bool;
 
 }

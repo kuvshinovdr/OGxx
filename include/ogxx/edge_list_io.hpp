@@ -47,7 +47,7 @@ namespace ogxx::io
     -> std::ostream&;
 
   /// @brief Read (parse) an edge list representation from a string_view object by clearing and putting vertex pairs.
-  /// @param in      the input character sequence, remove the prefix that was read (on success)
+  /// @param in      the input character sequence, remove the prefix that was read
   /// @param el      the Edge_list object being filled with the edges read from is
   /// @param format  edge list format description
   /// @return true on successful reading, false otherwise

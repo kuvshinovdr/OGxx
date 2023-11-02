@@ -27,18 +27,20 @@ namespace ogxx::io
       using Row = std::vector<Item>;
       std::vector<Row> data;
 
+      // Main reading loop, reads everything to data.
       for (Item value; !util::accept_tokens(in, format.matrix_close);)
       {
         if (in.empty())
           return false; // and we lose any data that have been parsed!
 
+        // New row.
         if (util::accept_tokens(in, format.row_sep))
         {
           data.emplace_back();
           continue;
         }
 
-        do
+        do // row items.
         {
           auto [ptr, ec] = std::from_chars(in.data(), in.data() + in.size(), value);
           if (ec != std::errc{})
@@ -53,12 +55,14 @@ namespace ogxx::io
         } while (util::accept_tokens(in, format.column_sep));
       }
 
+      // Find the resulting matrix shape.
       Matrix_shape const shape
       {
         .rows = static_cast<Scalar_size>(data.size()),
         .cols = static_cast<Scalar_size>(std::ranges::max(data | std::views::transform(&Row::size)))
       };
 
+      // Fill the matrix with the items we've read.
       m.reshape(shape);
       m.fill();
 
