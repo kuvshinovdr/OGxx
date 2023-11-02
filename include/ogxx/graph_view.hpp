@@ -4,13 +4,14 @@
 #ifndef OGXX_GRAPH_VIEW_HPP_INCLUDED
 #define OGXX_GRAPH_VIEW_HPP_INCLUDED
 
-#include "vertex_pair.hpp"
+#include <ogxx/vertex_pair.hpp>
 
 
 /// Root namespace of the OGxx library.
 namespace ogxx
 {
 
+  /// @brief Generic graph interface to provide a common facade over concrete graph representations.
   class Graph_view
   {
   public:

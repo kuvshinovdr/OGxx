@@ -4,8 +4,8 @@
 #ifndef OGXX_ST_MATRIX_HPP_INCLUDED
 #define OGXX_ST_MATRIX_HPP_INCLUDED
 
-#include "matrix.hpp"
-#include "iterable.hpp"
+#include <ogxx/iterable.hpp>
+#include <ogxx/matrix.hpp>
 
 
 /// Root namespace of the OGxx library.
@@ -102,10 +102,7 @@ namespace ogxx
     /// @brief Make a copy of the full matrix.
     /// @return a clone of this matrix
     [[nodiscard]] auto copy() const
-      -> St_matrix_uptr<ST>
-    {
-      return copy(Matrix_window::main(shape()));
-    }
+      -> St_matrix_uptr<ST> { return copy(Matrix_window::main(shape())); }
   };
 
 

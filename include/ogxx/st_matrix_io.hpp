@@ -4,8 +4,8 @@
 #ifndef OGXX_ST_MATRIX_IO_HPP_INCLUDED
 #define OGXX_ST_MATRIX_IO_HPP_INCLUDED
 
-#include "io_head.hpp"
-#include "st_matrix.hpp"
+#include <ogxx/io_head.hpp>
+#include <ogxx/st_matrix.hpp>
 
 
 /// IO operations for OGxx objects

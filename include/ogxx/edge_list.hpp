@@ -4,7 +4,8 @@
 #ifndef OGXX_EDGE_LIST_HPP_INCLUDED
 #define OGXX_EDGE_LIST_HPP_INCLUDED
 
-#include "graph_view.hpp"
+#include <ogxx/iterable.hpp>
+#include <ogxx/graph_view.hpp>
 
 
 /// Root namespace of the OGxx library.

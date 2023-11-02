@@ -4,8 +4,8 @@
 #ifndef OGXX_ADJACENCY_LIST_HPP_INCLUDED
 #define OGXX_ADJACENCY_LIST_HPP_INCLUDED
 
-#include "st_set.hpp"
-#include "graph_view.hpp"
+#include <ogxx/st_set.hpp>
+#include <ogxx/graph_view.hpp>
 
 
 /// Root namespace of the OGxx library.
