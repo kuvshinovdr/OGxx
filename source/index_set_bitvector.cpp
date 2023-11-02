@@ -33,12 +33,39 @@ namespace ogxx {
         }
       }
 
-      bool contains(const Scalar_index& index) const override {
+      bool contains(Scalar_index index) const override {
         if (index < bits.size()) {
           return bits[index];
         }
         return false;
       }
+
+
+      bool insert(Scalar_index item) override
+      {
+        // if item >= size() then resize
+        if (bits[item])
+          return false;
+
+        bits[item] = true;
+        return true;
+      }
+        
+
+      bool erase(Scalar_index item) override
+      {
+        if (item >= bits.size())
+          return false;
+        
+        if (bits[item])
+        {
+          bits[item] = false;
+          return true;
+        }
+        
+        return false;
+      }
+
 
       void clear() override {
         bits.clear();
@@ -48,7 +75,7 @@ namespace ogxx {
         return bits.size();
       }
 
-      std::vector<Scalar_index> indices() const override {
+      std::vector<Scalar_index> indices() const {
         std::vector<Scalar_index> result;
         for (Scalar_index i = 0; i < bits.size(); ++i) {
           if (bits[i]) {
