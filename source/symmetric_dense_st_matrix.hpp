@@ -1,5 +1,8 @@
+/// add doc comment
 
 #include <ogxx/st_matrix.hpp>
+#include <ogxx/stl_iterator.hpp>
+
 #include <vector>
 #include <stdexcept>
 
@@ -38,19 +41,19 @@ namespace ogxx
     auto iterate() const
       -> Basic_iterator_uptr<ST> override
     {
-    throw std::logic_error("Symmetric_dense_st_matrix::iterate not implemented.");
+    return new_stl_iterator(data_);
     }
 
     auto is_empty() const noexcept
       -> bool override
     {
-    throw std::logic_error("Symmetric_dense_st_matrix::is_empty not implemented.");
+    return data_.empty();
     }
     
     auto size() const noexcept
       -> Scalar_size override
     {
-    throw std::logic_error("Symmetric_dense_st_matrix::size not implemented.");
+    return data_.size();
     }
 
     auto iterate_row(Scalar_index row) const
