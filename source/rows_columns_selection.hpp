@@ -1,3 +1,7 @@
+/// doc comment
+/// include guards
+
+#include <ogxx/matrix.hpp>
 #include <vector>
 
 typedef struct {
@@ -10,6 +14,8 @@ typedef struct {
     size_t col;
 } Shape;
 
+// namespace ogxx
+
 class Rows_columns_selection {
 private:
     std::vector<bool> selected_rows;
@@ -19,7 +25,7 @@ private:
     std::vector<size_t> _cols;
 public:
 
-    friend class Rows_columns_union;
+    friend class Rows_columns_union; // remove it
     
     // constructor with two arguments
     Rows_columns_selection(
@@ -29,12 +35,12 @@ public:
             selected_columns(s_columns) {
 
         // calculate _rows
-        for (size_t r : selected_rows)
+        for (size_t r : selected_rows) // push index of a true value
             if (selected_rows[r])
                 _rows.push_back(r);
 
         // calculate _cols
-        for (size_t c : selected_columns)
+        for (size_t c : selected_columns) // push index of a true value
             if (selected_columns[c])
                 _cols.push_back(c);
     }
@@ -43,6 +49,9 @@ public:
     Shape new_matrix_shape() {
         return Shape({_rows.size(), _cols.size()});
     }
+
+    // add operator()(Matrix_index) -> Matrix_index
+    // new to old by _rows[row], _cols[col]
 };
 
 class Rows_columns_union {
