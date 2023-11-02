@@ -6,6 +6,7 @@
 
 #include <cstddef>
 #include <cstdint>
+#include <bit>
 #include <limits>
 #include <type_traits>
 #include <memory>
@@ -114,6 +115,32 @@ namespace ogxx
       return min(min(std::forward<A1>(a1), std::forward<A2>(a2)), std::forward<Args>(args)...);
     else
       return min(min(std::forward<A1>(a1), std::forward<A2>(a2)), min(std::forward<Args>(args)...));
+  }
+
+
+  /// @brief Multiply a by b and check if the product overflows, if not save it in the result.
+  /// @param a       the first multiplicand
+  /// @param b       the second multiplicand
+  /// @param result  the variable where to store a * b if it does not overflow
+  /// @return true if no overflow occurs, then result contains the correct value, false otherwise
+  [[nodiscard]] inline auto checked_multiply(Scalar_size a, Scalar_size b, Scalar_size& result) noexcept
+    -> bool
+  {
+    #if defined(__GNUC__) || defined(__MINGW32__) || defined(__MINGW64__) || defined(__clang__)
+    if (!__builtin_mul_overflow(a, b, &result)) 
+    {
+    #else
+    using U = std::make_unsigned_t<Scalar_size>;
+    if (std::bit_width(static_cast<U>(a)) +
+        std::bit_width(static_cast<U>(b)) < 
+        sizeof(U) * CHAR_BIT)
+    {
+      result = a * b;
+    #endif
+      return true;
+    }
+
+    return false;
   }
 
 }

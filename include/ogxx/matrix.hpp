@@ -4,8 +4,8 @@
 #ifndef OGXX_MATRIX_HPP_INCLUDED
 #define OGXX_MATRIX_HPP_INCLUDED
 
-#include "primitive_definitions.hpp"
-#include "iterator.hpp" // TBD
+#include <ogxx/primitive_definitions.hpp>
+#include <ogxx/iterator.hpp>
 
 
 /// Root namespace of the OGxx library.
@@ -39,6 +39,18 @@ namespace ogxx
     {
       return { size, size };
     }
+
+    /// Compute total element count of a matrix with this shape.
+    /// Throws on overflow.
+    [[nodiscard]] auto element_count() const
+      -> Scalar_size
+    {
+      Scalar_size result = 0;
+      if (checked_multiply(rows, cols, result))
+        return result;
+
+      throw std::out_of_range("Matrix_shape::element_count: overflow");
+    }
   };
 
 
@@ -60,6 +72,19 @@ namespace ogxx
     {
       return is_within(row, -shape.rows, shape.rows - 1)
           && is_within(col, -shape.cols, shape.cols - 1);
+    }
+
+    /// @brief Check if the current index is valid for the given shape and correct negative row or col according to the shape.
+    /// @param shape the sizes of the matrix to which the index is to be applied
+    /// @return true if the index is correct, false otherwise
+    [[nodiscard]] constexpr auto check_and_correct(Matrix_shape shape) noexcept
+    {
+      if (row < 0)
+        row += shape.rows;
+      if (col < 0)
+        col += shape.cols;
+
+      return is_valid_for(shape);
     }
   };
 
@@ -125,9 +150,8 @@ namespace ogxx
     [[nodiscard]] virtual auto shape() const noexcept
       -> Matrix_shape = 0;
 
-    /// @brief Change matrix sizes (if possible in-place). 
-    /// Zero fills the resulting matrix.
-    /// May throw bad_alloc if new_shape is too large.
+    /// @brief Change matrix sizes (if possible in-place).
+    /// May throw bad_alloc if new_shape is too large or invalid.
     /// @param new_shape new matrix sizes: rows and columns
     virtual void reshape(Matrix_shape new_shape) = 0;
 

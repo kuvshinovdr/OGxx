@@ -4,8 +4,8 @@
 #ifndef OGXX_ITERABLE_HPP_INCLUDED
 #define OGXX_ITERABLE_HPP_INCLUDED
 
-#include "primitive_definitions.hpp"
-#include "iterator.hpp"
+#include <ogxx/primitive_definitions.hpp>
+#include <ogxx/iterator.hpp>
 
 
 /// Root namespace of the OGxx library.
@@ -83,20 +83,9 @@ namespace ogxx
     /// @param item the value to append
     virtual void put(Item item) = 0;
 
-    /// @brief Insert an item at the given position moving all the following items one position up.
-    /// Should throw on bad index.
-    /// @param at    the position where to insert, insert(0, item) does prepend(item)
-    /// @param item  the value to insert
-    virtual void put(Scalar_index at, Item item) = 0;
-
     /// @brief Remove the last item and return it.
     /// @return the value removed, the function may return some default value or throw if the container is empty, but no UB please
     virtual auto take()
-      -> Item = 0;
-
-    /// @brief Remove the item from the given position and return it.
-    /// @return the value removed, the function may return some default value or throw if the container is empty, but no UB please
-    virtual auto take(Scalar_index from)
       -> Item = 0;
 
     /// @brief Make this list empty.
@@ -110,7 +99,18 @@ namespace ogxx
   class List
     : public virtual Indexed_iterable<Item>
     , public virtual Bag<Item>
-  {};
+  {
+    /// @brief Insert an item at the given position moving all the following items one position up.
+    /// Should throw on bad index.
+    /// @param at    the position where to insert, insert(0, item) does prepend(item)
+    /// @param item  the value to insert
+    virtual void put(Scalar_index at, Item item) = 0;
+
+    /// @brief Remove the item from the given position and return it.
+    /// @return the value removed, the function may return some default value or throw if the container is empty, but no UB please
+    virtual auto take(Scalar_index from)
+      -> Item = 0;
+  };
 
 }
 

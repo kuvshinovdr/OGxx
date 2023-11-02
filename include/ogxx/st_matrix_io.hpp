@@ -4,8 +4,8 @@
 #ifndef OGXX_ST_MATRIX_IO_HPP_INCLUDED
 #define OGXX_ST_MATRIX_IO_HPP_INCLUDED
 
-#include "io_head.hpp"
-#include "st_matrix.hpp"
+#include <ogxx/io_head.hpp>
+#include <ogxx/st_matrix.hpp>
 
 
 /// IO operations for OGxx objects
@@ -81,19 +81,12 @@ namespace ogxx::io
     -> std::ostream&;
 
   /// @brief Read (parse) a float matrix representation from an istream object.
-  /// @param is      the input stream object
+  /// @param in      the input character sequence, remove the prefix that was read (on success)
   /// @param bm      the Float_matrix object being read
   /// @param format  matrix format description
-  /// @return is
-  auto read(std::istream& is, ogxx::Float_matrix& bm, St_matrix_format const& format)
-    -> std::istream&;
-
-  /// @brief Read (parse) a float matrix representation from std::cin.
-  /// @param bm      the Float_matrix object being read
-  /// @param format  matrix format description
-  /// @return reference to std::cin
-  auto read(ogxx::Float_matrix& bm, St_matrix_format const& format)
-    -> std::istream&;
+  /// @return true on successful reading, false otherwise
+  auto read(std::string_view& in, ogxx::Float_matrix& bm, St_matrix_format const& format)
+    -> bool;
 
 }
 
