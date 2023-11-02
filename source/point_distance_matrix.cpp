@@ -1,56 +1,105 @@
-#include <iostream>
 #include <vector>
+#include <cmath>
 #include <algorithm>
-#include "ogxx/st_matrix.hpp"
+#include <memory>
 
-// Функция, которая возвращает итератор на первый нулевой элемент в строке
-std::vector<int>::iterator find_first_zero(std::vector<int>& row) {
-    return std::find(row.begin(), row.end(), 0);
-}
+namespace ogxx {
+    typedef double Float;
 
-// Функция, которая переносит нули в начало строки и сдвигает остальные элементы вправо
-void rotate_row(std::vector<int>& row) {
-    auto first_zero = find_first_zero(row);
-    if (first_zero == row.end()) {
-        // Если нулей в строке нет, то ничего делать не нужно
-        return;
-    }
+    template<class T>
+    class St_matrix {
+    public:
+        virtual T get_value(int i, int j) const = 0;
+        virtual int size() const = 0;
+    };
 
-    for (auto it = first_zero + 1; it != row.end(); ++it) {
-        if (*it != 0) {
-            std::rotate(first_zero, it, row.end());
-            // Обновляем значение итератора на первый нулевой элемент
-            first_zero = find_first_zero(row);
+    class Metric_compute {
+    public:
+        virtual Float compute(const std::vector<Float>& p1, const std::vector<Float>& p2) const = 0;
+    };
+
+    class Hamming_distance : public Metric_compute {
+    public:
+        Float compute(const std::vector<Float>& p1, const std::vector<Float>& p2) const override {
+            int mismatch_count = 0;
+            for (int i = 0; i < p1.size(); i++) {
+                if (p1[i] != p2[i]) {
+                    mismatch_count++;
+                }
+            }
+            return static_cast<Float>(mismatch_count);
         }
-    }
-}
+    };
 
-int main() {
-    // Создаем матрицу 3x3 и заполняем ее случайными значениями
-    std::vector<std::vector<int>> matrix {{1, 2, 0}, {0, 3, 4}, {5, 0, 6}};
-
-    // Печатаем исходную матрицу
-    std::cout << "Original matrix:\n";
-    for (const auto& row : matrix) {
-        for (const auto& elem : row) {
-            std::cout << elem << " ";
+    class Manhattan_distance : public Metric_compute {
+    public:
+        Float compute(const std::vector<Float>& p1, const std::vector<Float>& p2) const override {
+            Float distance = 0;
+            for (int i = 0; i < p1.size(); i++) {
+                distance += std::abs(p1[i] - p2[i]);
+            }
+            return distance;
         }
-        std::cout << "\n";
-    }
+    };
 
-    // Сдвигаем элементы в каждой строке так, чтобы нули оказались на главной диагонали
-    for (auto& row : matrix) {
-        rotate_row(row);
-    }
-
-    // Печатаем полученную матрицу
-    std::cout << "\nTransformed matrix:\n";
-    for (const auto& row : matrix) {
-        for (const auto& elem : row) {
-            std::cout << elem << " ";
+    class Euclidean_distance : public Metric_compute {
+    public:
+        Float compute(const std::vector<Float>& p1, const std::vector<Float>& p2) const override {
+            Float distance = 0;
+            for (int i = 0; i < p1.size(); i++) {
+                distance += std::pow(p1[i] - p2[i], 2);
+            }
+            return std::sqrt(distance);
         }
-        std::cout << "\n";
-    }
+    };
 
-    return 0;
+    class Chebyshev_distance : public Metric_compute {
+    public:
+        Float compute(const std::vector<Float>& p1, const std::vector<Float>& p2) const override {
+            Float distance = 0;
+            for (int i = 0; i < p1.size(); i++) {
+                distance = std::max(distance, std::abs(p1[i] - p2[i]));
+            }
+            return distance;
+        }
+    };
+
+    class French_railway_distance : public Metric_compute {
+    public:
+        Float compute(const std::vector<Float>& p1, const std::vector<Float>& p2) const override {
+            Float distance1 = Euclidean_distance().compute({0, 0, 0}, p1);
+            Float distance2 = Euclidean_distance().compute({0, 0, 0}, p2);
+            return distance1 + distance2;
+        }
+    };
+
+    class Point_distance_matrix: public St_matrix<Float> {
+    public:
+        Point_distance_matrix(const std::vector<std::vector<Float>>& points)
+            : points(points), metric(nullptr) {}
+
+        void set_points(const std::vector<std::vector<Float>>& new_points) {
+            points = new_points;
+        }
+
+        void set_metric(std::unique_ptr<Metric_compute> new_metric) {
+            metric = std::move(new_metric);
+        }
+
+        Float get_value(int i, int j) const override {
+            if (metric) {
+                return metric->compute(points[i], points[j]);
+            }
+
+            throw std::invalid_argument("Invalid metric");
+        }
+
+        int size() const override {
+            return points.size();
+        }
+
+    private:
+        std::vector<std::vector<Float>> points;
+        std::unique_ptr<Metric_compute> metric;
+    };
 }
