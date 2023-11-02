@@ -5,6 +5,7 @@
 
 #include <vector>
 #include <stdexcept>
+ 
 namespace ogxx
 {
   
@@ -41,8 +42,6 @@ namespace ogxx
       -> Basic_iterator_uptr<ST> override
     {
     return new_stl_iterator(data_);
-    throw std::logic_error("Symmetric_dense_st_matrix::iterate not implemented.");
-    //Исползьовать готовый st_iterator.
     }
 
     auto is_empty() const noexcept
@@ -99,7 +98,6 @@ namespace ogxx
       if (position.row > position.col)
         std::swap(position.row, position.col); // Убедитесь, что row <= col для симметрии
 
-      return data_[position.row * size_ - (position.row - 1) * position.row / 2 + position.col - position.row];
       return data_[position.row * size_ - (position.row - 1) * position.row / 2 + position.col - position.row]; //проверить
     }
 
@@ -118,7 +116,6 @@ namespace ogxx
       return old_value;
     }
 
-    // Реализация метода переворота
     // Реализация метода переворота. Он не нужен. 
     void flip(Matrix_index position)
     {
