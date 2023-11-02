@@ -1,26 +1,14 @@
-/// @file bit_matrix_io.hpp
-/// @brief Bit_matrix reading and printing operations.
-/// @author Kuvshinov D.R. kuvshinovdr at yandex.ru
-#ifndef OGXX_BIT_MATRIX_IO_HPP_INCLUDED
-#define OGXX_BIT_MATRIX_IO_HPP_INCLUDED
+/// @file bit_matrix_io_print.cpp
+/// @brief Bit_matrix printing operations.
+/// @author 
 
-#include "io_head.hpp"
-#include "bit_matrix.hpp"
+#include <ogxx/bit_matrix_io.hpp>
+#include <iostream>
 
 
 /// IO operations for OGxx objects
 namespace ogxx::io
 {
-
-  /// @brief Description of Bit_matrix IO format.
-  struct Bit_matrix_format
-  {
-    string_view matrix_open   = "bit_matrix\n{\n"sv; ///< the opening token for the entire matrix
-    string_view matrix_close  = "}\n"sv;             ///< the closing token for the entire matrix
-    char        zero          = '0';                 ///< representation of "false" cell value
-    char        one           = '1';                 ///< representation of "true" cell value
-    int         column_stride = 4;                   ///< insert a space in a row after each four columns
-  };
 
   // An example of a bit matrix (3x6) provided in the default format as stated above:
   // 
@@ -36,19 +24,19 @@ namespace ogxx::io
   /// @param bm      the Bit_matrix object being printed
   /// @param format  bit matrix format description
   /// @return os
-  auto print(std::ostream& os, ogxx::Bit_matrix const& bm, Bit_matrix_format const& format = {})
+  auto print(std::ostream& os, ogxx::Bit_matrix const& bm, Bit_matrix_format const& format)
     -> std::ostream&
     {
         auto shape = bm.shape();
-        Matrix_index position;
+        Matrix_index position {};
         os<<format.matrix_open;
         for (;position.is_valid_for(shape);++position.row)
         {
             for(;position.is_valid_for(shape);++position.col)
             {
 
-                os<<(bm.get(position))? format.one : format.zero;
-                if((position.col +1)% format.column_stride == 0 && position.col != shape.cols -1 )
+                os<<(bm.get(position)? format.one : format.zero);
+                if ((position.col +1) % format.column_stride == 0 && position.col != shape.cols -1 )
                     os<<' ';
 
             }
@@ -65,13 +53,7 @@ namespace ogxx::io
   auto print(ogxx::Bit_matrix const& bm, Bit_matrix_format const& format = {})
     -> std::ostream&
     {
-
         return print(std::cout , bm, format);
-
-    }
-
- 
+    } 
 
 }
-
-#endif//OGXX_BIT_MATRIX_IO_HPP_INCLUDED
