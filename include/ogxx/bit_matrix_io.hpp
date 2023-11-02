@@ -4,8 +4,8 @@
 #ifndef OGXX_BIT_MATRIX_IO_HPP_INCLUDED
 #define OGXX_BIT_MATRIX_IO_HPP_INCLUDED
 
-#include "io_head.hpp"
-#include "bit_matrix.hpp"
+#include <ogxx/io_head.hpp>
+#include <ogxx/bit_matrix.hpp>
 
 
 /// IO operations for OGxx objects

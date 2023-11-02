@@ -4,7 +4,7 @@
 #ifndef OGXX_ITERATOR_ALGORITHMS_HPP_INCLUDED
 #define OGXX_ITERATOR_ALGORITHMS_HPP_INCLUDED
 
-#include "iterator.hpp"
+#include <ogxx/iterator.hpp>
 
 
 /// Root namespace of the OGxx library.
