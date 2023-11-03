@@ -2,17 +2,12 @@
 #include <cmath>
 #include <algorithm>
 #include <memory>
+#include "ogxx/st_matrix.hpp"
 
 namespace ogxx {
     typedef double Float;
 
     template<class T>
-    class St_matrix {
-    public:
-        virtual T get_value(int i, int j) const = 0;
-        virtual int size() const = 0;
-    };
-
     class Metric_compute {
     public:
         virtual Float compute(const std::vector<Float>& p1, const std::vector<Float>& p2) const = 0;
