@@ -8,7 +8,6 @@
 #include <ogxx/iterable.hpp>
 #include <ogxx/stl_iterator.hpp>
 #include <unordered_set>
-#include <iostream>
 
 namespace ogxx{
 
@@ -36,12 +35,12 @@ namespace ogxx{
             return unord_set.size();
         }
         [[nodiscard]] auto iterate() const -> Basic_iterator_uptr<Scalar_index> override {
-            throw std::logic_error("iterator not implemented");
+            return new_stl_iterator(unord_set);
         }
 
         [[nodiscard]] auto is_empty() const noexcept
         -> bool override {
-              throw std::logic_error("is_empty not implemented");
+              return unord_set.empty();
         }
     };
 }
