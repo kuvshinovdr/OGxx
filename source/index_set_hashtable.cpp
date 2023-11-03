@@ -1,5 +1,5 @@
-///  stl_iterator.hpp
-/// This file defines the Stl_iterator class, which provides an iterator for standard C++ containers.
+///  index_set_hashtable.cpp
+/// This file defines ogxx::Index_set_hashtable: public ogxx::Index_set, public ogxx::Sized_iterable<Scalar_index>.
 /// ChernyshevMV
 #ifndef OGXX_INDEX_SET_HASHTABLE_CPP
 #define OGXX_INDEX_SET_HASHTABLE_CPP
@@ -11,7 +11,7 @@
 #include <iostream>
 
 namespace ogxx{
-//template <typename Scalar_index>    
+
     class Index_set_hashtable: public Index_set, public Sized_iterable<Scalar_index>{
     private:
         std::unordered_set<Scalar_index> unord_set;
@@ -44,10 +44,5 @@ namespace ogxx{
               throw std::logic_error("is_empty not implemented");
         }
     };
-}
-int main()
-{
-    ogxx::Index_set_hashtable a;
-    std::cout<<5;    
 }
 #endif
