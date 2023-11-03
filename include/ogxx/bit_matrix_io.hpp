@@ -47,19 +47,12 @@ namespace ogxx::io
     -> std::ostream&;
 
   /// @brief Read (parse) a bit matrix representation from an istream object.
-  /// @param is      the input stream object
+  /// @param in      the input character sequence, remove the prefix that was read
   /// @param bm      the Bit_matrix object being filled with the ones and zeroes from is
   /// @param format  bit matrix format description
-  /// @return is
-  auto read(std::istream& is, ogxx::Bit_matrix& bm, Bit_matrix_format const& format)
-    -> std::istream&;
-
-  /// @brief Read (parse) a bit matrix representation from std::cin.
-  /// @param bm      the Bit_matrix object being filled with the ones and zeroes from is
-  /// @param format  bit matrix format description
-  /// @return reference to std::cin
-  auto read(ogxx::Bit_matrix& bm, Bit_matrix_format const& format)
-    -> std::istream&;
+  /// @return true on successful reading, false otherwise
+  auto read(std::string_view& in, ogxx::Bit_matrix& bm, Bit_matrix_format const& format)
+    -> bool;
 
 }
 
