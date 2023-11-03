@@ -1,23 +1,24 @@
+/// add file/brief/author
 #include <vector>
 #include <cmath>
 #include <algorithm>
 #include <memory>
-#include "ogxx/st_matrix.hpp"
+#include <ogxx/st_matrix.hpp>
 
 namespace ogxx {
-    typedef double Float;
 
     template<class T>
     class Metric_compute {
     public:
+		virtual ~Metric_compute() {}
         virtual Float compute(const std::vector<Float>& p1, const std::vector<Float>& p2) const = 0;
     };
 
     class Hamming_distance : public Metric_compute {
     public:
         Float compute(const std::vector<Float>& p1, const std::vector<Float>& p2) const override {
-            int mismatch_count = 0;
-            for (int i = 0; i < p1.size(); i++) {
+            size_t mismatch_count = 0;
+            for (size_t i = 0; i < p1.size(); i++) {
                 if (p1[i] != p2[i]) {
                     mismatch_count++;
                 }
@@ -30,7 +31,7 @@ namespace ogxx {
     public:
         Float compute(const std::vector<Float>& p1, const std::vector<Float>& p2) const override {
             Float distance = 0;
-            for (int i = 0; i < p1.size(); i++) {
+            for (size_t i = 0; i < p1.size(); i++) {
                 distance += std::abs(p1[i] - p2[i]);
             }
             return distance;
@@ -41,7 +42,7 @@ namespace ogxx {
     public:
         Float compute(const std::vector<Float>& p1, const std::vector<Float>& p2) const override {
             Float distance = 0;
-            for (int i = 0; i < p1.size(); i++) {
+            for (size_t i = 0; i < p1.size(); i++) {
                 distance += std::pow(p1[i] - p2[i], 2);
             }
             return std::sqrt(distance);
@@ -52,7 +53,7 @@ namespace ogxx {
     public:
         Float compute(const std::vector<Float>& p1, const std::vector<Float>& p2) const override {
             Float distance = 0;
-            for (int i = 0; i < p1.size(); i++) {
+            for (size_t i = 0; i < p1.size(); i++) {
                 distance = std::max(distance, std::abs(p1[i] - p2[i]));
             }
             return distance;
