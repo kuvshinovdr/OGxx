@@ -5,7 +5,7 @@
 #ifndef OGXX_ST_SET_HPP_INCLUDED
 #define OGXX_ST_SET_HPP_INCLUDED
 
-#include "primitive_definitions.hpp"
+#include <ogxx/primitive_definitions.hpp>
 
 
 /// Root namespace of the OGxx library.

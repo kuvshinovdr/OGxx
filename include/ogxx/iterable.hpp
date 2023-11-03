@@ -4,8 +4,8 @@
 #ifndef OGXX_ITERABLE_HPP_INCLUDED
 #define OGXX_ITERABLE_HPP_INCLUDED
 
-#include "primitive_definitions.hpp"
-#include "iterator.hpp"
+#include <ogxx/primitive_definitions.hpp>
+#include <ogxx/iterator.hpp>
 
 
 /// Root namespace of the OGxx library.
