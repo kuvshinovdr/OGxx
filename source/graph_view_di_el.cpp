@@ -1,4 +1,5 @@
 /// write doc comment (file/brief/author)
+/// graph_view_di_el.cpp/     /Abdullaeva Ainur
 #include <ogxx/graph_view.hpp>
 #include <ogxx/edge_list.hpp>
 
@@ -7,7 +8,6 @@
 
 namespace ogxx
 {
-
   class Graph_view_directed_edge_list : public Graph_view
   {
   public:
@@ -25,19 +25,19 @@ namespace ogxx
     [[nodiscard]] auto edge_count() const noexcept override
       -> Scalar_size
     {
-      // TODO
+        return _el.size();
     }
 
     [[nodiscard]] auto iterate_edges() const override
       -> Vertex_pair_iterator_uptr
     {
-      // TODO
+        return std::make_unique<Vertex_pair_iterator_di_el>(_el);
     }
 
     [[nodiscard]] auto are_connected(Vertex_pair edge) const noexcept override
       -> bool
     {
-      // TODO
+      return _el.find(Vertex_pair edge)
     }
 
 
@@ -57,7 +57,7 @@ namespace ogxx
     auto disconnect(Vertex_pair edge) override
       -> bool
     {
-      // TODO
+      _
     }
 
   private:
