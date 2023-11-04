@@ -60,10 +60,23 @@ namespace ogxx {
 
         // Инвертировать значение бита по позиции
         bool flip(Matrix_index position) override {
-            if(position.row > rows || position.col > cols) return false;
-            bit_contain[position.row * cols + position.col] = !data[position.row * cols + position.col];
-            return true;
-        }
+    if (position.check_and_correct(_shape)) {
+        auto const bit_index = position.row * _shape.cols + position.col;
+        auto const word_index = bit_index / word_bits;
+        auto const word = bit_contain[word_index];
+        auto const bit_in_word = bit_index % word_bits;
+        bool const old = ((word >> bit_in_word) & 1) == 1;
+
+        // Инвертировать значение бита
+        bit_contain[word_index] = word ^ (Word(1) << bit_in_word);
+
+        return old;
+    }
+
+    throw std::out_of_range("Dense_bit_matrix::flip: invalid position");
+}
+
+            
 
         // Заполнить всю матрицу указанным значением
         void fill(bool value) override {
