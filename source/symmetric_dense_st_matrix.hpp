@@ -81,12 +81,24 @@ namespace ogxx
     }
 
     auto copy(Matrix_window window)
-      -> St_matrix_uptr<ST> override
+        -> St_matrix_uptr<ST> override
     {
-      if (!window.position.is_valid_for(shape())){
-        throw std::out_of_range("Invalid matrix window.");
-      }
-    throw std::logic_error("Symmetric_dense_st_matrix::copy not implemented.");
+        if (!window.position.is_valid_for(shape())){
+            throw std::out_of_range("Invalid matrix window.");
+        }
+    
+        // Создаем новую матрицу с размером окна
+        auto copied_matrix = std::make_unique<Symmetric_dense_st_matrix<ST>>(window.shape.rows);
+    
+        // Копируем данные из исходной матрицы в новую
+        for (size_t i = 0; i < window.shape.rows; ++i) {
+            for (size_t j = 0; j < window.shape.cols; ++j) {
+                Matrix_index index{i + window.position.row, j + window.position.col};
+                copied_matrix->set({i, j}, this->get(index));
+            }
+        }
+    
+        return copied_matrix;
     }
 
     // Метод get
@@ -98,7 +110,8 @@ namespace ogxx
       if (position.row > position.col)
         std::swap(position.row, position.col); // Убедитесь, что row <= col для симметрии
 
-      return data_[position.row * size_ - (position.row - 1) * position.row / 2 + position.col - position.row]; //проверить
+      return data_[position.row * size_ - position.row * (position.row + 1) / 2 + position.col]// так вроде верно. Отсчет с 0.
+
     }
 
     // Метод set
@@ -114,13 +127,6 @@ namespace ogxx
       auto old_value = data_[index];
       data_[index] = value;
       return old_value;
-    }
-
-    // Реализация метода переворота. Он не нужен. 
-    void flip(Matrix_index position)
-    {
-      auto current_value = get(position);
-      set(position, !current_value);
     }
 
     // Реализация метода заполнения
