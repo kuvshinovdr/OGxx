@@ -1,10 +1,21 @@
+/// add doc-comment (file, brief, author)
+
+#include <ogxx/st_set.hpp>
+#include <ogxx/iterable.hpp>
+#include <ogxx/stl_iterator.hpp>
+
+#include <vector>
+#include <algorithm>
+
+
 namespace ogxx {
-    template<typename Scalar_index>
     class Index_set_sortedvector : public Index_set, public Indexed_iterable<Scalar_index> {
     private:
         std::vector<Scalar_index> sorted_vector;
         
     public:
+	// Поправьте все методы соответственно интерфейсам Index_set и Indexed_iterable<Scalar_index>
+	// добавьте ко всем методам override.
         void insert(const Scalar_index& index) {
             auto it = std::lower_bound(sorted_vector.begin(), sorted_vector.end(), index);
             sorted_vector.insert(it, index);
@@ -30,6 +41,7 @@ namespace ogxx {
             throw std::out_of_range("Index not found");
         }
 
+		// Нет, не так. См. Indexed_iterable.
         using iterator = stl_iterator<typename std::vector<Scalar_index>::iterator>;
         using const_iterator = stl_iterator<typename std::vector<Scalar_index>::const_iterator>;
 
