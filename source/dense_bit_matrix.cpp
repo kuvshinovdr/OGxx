@@ -85,7 +85,26 @@ namespace ogxx {
                 word = fill_val;
             }
         }
+        //временная заглушка функции
+        auto iterate_row(Scalar_index row)override {
+        auto iterator = std::make_unique<bool>(true);
+        return iterator;
+        }
+         //временная заглушка функции
+        auto iterate_col(Scalar_index col)override {
+        auto iterator = std::make_unique<bool>(true);
+        return iterator;
+        }
+        auto view(Matrix_window window) override {
+        
+        auto bitMatrix = std::make_unique<Bit_matrix_const>();
+        return bitMatrix;
+        }
+        
+};
 
+
+       
     private:
         using Word = unsigned;
         static constexpr auto word_bits = sizeof(Word) * CHAR_BIT;
