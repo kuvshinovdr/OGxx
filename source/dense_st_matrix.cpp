@@ -91,8 +91,9 @@ namespace ogxx
 
 		St_matrix_uptr<ST> copy(Matrix_window window) override {
 			auto  result = std::make_unique<Dense_st_matrix<ST>>(window.shape);
-			auto& matrix = static_cast<Dense_st_matrix<ST>&>(*result);
+			auto& sub    = static_cast<Dense_st_matrix<ST>&>(*result);
 			// TODO: copy elements
+			// sub.matrix_ заполнить из this->matrix_
 			return result;
 		}
 	};
