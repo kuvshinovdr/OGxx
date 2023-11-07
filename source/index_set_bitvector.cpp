@@ -1,15 +1,11 @@
-
 /// @file index_set_bitvector.cpp
 /// @brief Defining interfaces for bitvector
 /// @author Ivan I. Martynov <7martyn1>
-
-#ifndef OGXX_BIT_MATRIX_HPP_INCLUDED
-#define OGXX_BIT_MATRIX_HPP_INCLUDED
-
+#include <ogxx/index_set.hpp>
+#include <ogxx/iterable.hpp>
 
 #include <vector>
-#include <ogxx/index_set.h>
-#include <ogxx/indexed_iterable.h>
+
 
 namespace ogxx {
   template <typename Scalar_index>
@@ -19,19 +15,6 @@ namespace ogxx {
 
     public:
       Index_set_bitvector() = default;
-
-      void add(const Scalar_index& index) override {
-        if (index >= bits.size()) {
-          bits.resize(index + 1, false);
-        }
-        bits[index] = true;
-      }
-
-      void remove(const Scalar_index& index) override {
-        if (index < bits.size()) {
-          bits[index] = false;
-        }
-      }
 
       bool contains(Scalar_index index) const override {
         if (index < bits.size()) {
@@ -43,7 +26,9 @@ namespace ogxx {
 
       bool insert(Scalar_index item) override
       {
-        // if item >= size() then resize
+        if (index >= bits.size())
+          bits.resize(index + 1, false);
+
         if (bits[item])
           return false;
 
@@ -87,4 +72,3 @@ namespace ogxx {
 
   };
 }
-#endif//OGXX_BIT_MATRIX_HPP_INCLUDED
