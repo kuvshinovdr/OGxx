@@ -1,7 +1,11 @@
-#include <../include/ogxx/graph_view.hpp>
-#include <../include/ogxx/iterator.hpp>
+/// @file make_clique.cpp
+/// @brief make_undirected_clique
+/// @author Fyodorov N. A.
+#include <ogxx/graph_view.hpp>
+#include <ogxx/iterator.hpp>
+
 #include <vector>
-#include <iostream>
+
 
 namespace ogxx {
     void make_undirected_clique(Graph_view& gv, Index_iterator_uptr vertices) {
