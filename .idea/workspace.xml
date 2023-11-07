@@ -13,6 +13,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a6f48a29-75a3-45a8-ae8a-999876c7b20d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/source/symmetric_dense_bit_matrix.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/source/symmetric_dense_bit_matrix.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -58,7 +59,8 @@
       <option name="presentableId" value="Default" />
       <updated>1699125209615</updated>
       <workItem from="1699125211388" duration="1878000" />
-      <workItem from="1699164833645" duration="4036000" />
+      <workItem from="1699164833645" duration="4158000" />
+      <workItem from="1699368270071" duration="1952000" />
     </task>
     <servers />
   </component>

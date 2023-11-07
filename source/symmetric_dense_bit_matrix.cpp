@@ -35,9 +35,14 @@ namespace ogxx {
         // Получить значение бита по позиции
         bool get(Matrix_index position) override {
             if (position.check_and_correct(_shape)) {
-                auto const bit_index = position.row * _shape.cols + position.col;
-                auto const symmetric_index = position.col * _shape.cols + position.row;
-                auto const index = (position.row <= position.col) ? bit_index : symmetric_index;
+                auto const row = position.row;
+                auto const col = position.col;
+                auto const n   = _shape.rows;
+
+                // Вычисляем значение бита
+                auto const index = (row < col) ?
+                        (((row * ((n << 1) - (row + 3))) >> 1) + (col - 1)) :
+                        (col * n + row);
 
                 auto const word_index = index / word_bits;
                 auto const bit_in_word = index % word_bits;
@@ -50,9 +55,13 @@ namespace ogxx {
         // Установить значения бита по позиции
         bool set(Matrix_index position, bool value) override {
             if (position.check_and_correct(_shape)) {
-                auto const bit_index = position.row * _shape.cols + position.col;
-                auto const symmetric_index = position.col * _shape.cols + position.row;
-                auto const index = (position.row <= position.col) ? bit_index : symmetric_index;
+                auto const row = position.row;
+                auto const col = position.col;
+                auto const n   = _shape.rows;
+
+                auto const index = (row < col) ?
+                        (((row * ((n << 1) - (row + 3))) >> 1) + (col - 1)) :
+                        (col * n + row);
 
                 auto const word_index = index / word_bits;
                 auto const bit_in_word = bit_index % word_bits;
