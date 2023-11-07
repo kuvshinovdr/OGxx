@@ -153,10 +153,14 @@ TEST_SUITE("stl_iterator and iterator_algorithms")
       data[]{ 16, 8, 4, 2, 1, 16, 8 },
       data1[]{ 2, 2, 3, 4, 4, 6 },
       data2[]{ 16, 32, 64, 128, 256, 16, 32 };
+    
     std::vector<int>
       v{ 16, 32, 64, 128, 256, 16, 32},
       v1, v2;
 
+    Basic_iterator_uptr<Int> null;
+    CHECK_THROWS_AS(equal(move(null), new_stl_iterator(v1)), std::invalid_argument);
+    CHECK_THROWS_AS(equal(new_stl_iterator(v1), move(null)), std::invalid_argument);
     CHECK(!equal(new_stl_iterator(data), new_stl_iterator(v)));
     CHECK(!equal(new_stl_iterator(data1), new_stl_iterator(v)));
     CHECK(equal(new_stl_iterator(data2), new_stl_iterator(v)));
@@ -205,6 +209,10 @@ TEST_SUITE("stl_iterator and iterator_algorithms")
       new_stl_iterator(data1),
       new_stl_iterator(data2),
       accum) == 220);
+
+    Basic_iterator_uptr<Int> null;
+    CHECK_THROWS_AS(ogxx::inner_product(move(null), new_stl_iterator(data1), 0), std::invalid_argument);
+    CHECK_THROWS_AS(ogxx::inner_product(new_stl_iterator(data1), move(null), 0), std::invalid_argument);
   }
   // TODO: TEST_CASE для каждого алгоритма из iterator_algorithms.hpp.
 }

@@ -1,10 +1,10 @@
 /// @file iterator_algorithms.hpp
 /// @brief Helper functions to work with iterators inspired by STL algorithm header.
-/// @author Kuvshinov D.R. kuvshinovdr at yandex.ru
+/// @author Kuvshinov D.R. kuvshinovdr at yandex.ru, Chaplygin M.D.
 #ifndef OGXX_ITERATOR_ALGORITHMS_HPP_INCLUDED
 #define OGXX_ITERATOR_ALGORITHMS_HPP_INCLUDED
 
-#include "iterator.hpp"
+#include <ogxx/iterator.hpp>
 
 
 /// Root namespace of the OGxx library.
@@ -21,8 +21,11 @@ namespace ogxx
   auto for_each(Basic_iterator_uptr<Item> iterator, Action&& action)
     -> Action
   {
-    for (Item item; iterator && iterator->next(item);)
-      action(item);
+    if (iterator)
+    {
+      for (Item item; iterator->next(item);)
+        action(item);
+    }
     return action;
   }
 
@@ -36,8 +39,11 @@ namespace ogxx
   auto skip_n(Basic_iterator_uptr<Item>& iterator, Scalar_index n)
     -> bool
   {
+    if (!iterator)
+      return false;
+
     while (n-- != 0)
-      if (Item item; iterator && !iterator->next(item))
+      if (Item item; !iterator->next(item))
         return false;
     return true;
   }
@@ -45,7 +51,7 @@ namespace ogxx
   // skip_while, skip_until...
 
 
-  /// @brief Count how many times an item occurs in the sequence represented by an iterator
+  /// @brief Count how many times an item occurs in a sequence represented by an iterator.
   /// @tparam Item    sequence item type
   /// @param iterator object representing the sequence
   /// @param item     the value being counted
@@ -55,13 +61,16 @@ namespace ogxx
     -> Scalar_size
   {
     Scalar_size result = 0;
-    for (Item _item; iterator && iterator->next(_item);)
-      result += _item == item;
+    if (iterator)
+    {
+      for (Item _item; iterator->next(_item);)
+        result += _item == item;
+    }
     return result;
   }
 
 
-  /// @brief Count how many times an item satysfying the predicate occurs in the sequence represented by an iterator
+  /// @brief Count how many times an item satysfying the predicate occurs in a sequence represented by an iterator.
   /// @tparam Item    sequence item type
   /// @tparam Pred    predicate type
   /// @param iterator object representing the sequence
@@ -72,9 +81,13 @@ namespace ogxx
     -> Scalar_size
   {
     Scalar_size result = 0;
-    for (Item item; iterator && iterator->next(item);)
-      if (pred(item))
-        ++result;
+    
+    if (iterator)
+    {
+      for (Item item; iterator->next(item);)
+        if (pred(item))
+          ++result;
+    }
 
     return result;
   }
@@ -91,13 +104,18 @@ namespace ogxx
     -> std::pair<Scalar_index, Basic_iterator_uptr<Item>>
   {
     Scalar_index result = 0;
-    for (Item _item; iterator && iterator->next(_item) && !(_item == item);)
-      ++result;
+    
+    if (iterator)
+    {
+      for (Item _item; iterator->next(_item) && !(_item == item);)
+        ++result;
+    }
+
     return { result, std::move(iterator) };
   }
 
 
-  /// @brief Find a first item in the sequence that satysfying the predicate
+  /// @brief Find the first item in a sequence that satysfying a predicate.
   /// @tparam Item    sequence item type
   /// @tparam Pred    predicate type
   /// @param iterator object representing the sequence
@@ -109,13 +127,18 @@ namespace ogxx
     -> std::pair<Scalar_index, Basic_iterator_uptr<Item>>
   {
     Scalar_index result = 0;
-    for (Item item; iterator && iterator->next(item) && !pred(item);)
-      ++result;
+    
+    if (iterator)
+    {
+      for (Item item; iterator->next(item) && !pred(item);)
+        ++result;
+    }
+
     return { result, std::move(iterator) };
   }
 
 
-  /// @brief Find the first element in the sequence that isn't equal an item
+  /// @brief Find the first element in a sequence that isn't equal to an item.
   /// @tparam Item    sequence item type
   /// @param iterator object representing the sequence
   /// @param item     the copmared element
@@ -126,13 +149,18 @@ namespace ogxx
     -> std::pair<Scalar_index, Basic_iterator_uptr<Item>>
   {
     Scalar_index result = 0;
-    for (Item _item; iterator && iterator->next(_item) && _item == item;)
-      ++result;
+    
+    if (iterator)
+    {
+      for (Item _item; iterator->next(_item) && _item == item;)
+        ++result;
+    }
+
     return { result, std::move(iterator) };
   }
 
 
-  /// @brief Find a first item in the sequence doesn't satysfy the predicate
+  /// @brief Find the first item in the sequence doesn't satysfy the predicate.
   /// @tparam Item    sequence item type
   /// @tparam Pred    predicate type
   /// @param iterator object representing the sequence
@@ -144,13 +172,18 @@ namespace ogxx
     -> std::pair<Scalar_index, Basic_iterator_uptr<Item>>
   {
     Scalar_index result = 0;
-    for (Item item; iterator && iterator->next(item) && pred(item);)
-      ++result;
+    
+    if (iterator)
+    {
+      for (Item item; iterator->next(item) && pred(item);)
+        ++result;
+    }
+
     return { result, std::move(iterator) };
   }
 
 
-  /// @brief Ñhecks whether each element of the sequence satisfies the given predicate
+  /// @brief Ñhecks whether each element of a sequence satisfies the given predicate.
   /// @tparam Item    sequence item type
   /// @tparam Pred    predicate type
   /// @param iterator object representing the sequence
@@ -160,14 +193,18 @@ namespace ogxx
   auto all_of(Basic_iterator_uptr<Item> iterator, Pred&& pred)
     -> bool
   {
-    for (Item item; iterator && iterator->next(item);)
-      if (!pred(item))
-        return false;
+    if (iterator)
+    {
+      for (Item item; iterator->next(item);)
+        if (!pred(item))
+          return false;
+    }
+
     return true;
   }
 
 
-  /// @brief Ñhecks at least one element of the sequence satisfies the given predicate
+  /// @brief Ñhecks if at least one element of a sequence satisfies the given predicate.
   /// @tparam Item    sequence item type
   /// @tparam Pred    predicate type
   /// @param iterator object representing the sequence
@@ -177,14 +214,18 @@ namespace ogxx
   auto any_of(Basic_iterator_uptr<Item> iterator, Pred&& pred)
     -> bool
   {
-    for (Item item; iterator->next(item);)
-      if (pred(item))
-        return true;
+    if (iterator)
+    {
+      for (Item item; iterator->next(item);)
+        if (pred(item))
+          return true;
+    }
+
     return false;
   }
 
 
-  /// @brief Ñhecks that all elements of the sequence don't satisfy the given predicate
+  /// @brief Ñhecks that all elements of the sequence don't satisfy the given predicate.
   /// @tparam Item    sequence item type
   /// @tparam Pred    predicate type
   /// @param iterator object representing the sequence
@@ -194,21 +235,26 @@ namespace ogxx
   auto none_of(Basic_iterator_uptr<Item> iterator, Pred&& pred)
     -> bool
   {
-    return !any_of(std::move(iterator), std::forward<Pred>(pred));
+    return !ogxx::any_of(std::move(iterator), std::forward<Pred>(pred));
   }
 
-  /// @brief Ñhecks whether two sequences are equal
+  /// @brief Ñhecks whether two sequences are equal.
   /// @tparam Item1   the first sequence item type
   /// @tparam Item2   the second sequence item type
   /// @tparam Compare comparator type
-  /// @param it1      object representing the first sequence
-  /// @param it2      object representing the second sequence
+  /// @param it1      object representing the first sequence, if null equal throws invalid_argument
+  /// @param it2      object representing the second sequence, if null equal throws invalid_argument
   /// @param compare  object representing the comaprator
   /// @return true if if the sequences are equal element by element, false otherwise
   template <typename Item1, typename Item2, typename Compare>
   auto equal(Basic_iterator_uptr<Item1> it1, Basic_iterator_uptr<Item2> it2, Compare&& compare)
     -> bool
   {
+    if (!it1)
+      throw std::invalid_argument("ogxx::equal: it1 is null");
+    if (!it2)
+      throw std::invalid_argument("ogxx::equal: it2 is null");
+
     Item1 item1;
     Item2 item2;
     
@@ -219,10 +265,10 @@ namespace ogxx
         got2 = it2->next(item2);
       if (got1 != got2)
         return false;
-      if (!compare(item1, item2))
-        return false;
-      if (!got1 && !got2)
+      if (!got1) // got1 == got2
         return true;
+      if (!compare(item1, item2))
+        return false;       
     }
   }
 
@@ -237,7 +283,7 @@ namespace ogxx
   }
 
 
-  /// @brief Accumulates the sum of all elements
+  /// @brief Accumulates the sum of all elements.
   /// @tparam Item     sequence item type
   /// @tparam Accum    the type of an object accumulating the sum of elements
   /// @param iterator  object representing the sequence
@@ -247,8 +293,12 @@ namespace ogxx
   auto accumulate(Basic_iterator_uptr<Item> iterator, Accum accum)
     -> Accum
   {
-    for (Item item; iterator->next(item);)
-      accum += item;
+    if (iterator)
+    {
+      for (Item item; iterator->next(item);)
+        accum += item;
+    }
+
     return accum;
   }
 
@@ -259,20 +309,24 @@ namespace ogxx
   auto accumulate(Basic_iterator_uptr<Item> iterator, Accum accum, Combine&& combine)
     -> Accum
   {
-    for (Item item; iterator->next(item);)
-      accum = combine(accum, item);
+    if (iterator)
+    {
+      for (Item item; iterator->next(item);)
+        accum = combine(accum, item);
+    }
+
     return accum;
   }
 
 
-  /// @brief Realization of the standart C++ function 'inner_product'
+  /// @brief Inner product of two sequences represented by iterators.
   /// @tparam Item1     the first sequence item type
   /// @tparam Item2     the second sequence item type
   /// @tparam Accum     the type of the object accumulating the result sum
   /// @tparam Add       the type of additional functor
   /// @tparam Multiply  the type of multiplying functor
-  /// @param it1        object representing the first sequence
-  /// @param it2        object representing the second sequence
+  /// @param it1        object representing the first sequence, if null inner_product throws invalid_argument
+  /// @param it2        object representing the second sequence, if null inner_product throws invalid_argument
   /// @param accum      the object accumulating the result sum
   /// @param add        the additional functor
   /// @param multiply   the multiplying functor
@@ -285,6 +339,11 @@ namespace ogxx
       Multiply&& multiply
     ) -> Accum
   {
+    if (!it1)
+      throw std::invalid_argument("ogxx::inner_product: it1 is null");
+    if (!it2)
+      throw std::invalid_argument("ogxx::inner_product: it2 is null");
+
     Item1 item1;
     Item2 item2;
 
@@ -294,12 +353,13 @@ namespace ogxx
       bool const got2 = it2->next(item2);
       if (!(got1 && got2))
         return accum;
+      
       accum = add(accum, multiply(item1, item2));
     }
   }
 
 
-  /// @brief The same as 'ogxx::inner_product', but the additional functor is '+'
+  /// @brief The same as 'ogxx::inner_product', but the add functor is '+'.
   template <typename Item1, typename Item2, typename Accum, typename Multiply>
   auto inner_product(
       Basic_iterator_uptr<Item1> it1,
@@ -308,12 +368,12 @@ namespace ogxx
       Multiply&& multiply
     ) -> Accum
   {
-    return inner_product(std::move(it1), std::move(it2), accum,
+    return ogxx::inner_product(std::move(it1), std::move(it2), accum,
       [](Accum a, auto b) { return a + b; }, std::forward<Multiply>(multiply));
   }
 
 
-  /// @brief The same as 'ogxx::inner_product', but the additional functor is '+' and the multiplying functor is '*'
+  /// @brief The same as 'ogxx::inner_product', but the add functor is '+' and the multiply functor is '*'.
   template <typename Item1, typename Item2, typename Accum>
   auto inner_product(
       Basic_iterator_uptr<Item1> it1,
@@ -321,7 +381,7 @@ namespace ogxx
       Accum accum
     ) -> Accum
   {
-    return inner_product(std::move(it1), std::move(it2), accum,
+    return ogxx::inner_product(std::move(it1), std::move(it2), accum,
       [](Accum a, auto  b) { return a + b; },
       [](Item1 a, Item2 b) { return a * b; });
   }
