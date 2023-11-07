@@ -31,7 +31,7 @@ namespace ogxx {
         bool get(Matrix_index position)  override {
             if (position.check_and_correct(_shape))
             {
-                auto const bit_index   = position.row * _shape.cols + position.col;
+                auto const bit_index   = position.linear_index(_shape);
                 auto const word_index  = bit_index / word_bits;
                 auto const bit_in_word = bit_index % word_bits;
                 return ((bit_contain[word_index] >> bit_in_word) & 1) == 1;
@@ -44,7 +44,7 @@ namespace ogxx {
         bool set(Matrix_index position, bool value) override {
           if (position.check_and_correct(_shape))
           {
-            auto const bit_index   = position.row * _shape.cols + position.col;
+            auto const bit_index   = position.linear_index(_shape);
             auto const word_index  = bit_index / word_bits;
             auto const word        = bit_contain[word_index];
             auto const bit_in_word = bit_index % word_bits;
@@ -60,21 +60,21 @@ namespace ogxx {
 
         // Инвертировать значение бита по позиции
         bool flip(Matrix_index position) override {
-    if (position.check_and_correct(_shape)) {
-        auto const bit_index = position.row * _shape.cols + position.col;
-        auto const word_index = bit_index / word_bits;
-        auto const word = bit_contain[word_index];
-        auto const bit_in_word = bit_index % word_bits;
-        bool const old = ((word >> bit_in_word) & 1) == 1;
+			if (position.check_and_correct(_shape)) {
+				auto const bit_index   = position.linear_index(_shape);
+				auto const word_index  = bit_index / word_bits;
+				auto const word        = bit_contain[word_index];
+				auto const bit_in_word = bit_index % word_bits;
+				bool const old = ((word >> bit_in_word) & 1) == 1;
 
-        // Инвертировать значение бита
-        bit_contain[word_index] = word ^ (Word(1) << bit_in_word);
+				// Инвертировать значение бита
+				bit_contain[word_index] = word ^ (Word(1) << bit_in_word);
 
-        return old;
-    }
+				return old;
+			}
 
-    throw std::out_of_range("Dense_bit_matrix::flip: invalid position");
-}
+			throw std::out_of_range("Dense_bit_matrix::flip: invalid position");
+		}
 
             
 
@@ -85,6 +85,7 @@ namespace ogxx {
                 word = fill_val;
             }
         }
+		
         //временная заглушка функции
         auto iterate_row(Scalar_index row)override {
         auto iterator = std::make_unique<bool>(true);
