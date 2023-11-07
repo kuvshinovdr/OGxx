@@ -1,12 +1,10 @@
-///  index_set_hashtable.cpp
-/// This file defines ogxx::Index_set_hashtable: public ogxx::Index_set, public ogxx::Sized_iterable<Scalar_index>.
-/// ChernyshevMV
-#ifndef OGXX_INDEX_SET_HASHTABLE_CPP
-#define OGXX_INDEX_SET_HASHTABLE_CPP
-
+/// @file index_set_hashtable.cpp
+/// @brief This file defines Index_set and Sized_iterable implementation based upon std::unordered_set
+/// @author ChernyshevMV
 #include <ogxx/st_set.hpp>
 #include <ogxx/iterable.hpp>
 #include <ogxx/stl_iterator.hpp>
+
 #include <unordered_set>
 
 namespace ogxx{
@@ -27,7 +25,7 @@ namespace ogxx{
         auto erase(Scalar_index item)
             -> bool override
         {
-            return unord_set.erase(item);
+            return unord_set.erase(item) != 0;
         }
         auto size() const noexcept
             -> Scalar_size override
@@ -44,4 +42,3 @@ namespace ogxx{
         }
     };
 }
-#endif
