@@ -4,8 +4,8 @@
 #ifndef OGXX_MATRIX_HPP_INCLUDED
 #define OGXX_MATRIX_HPP_INCLUDED
 
-#include "primitive_definitions.hpp"
-#include "iterator.hpp" // TBD
+#include <ogxx/primitive_definitions.hpp>
+#include <ogxx/iterator.hpp>
 
 
 /// Root namespace of the OGxx library.
@@ -39,6 +39,18 @@ namespace ogxx
     {
       return { size, size };
     }
+
+    /// Compute total element count of a matrix with this shape.
+    /// Throws on overflow.
+    [[nodiscard]] auto element_count() const
+      -> Scalar_size
+    {
+      Scalar_size result = 0;
+      if (checked_multiply(rows, cols, result))
+        return result;
+
+      throw std::out_of_range("Matrix_shape::element_count: overflow");
+    }
   };
 
 
@@ -61,6 +73,29 @@ namespace ogxx
       return is_within(row, -shape.rows, shape.rows - 1)
           && is_within(col, -shape.cols, shape.cols - 1);
     }
+
+    /// @brief Check if the current index is valid for the given shape and correct negative row or col according to the shape.
+    /// @param shape the sizes of the matrix to which the index is to be applied
+    /// @return true if the index is correct, false otherwise
+    [[nodiscard]] constexpr auto check_and_correct(Matrix_shape shape) noexcept
+      -> bool
+    {
+      if (row < 0)
+        row += shape.rows;
+      if (col < 0)
+        col += shape.cols;
+
+      return is_valid_for(shape);
+    }
+
+    /// @brief Get linear index of this matrix index for row-major packed matrix stored in a linear array.
+    /// @param shape matrix shape, only cols is needed
+    /// @return index in row-major linear array matrix storage
+    [[nodiscard]] constexpr auto linear_index(Matrix_shape const& shape) const noexcept
+      -> Scalar_index
+    {
+      return shape.cols * row + col;
+    }
   };
 
 
@@ -75,7 +110,7 @@ namespace ogxx
 
     /// @brief Create a square matrix window.
     /// @param position where is the left upper corner
-    /// @param size rows and columns in the window
+    /// @param size     rows and columns in the window
     /// @return square Matrix_window object
     [[nodiscard]] constexpr static auto square(Matrix_index position, Scalar_size size) noexcept
       -> Matrix_window
@@ -106,16 +141,17 @@ namespace ogxx
   /////////////////////////////////////////////////////////////////////////////
   // Matrix_base interface
 
+  class Matrix_base;
+
   /// @brief Owning pointer to a matrix object (Matrix_base).
-  using Matrix_uptr = std::unique_ptr<class Matrix_base>;
+  using Matrix_uptr = std::unique_ptr<Matrix_base>;
+
+  /// @brief Owning pointer to a read-only matrix object (Matrix_base).
+  using Matrix_const_uptr = std::unique_ptr<Matrix_base const>;
 
   /// @brief Common matrix function independent of matrix item type.
   class Matrix_base
-  {
-  protected:
-    Matrix_base& operator=(Matrix_base const&) = default;
-    Matrix_base& operator=(Matrix_base&&)      = default;
-  
+  {  
   public:
     virtual ~Matrix_base() {}
 
@@ -124,11 +160,14 @@ namespace ogxx
     [[nodiscard]] virtual auto shape() const noexcept
       -> Matrix_shape = 0;
 
-    /// @brief Change matrix sizes (if possible in-place). 
-    /// Zero fills the resulting matrix.
-    /// May throw bad_alloc if new_shape is too large.
+    /// @brief Change matrix sizes (if possible in-place).
+    /// May throw bad_alloc if new_shape is too large or invalid.
     /// @param new_shape new matrix sizes: rows and columns
     virtual void reshape(Matrix_shape new_shape) = 0;
+
+  protected:
+    Matrix_base& operator=(Matrix_base const&) noexcept = default;
+    Matrix_base& operator=(Matrix_base&&) noexcept      = default;
   };
 
 }
