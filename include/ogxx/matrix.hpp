@@ -78,6 +78,7 @@ namespace ogxx
     /// @param shape the sizes of the matrix to which the index is to be applied
     /// @return true if the index is correct, false otherwise
     [[nodiscard]] constexpr auto check_and_correct(Matrix_shape shape) noexcept
+      -> bool
     {
       if (row < 0)
         row += shape.rows;
@@ -85,6 +86,15 @@ namespace ogxx
         col += shape.cols;
 
       return is_valid_for(shape);
+    }
+
+    /// @brief Get linear index of this matrix index for row-major packed matrix stored in a linear array.
+    /// @param shape matrix shape, only cols is needed
+    /// @return index in row-major linear array matrix storage
+    [[nodiscard]] constexpr auto linear_index(Matrix_shape const& shape) const noexcept
+      -> Scalar_index
+    {
+      return shape.cols * row + col;
     }
   };
 
