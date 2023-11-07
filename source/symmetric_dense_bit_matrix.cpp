@@ -32,17 +32,21 @@ namespace ogxx {
             _shape = shape;
         }
 
-        // Получить значение бита по позиции
+        // Получить значение бита по позиции.
         bool get(Matrix_index position) override {
             if (position.check_and_correct(_shape)) {
-                auto const row = position.row;
-                auto const col = position.col;
-                auto const n   = _shape.rows;
+                auto row = position.row;
+                auto col = position.col;
+                auto const n  = _shape.rows;
+                // Меняем row и col местами, если col < row.
+                if (col < row) {
+                    auto temp = row;
+                    row = col;
+                    col = temp;
+                }
 
-                // Вычисляем значение бита
-                auto const index = (row < col) ?
-                        (((row * ((n << 1) - (row + 3))) >> 1) + (col - 1)) :
-                        (col * n + row);
+                // Вычисляем значение бита.
+                auto const index = (((row * ((n << 1) - (row + 3))) >> 1) + (col - 1));
 
                 auto const word_index = index / word_bits;
                 auto const bit_in_word = index % word_bits;
@@ -55,13 +59,17 @@ namespace ogxx {
         // Установить значения бита по позиции
         bool set(Matrix_index position, bool value) override {
             if (position.check_and_correct(_shape)) {
-                auto const row = position.row;
-                auto const col = position.col;
-                auto const n   = _shape.rows;
+                auto row = position.row;
+                auto col = position.col;
+                auto const n  = _shape.rows;
 
-                auto const index = (row < col) ?
-                        (((row * ((n << 1) - (row + 3))) >> 1) + (col - 1)) :
-                        (col * n + row);
+                if (col < row) {
+                    auto temp = row;
+                    row = col;
+                    col = temp;
+                }
+
+                auto const index = (((row * ((n << 1) - (row + 3))) >> 1) + (col - 1));
 
                 auto const word_index = index / word_bits;
                 auto const bit_in_word = bit_index % word_bits;
