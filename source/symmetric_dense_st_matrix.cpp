@@ -1,5 +1,6 @@
-/// add doc comment
-
+/// @file symmetric_dense_st_matrix.cpp
+/// @brief Implementation of a class for compact storage of a symmetric matrix.
+/// @author Martianov.K 
 #include <ogxx/st_matrix.hpp>
 #include <ogxx/stl_iterator.hpp>
 
@@ -8,28 +9,34 @@
  
 namespace ogxx
 {
-  
+  /// @class Symmetric_dense_st_matrix
+  /// @brief A class that represents a symmetric matrix in dense storage format.
+  /// @tparam ST The type of elements stored in the matrix.
   template <typename ST>
   class Symmetric_dense_st_matrix : public St_matrix<ST>
   {
   private:
-    std::vector<ST> data_;
-    size_t size_;
+    std::vector<ST> data_; ///< The vector that stores the elements of the matrix.
+    size_t size_; ///< The size of the matrix.
 
   public:
+    /// @brief Constructor that initializes the matrix with a given size.
+    /// @param size The size of the matrix.
     Symmetric_dense_st_matrix(size_t size): data_(size * (size + 1) / 2, ST{}), size_(size)
     {
       if (size == 0)
         throw std::invalid_argument("Matrix size must be greater than 0.");
     }
 
-    // Метод Shape
+    /// @brief Returns the shape of the matrix.
+    /// @return The shape of the matrix.
     [[nodiscard]] Matrix_shape shape() const noexcept override
     {
       return { size_, size_};
     }
 
-    // Метод reshape
+    /// @brief Reshapes the matrix to a new shape.
+    /// @param new_shape The new shape of the matrix
     void reshape(Matrix_shape new_shape) override
     {
       if (new_shape.rows != new_shape.cols)
@@ -55,31 +62,34 @@ namespace ogxx
     {
     return data_.size();
     }
-
+   
     auto iterate_row(Scalar_index row) const
       -> Basic_iterator_uptr<ST> override
     {
     throw std::logic_error("Symmetric_dense_st_matrix::iterate_row not implemented.");
     }
-
+   
     auto iterate_col(Scalar_index col) const
       -> Basic_iterator_uptr<ST> override
     {
     throw std::logic_error("Symmetric_dense_st_matrix::iterate_col not implemented.");
     }
-
+    
     auto view(Matrix_window window) const
       -> St_matrix_const_uptr<ST> override
     {
     throw std::logic_error("Symmetric_dense_st_matrix::view not implemented.");
     }
-
+    
     auto view(Matrix_window window)
       -> St_matrix_uptr<ST> override
     {
     throw std::logic_error("Symmetric_dense_st_matrix::view not implemented.");
     }
 
+    /// @brief Make a copy of a window of the matrix into a separate matrix object.
+    /// @param window the region to copy
+    /// @return a separate ST matrix object
     auto copy(Matrix_window window)
         -> St_matrix_uptr<ST> override
     {
@@ -101,7 +111,7 @@ namespace ogxx
         return copied_matrix;
     }
 
-    // Метод get
+    
     [[nodiscard]] auto get(Matrix_index position) const noexcept -> ST override
     {
       if (position.row >= size_ || position.col >= size_)
