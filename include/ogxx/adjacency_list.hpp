@@ -43,7 +43,7 @@ namespace ogxx
 
     /// @brief Allows to change an adjacency of the given vertex.
     /// @param vertex zero-based index of a vertex < size()
-    /// @return a non-owning pointer to the adjacency of a vertex, may through or resize on out-of-range index
+    /// @return a non-owning pointer to the adjacency of a vertex, may throw or resize on out-of-range index
     [[nodiscard]] virtual auto get(Vertex_index vertex)
       -> Adjacency* = 0;
   };
