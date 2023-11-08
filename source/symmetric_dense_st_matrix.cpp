@@ -110,7 +110,7 @@ namespace ogxx
       if (position.row > position.col)
         std::swap(position.row, position.col); // Убедитесь, что row <= col для симметрии
 
-      return data_[position.row * size_ - position.row * (position.row + 1) / 2 + position.col]// так вроде верно. Отсчет с 0.
+      return data_[position.row * size_ - position.row * (position.row + 1) / 2 + position.col];// так вроде верно. Отсчет с 0.
 
     }
 
