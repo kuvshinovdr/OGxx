@@ -2,7 +2,7 @@
 /// @brief Tests for Symmetric_dense_st_matrix.
 /// @author Martianov K.S
 #include "testing_head.hpp"
-#include <../source/symmetric_dense_st_matrix.hpp>
+#include <../source/symmetric_dense_st_matrix.cpp>
 
 
 TEST_CASE("Testing Symmetric_dense_st_matrix") {

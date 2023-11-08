@@ -3,12 +3,13 @@
 *.o 
 *.a 
 *.so 
-*
+
 # Java class files 
 *.class 
- 
+.vscode
 # Python compiled files 
 *.pyc 
 *.pyo 
 __pycache__/*
+build/
 
