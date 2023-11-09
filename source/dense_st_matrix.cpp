@@ -94,6 +94,14 @@ namespace ogxx
 			auto& sub    = static_cast<Dense_st_matrix<ST>&>(*result);
 			// TODO: copy elements
 			// sub.matrix_ заполнить из this->matrix_
+
+			// Copy elements from this->matrix_ to sub.matrix_
+			for (size_t row = 0; row < window.shape_.row; i++) {
+				for (size_t col = 0; col < window.shape_.col; j++) {
+					sub.matrix_[row * window.shape_.col + col] = this->matrix_[row * window.shape_.col + col];
+				}
+			}
+
 			return result;
 		}
 	};
