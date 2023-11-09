@@ -15,6 +15,18 @@ namespace ogxx
   /////////////////////////////////////////////////////////////////////////////
   // Auxiliary structures
 
+  /// @brief Index of an item of a matrix.
+  /// Negative indices are to be interpreted as offsets from the right end
+  /// like it is done in Python, e.g. a[-1] is the last element of a.
+  struct Matrix_index
+  {
+    /// @brief The first index of a matrix item (zero-based).
+    Scalar_index row = 0;
+    /// @brief The second index of a matrix item (zero-based).
+    Scalar_index col = 0;
+  };
+
+
   /// @brief Matrix shape description (just two sizes).
   struct Matrix_shape
   {
@@ -31,15 +43,6 @@ namespace ogxx
       return (rows > 0 && cols > 0) || (rows == 0 && cols == 0);
     }
 
-    /// @brief Make square matrix shape.
-    /// @param size size of the square matrix (the same number of rows and columns)
-    /// @return Matrix_shape object containing square matrix shape
-    [[nodiscard]] constexpr static auto square(Scalar_size size) noexcept
-      -> Matrix_shape
-    {
-      return { size, size };
-    }
-
     /// Compute total element count of a matrix with this shape.
     /// Throws on overflow.
     [[nodiscard]] auto element_count() const
@@ -51,50 +54,47 @@ namespace ogxx
 
       throw std::out_of_range("Matrix_shape::element_count: overflow");
     }
-  };
 
-
-  /// @brief Index of an item of a matrix.
-  /// Negative indices are to be interpreted as offsets from the right end
-  /// like it is done in Python, e.g. a[-1] is the last element of a.
-  struct Matrix_index
-  {
-    /// @brief The first index of a matrix item (zero-based).
-    Scalar_index row = 0;
-    /// @brief The second index of a matrix item (zero-based).
-    Scalar_index col = 0;
-
-    /// @brief Check if the current index is valid if applied to a matrix of the given shape.
-    /// @param shape matrix sizes
-    /// @return true if the index is valid (points within the matrix)
-    [[nodiscard]] constexpr auto is_valid_for(Matrix_shape shape) const noexcept
+    /// @brief Check if the index is valid if applied to a matrix of the given shape.
+    /// @param position matrix position to be checked
+    /// @return true if the index is valid (is contained in the matrix)
+    [[nodiscard]] constexpr auto contains(Matrix_index position) const noexcept
       -> bool
     {
-      return is_within(row, -shape.rows, shape.rows - 1)
-          && is_within(col, -shape.cols, shape.cols - 1);
+      return is_within(position.row, -rows, rows - 1)
+          && is_within(position.col, -cols, cols - 1);
     }
 
     /// @brief Check if the current index is valid for the given shape and correct negative row or col according to the shape.
-    /// @param shape the sizes of the matrix to which the index is to be applied
+    /// @param position the index to be checked and corrected (by reference)
     /// @return true if the index is correct, false otherwise
-    [[nodiscard]] constexpr auto check_and_correct(Matrix_shape shape) noexcept
+    [[nodiscard]] constexpr auto check_and_correct(Matrix_index& position) noexcept
       -> bool
     {
-      if (row < 0)
-        row += shape.rows;
-      if (col < 0)
-        col += shape.cols;
+      if (position.row < 0)
+        position.row += rows;
+      if (position.col < 0)
+        position.col += cols;
 
-      return is_valid_for(shape);
+      return contains(position);
     }
 
-    /// @brief Get linear index of this matrix index for row-major packed matrix stored in a linear array.
-    /// @param shape matrix shape, only cols is needed
+    /// @brief Get linear index of the matrix index for row-major packed matrix stored in a linear array.
+    /// @param position 2D index to be transformed into a linear index
     /// @return index in row-major linear array matrix storage
-    [[nodiscard]] constexpr auto linear_index(Matrix_shape const& shape) const noexcept
+    [[nodiscard]] constexpr auto linear_index(Matrix_index position) const noexcept
       -> Scalar_index
     {
-      return shape.cols * row + col;
+      return cols * position.row + position.col;
+    }
+
+    /// @brief Make square matrix shape.
+    /// @param size size of the square matrix (the same number of rows and columns)
+    /// @return Matrix_shape object containing square matrix shape
+    [[nodiscard]] constexpr static auto square(Scalar_size size) noexcept
+      -> Matrix_shape
+    {
+      return { size, size };
     }
   };
 
