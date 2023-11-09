@@ -22,6 +22,15 @@ namespace ogxx
     // Do we need to add anything here?
   };
 
+  /// @brief Owning read-write Adjacency object pointer.
+  using Adjacency_uptr = std::unique_ptr<Adjacency>;
+
+  /// @brief Owning read-only Adjacency object pointer.
+  using Adjacency_const_uptr = std::unique_ptr<Adjacency const>;
+
+  /// Create a new empty Adjacency object based upon Index hashtable.
+  auto new_adjacency_hashtable()
+    -> Adjacency_uptr;
 
   /// @brief Graph representation where, which maps vertex index to the adjacency of that vertex.
   class Adjacency_list 
