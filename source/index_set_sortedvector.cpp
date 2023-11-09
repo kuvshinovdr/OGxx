@@ -1,3 +1,7 @@
+/// @file Index_set_sortedvector.cpp
+/// @brief 
+/// @author Nasonenko I. D.
+
 #include <ogxx/st_set.hpp>
 #include <ogxx/iterable.hpp>
 #include <ogxx/stl_iterator.hpp>
