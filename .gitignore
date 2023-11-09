@@ -1,2 +1,8 @@
 .vscode
 *.exe
+*.a
+*.o
+*.so
+*.pyc
+build/
+doc/
