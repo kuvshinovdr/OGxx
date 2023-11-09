@@ -4,16 +4,16 @@
 #include <ogxx/iterator.hpp>
 #include <climits>
 
-// определить константу word_bits
+constexpr unsigned word_bits = sizeof(unsigned) * CHAR_BIT;
+
 namespace ogxx
 {
 
 class Dense_bit_iterator : public Basic_iterator<bool> 
 {
 public:
-  // добавить stride
-    Dense_bit_iterator(unsigned const* word, size_t firstbit, size_t endbit)
-        : word(word), currentbit(firstbit), endbit(endbit) {}
+    Dense_bit_iterator(unsigned const* word, size_t firstbit, size_t endbit, size_t stride = 1)
+    : word(word), currentbit(firstbit), endbit(endbit), stride(stride) {}
     ~Dense_bit_iterator() {}
 
     /// @brief 'next' method
@@ -21,7 +21,7 @@ public:
         if (currentbit >= endbit)
           return false;
 
-        value = word[currentbit]; // по формуле
+        value = (word[currentbit / word_bits] >> (currentbit % word_bits)) & 1
         currentbit += stride;
         return true;
     }
