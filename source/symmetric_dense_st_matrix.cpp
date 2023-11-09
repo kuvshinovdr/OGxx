@@ -98,7 +98,7 @@ namespace ogxx
         }
     
         // Создаем новую матрицу с размером окна
-        auto copied_matrix = std::make_unique<Symmetric_dense_st_matrix<ST>>(window.shape.rows);
+        auto copied_matrix = std::make_unique<St_matrix<ST>>(window.shape.rows,window.shape.cols);
     
         // Копируем данные из исходной матрицы в новую
         for (size_t i = 0; i < window.shape.rows; ++i) {
