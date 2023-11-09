@@ -88,6 +88,35 @@ namespace ogxx
       return cols * position.row + position.col;
     }
 
+    /// @brief Computes a linear index in a packed matrix where only the upper part (including the main diagonal) is stored.
+    /// @param position 2D index to be transformed into a linear index
+    /// @return index in row-major linear array storage for symmetric matrix
+    [[nodiscard]] constexpr auto upper_index(Matrix_index position) const noexcept
+    {
+      // ASSERT rows == cols
+      auto [row, col] = position;
+      if (col < row)
+        std::swap(row, col);
+      
+      // cols * row - row * (row - 1) / 2 + (col - row) =
+      return (row * ((cols << 1) - (row + 1)) >> 1) + col;
+    }
+
+    /// @brief Computes a linear index in a packed matrix where only the upper part without the main diagonal is stored (unmd means "upper no main diagonal").
+    /// @param position 2D index to be transformed into a linear index
+    /// @return index in row-major linear array storage for symmetric matrix without main diagonal
+    [[nodiscard]] constexpr auto unmd_index(Matrix_index position) const noexcept
+    {
+      // ASSERT rows == cols
+      // ASSERT position.row != position.col
+      auto [row, col] = position;
+      if (col < row)
+        std::swap(row, col);
+
+      // row * cols - row * (row + 1) / 2 + col - row - 1 =
+      return (row * ((cols << 1) - (row + 3)) >> 1) + (col - 1);
+    }
+
     /// @brief Make square matrix shape.
     /// @param size size of the square matrix (the same number of rows and columns)
     /// @return Matrix_shape object containing square matrix shape
