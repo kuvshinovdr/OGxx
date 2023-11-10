@@ -98,7 +98,7 @@ namespace ogxx
 			// Copy elements from this->matrix_ to sub.matrix_
 			for (size_t row = 0; row < window.shape_.row; i++) {
 				for (size_t col = 0; col < window.shape_.col; j++) {
-					sub.matrix_[row * window.shape_.col + col] = this->matrix_[row * window.shape_.col + col];
+					sub.matrix_[row + col] = this->matrix_[row + col];
 				}
 			}
 
