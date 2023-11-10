@@ -4,8 +4,8 @@
 #ifndef OGXX_MATRIX_HPP_INCLUDED
 #define OGXX_MATRIX_HPP_INCLUDED
 
-#include "primitive_definitions.hpp"
-#include "iterator.hpp" // TBD
+#include <ogxx/primitive_definitions.hpp>
+#include <ogxx/iterator.hpp>
 
 
 /// Root namespace of the OGxx library.
@@ -14,6 +14,18 @@ namespace ogxx
 
   /////////////////////////////////////////////////////////////////////////////
   // Auxiliary structures
+
+  /// @brief Index of an item of a matrix.
+  /// Negative indices are to be interpreted as offsets from the right end
+  /// like it is done in Python, e.g. a[-1] is the last element of a.
+  struct Matrix_index
+  {
+    /// @brief The first index of a matrix item (zero-based).
+    Scalar_index row = 0;
+    /// @brief The second index of a matrix item (zero-based).
+    Scalar_index col = 0;
+  };
+
 
   /// @brief Matrix shape description (just two sizes).
   struct Matrix_shape
@@ -31,6 +43,80 @@ namespace ogxx
       return (rows > 0 && cols > 0) || (rows == 0 && cols == 0);
     }
 
+    /// Compute total element count of a matrix with this shape.
+    /// Throws on overflow.
+    [[nodiscard]] auto element_count() const
+      -> Scalar_size
+    {
+      Scalar_size result = 0;
+      if (checked_multiply(rows, cols, result))
+        return result;
+
+      throw std::out_of_range("Matrix_shape::element_count: overflow");
+    }
+
+    /// @brief Check if the index is valid if applied to a matrix of the given shape.
+    /// @param position matrix position to be checked
+    /// @return true if the index is valid (is contained in the matrix)
+    [[nodiscard]] constexpr auto contains(Matrix_index position) const noexcept
+      -> bool
+    {
+      return is_within(position.row, -rows, rows - 1)
+          && is_within(position.col, -cols, cols - 1);
+    }
+
+    /// @brief Check if the current index is valid for the given shape and correct negative row or col according to the shape.
+    /// @param position the index to be checked and corrected (by reference)
+    /// @return true if the index is correct, false otherwise
+    [[nodiscard]] constexpr auto check_and_correct(Matrix_index& position) noexcept
+      -> bool
+    {
+      if (position.row < 0)
+        position.row += rows;
+      if (position.col < 0)
+        position.col += cols;
+
+      return contains(position);
+    }
+
+    /// @brief Get linear index of the matrix index for row-major packed matrix stored in a linear array.
+    /// @param position 2D index to be transformed into a linear index
+    /// @return index in row-major linear array matrix storage
+    [[nodiscard]] constexpr auto linear_index(Matrix_index position) const noexcept
+      -> Scalar_index
+    {
+      return cols * position.row + position.col;
+    }
+
+    /// @brief Computes a linear index in a packed matrix where only the upper part (including the main diagonal) is stored.
+    /// @param position 2D index to be transformed into a linear index
+    /// @return index in row-major linear array storage for symmetric matrix
+    [[nodiscard]] constexpr auto upper_index(Matrix_index position) const noexcept
+    {
+      // ASSERT rows == cols
+      auto [row, col] = position;
+      if (col < row)
+        std::swap(row, col);
+      
+      // cols * row - row * (row - 1) / 2 + (col - row) =
+      return (row * ((cols << 1) - (row + 1)) >> 1) + col;
+    }
+
+    /// @brief Computes a linear index in a packed matrix where only the upper part without the main diagonal is stored (unmd means "upper no main diagonal").
+    /// @param position 2D index to be transformed into a linear index
+    /// @return index in row-major linear array storage for symmetric matrix without main diagonal
+    [[nodiscard]] constexpr auto unmd_index(Matrix_index position) const noexcept
+    {
+      // ASSERT rows == cols
+      // ASSERT position.row != position.col
+      auto [row, col] = position;
+      if (col < row)
+        std::swap(row, col);
+
+      // row * cols - row * (row + 1) / 2 + col - row - 1 =
+      return (row * ((cols << 1) - (row + 3)) >> 1) + (col - 1);
+    }
+
     /// @brief Make square matrix shape.
     /// @param size size of the square matrix (the same number of rows and columns)
     /// @return Matrix_shape object containing square matrix shape
@@ -38,28 +124,6 @@ namespace ogxx
       -> Matrix_shape
     {
       return { size, size };
-    }
-  };
-
-
-  /// @brief Index of an item of a matrix.
-  /// Negative indices are to be interpreted as offsets from the right end
-  /// like it is done in Python, e.g. a[-1] is the last element of a.
-  struct Matrix_index
-  {
-    /// @brief The first index of a matrix item (zero-based).
-    Scalar_index row = 0;
-    /// @brief The second index of a matrix item (zero-based).
-    Scalar_index col = 0;
-
-    /// @brief Check if the current index is valid if applied to a matrix of the given shape.
-    /// @param shape matrix sizes
-    /// @return true if the index is valid (points within the matrix)
-    [[nodiscard]] constexpr auto is_valid_for(Matrix_shape shape) const noexcept
-      -> bool
-    {
-      return is_within(row, -shape.rows, shape.rows - 1)
-          && is_within(col, -shape.cols, shape.cols - 1);
     }
   };
 
@@ -125,9 +189,8 @@ namespace ogxx
     [[nodiscard]] virtual auto shape() const noexcept
       -> Matrix_shape = 0;
 
-    /// @brief Change matrix sizes (if possible in-place). 
-    /// Zero fills the resulting matrix.
-    /// May throw bad_alloc if new_shape is too large.
+    /// @brief Change matrix sizes (if possible in-place).
+    /// May throw bad_alloc if new_shape is too large or invalid.
     /// @param new_shape new matrix sizes: rows and columns
     virtual void reshape(Matrix_shape new_shape) = 0;
 

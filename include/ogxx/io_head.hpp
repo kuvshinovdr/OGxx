@@ -5,7 +5,6 @@
 #define OGXX_IO_HEAD_HPP_INCLUDED
 
 #include <string_view>
-#include <istream>
 #include <ostream>
 
 

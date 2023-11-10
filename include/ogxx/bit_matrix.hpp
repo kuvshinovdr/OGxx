@@ -4,8 +4,8 @@
 #ifndef OGXX_BIT_MATRIX_HPP_INCLUDED
 #define OGXX_BIT_MATRIX_HPP_INCLUDED
 
-#include "matrix.hpp"
-#include "graph_view.hpp"
+#include <ogxx/matrix.hpp>
+#include <ogxx/graph_view.hpp>
 
 
 /// Root namespace of the OGxx library.

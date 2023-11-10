@@ -22,6 +22,7 @@ namespace ogxx
           _adj = _al.get(_cur_from)->iterate();
       }
 
+
       auto next(Vertex_pair& out_item) noexcept
         -> bool                        override
       {
@@ -61,11 +62,17 @@ namespace ogxx
                            Adjacency_list const&,
                            Adjacency_list&>;
 
-      Graph_view_di_al(Adjacency_list_ref al)
+      explicit Graph_view_di_al(Adjacency_list_ref al)
         : _al(al) {}
 
       
       // Constant interface
+
+      [[nodiscard]] auto is_directed() const noexcept
+        -> bool
+      {
+        return true;
+      }
 
       [[nodiscard]] auto vertex_count() const noexcept
         -> Scalar_size                  override

@@ -4,8 +4,8 @@
 #ifndef OGXX_ST_MATRIX_HPP_INCLUDED
 #define OGXX_ST_MATRIX_HPP_INCLUDED
 
-#include "matrix.hpp"
-#include "iterable.hpp"
+#include <ogxx/iterable.hpp>
+#include <ogxx/matrix.hpp>
 
 
 /// Root namespace of the OGxx library.
@@ -102,10 +102,7 @@ namespace ogxx
     /// @brief Make a copy of the full matrix.
     /// @return a clone of this matrix
     [[nodiscard]] auto copy() const
-      -> St_matrix_uptr<ST>
-    {
-      return copy(Matrix_window::main(shape()));
-    }
+      -> St_matrix_uptr<ST> { return copy(Matrix_window::main(shape())); }
   };
 
 
@@ -126,6 +123,23 @@ namespace ogxx
 
   /// @brief Read-only floating point matrix owning pointer.
   using Float_matrix_const_uptr = St_matrix_const_uptr<Float>;
+
+  
+  /// Create an object of generic packed (dense) St_matrix.
+  /// @tparam Item matrix item type
+  /// @param shape new matrix shape
+  /// @return an object of the created matrix
+  template <typename Item>
+  auto new_dense_st_matrix(Matrix_shape shape)
+    -> St_matrix_uptr<Item>;
+
+  extern template
+  auto new_dense_st_matrix<Int>(Matrix_shape shape)
+    -> St_matrix_uptr<Int>;
+
+  extern template
+  auto new_dense_st_matrix<Float>(Matrix_shape shape)
+    ->St_matrix_uptr<Float>;
 
 }
 
