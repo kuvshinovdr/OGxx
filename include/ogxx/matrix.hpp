@@ -68,7 +68,7 @@ namespace ogxx
     /// @brief Check if the current index is valid for the given shape and correct negative row or col according to the shape.
     /// @param position the index to be checked and corrected (by reference)
     /// @return true if the index is correct, false otherwise
-    [[nodiscard]] constexpr auto check_and_correct(Matrix_index& position) noexcept
+    [[nodiscard]] constexpr auto check_and_correct(Matrix_index& position) const noexcept
       -> bool
     {
       if (position.row < 0)
