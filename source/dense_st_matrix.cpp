@@ -31,7 +31,7 @@ namespace ogxx
 		}
 
 		// Метод для получения размерности матрицы
-		Matrix_shape shape() const override {
+		Matrix_shape shape() const noexcept override {
 			return shape_;
 		}
 
@@ -41,7 +41,7 @@ namespace ogxx
 			shape_ = shape;
 		}
 
-		Basic_iterator_uptr<Item> iterate() const override {
+		Basic_iterator_uptr<ST> iterate() const override {
 			return new_stl_iterator(matrix_);
 		}
 
@@ -55,17 +55,21 @@ namespace ogxx
 
 		// Метод для получения значения элемента матрицы по позиции
 		ST get(Matrix_index position) const noexcept override {
-			if (position.check_and_correct(shape_))
-				return matrix_[position.row * shape_.cols + position.col];
+			if (shape_.check_and_correct(position))
+				return matrix_[shape_.linear_index(position)];
 			return {};
 		}
 
 		// Метод для установки значения элемента матрицы по позиции
-		void set(Matrix_index position, ST value) override {
-			if (position.check_and_correct(shape_))
-				matrix_[position.row * shape_.cols + position.col] = value;
-			else
-				throw std::out_of_range("Dense_st_matrix::set: invalid position");
+		ST set(Matrix_index position, ST value) override {
+			if (shape_.check_and_correct(position))
+			{
+				ST result = value;
+				std::swap(result, matrix_[shape_.linear_index(position)]);
+				return result;
+			}
+
+			throw std::out_of_range("Dense_st_matrix::set: invalid position");
 		}
 
 		// Метод для заполнения всей матрицы одним значением
@@ -90,20 +94,39 @@ namespace ogxx
 		}
 
 		St_matrix_uptr<ST> copy(Matrix_window window) override {
+			if (!shape_.check_and_correct(window.position))
+				throw std::out_of_range("Dense_st_matrix::copy: invalid window position");
+			
+			if (!shape_.contains({ window.position.row + window.shape.rows - 1,
+				                     window.position.col + window.shape.cols - 1 }))
+				throw std::out_of_range("Dense_st_matrix::copy: window does fit into the matrix");
+
 			auto  result = std::make_unique<Dense_st_matrix<ST>>(window.shape);
 			auto& sub    = static_cast<Dense_st_matrix<ST>&>(*result);
-			// TODO: copy elements
-			// sub.matrix_ заполнить из this->matrix_
 
 			// Copy elements from this->matrix_ to sub.matrix_
-			for (size_t row = 0; row < window.shape_.row; i++) {
-				for (size_t col = 0; col < window.shape_.col; j++) {
-					sub.matrix_[row + col] = this->matrix_[row + col];
+			Scalar_index rp = window.position.row * shape_.rows + window.position.col;
+			for (Scalar_index row = 0, wp = 0; row < window.shape.rows; ++row, rp += shape_.cols) {
+				for (Scalar_index col = 0; col < window.shape.cols; ++col, ++wp) {
+					sub.matrix_[wp] = this->matrix_[rp + col];
 				}
 			}
 
 			return result;
 		}
 	};
+
+
+	template<> auto new_dense_st_matrix<Int>(Matrix_shape shape)
+		-> St_matrix_uptr<Int>
+	{
+		return std::make_unique<Dense_st_matrix<Int>>(shape);
+	}
+
+	template<> auto new_dense_st_matrix<Float>(Matrix_shape shape)
+		-> St_matrix_uptr<Float>
+	{
+		return std::make_unique<Dense_st_matrix<Float>>(shape);
+	}
 
 }
