@@ -35,7 +35,29 @@ namespace ogxx {
         bits[item] = true;
         return true;
       }
-        
+    
+      void set(const Scalar_index& index, bool value) override
+      {
+        bits[index] = value;
+      }
+  
+      bool get(const Scalar_index& index) const override
+      {
+        return bits[index];
+      }
+
+      bool is_empty() const override
+      {
+        return bits.empty();
+      }
+
+      void iterate(const function<void(const Scalar_index&)>& func) const override
+      {
+        for (const auto& index : bits)
+        {
+            func(index);
+        }
+      }
 
       bool erase(Scalar_index item) override
       {
