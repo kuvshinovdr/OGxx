@@ -1,6 +1,6 @@
 ﻿/// @file dense_st_matrix.cpp
 /// @brief Dense matrix implementation (of abstract matrix interface from matrix.hpp).
-/// @author 
+/// @author mx2-lubnin-e-v
 #include <ogxx/st_matrix.hpp>
 #include <ogxx/stl_iterator.hpp>
 #include <vector>
