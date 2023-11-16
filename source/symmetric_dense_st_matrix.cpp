@@ -111,7 +111,7 @@ namespace ogxx
     auto copy(Matrix_window window)
         -> St_matrix_uptr<ST> override
     {
-        if (!window.position.is_valid_for(shape())){
+        if (!window.shape.contains({size_-1,size_-1})){
             throw std::out_of_range("Invalid matrix window.");
         }
     
