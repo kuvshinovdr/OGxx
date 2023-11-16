@@ -114,6 +114,11 @@ namespace ogxx
   };
 
 
+  /// Create a dense bit matrix with the given shape.
+  [[nodiscard]] auto new_dense_bit_matrix(Matrix_shape shape)
+    -> Bit_matrix_uptr;
+
+
   /// Directed graph facilities.
   namespace directed
   {
