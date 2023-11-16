@@ -1,14 +1,17 @@
 /// @file graph_repr_conv.hpp
 /// @brief Graph representation conversion operations.
 /// @author Kuvshinov D.R. kuvshinovdr at yandex.ru
+/// E.g. we have an Edge_list el and an Adjacency_list al, then we can convert from el to al using the call:
+///   undirected::convert::from(el).to(al)
+/// if el stores an undirected graph.
 /// Can we remove the duplication directed-undirected (the same-looking code calls different functions graph_view)?
 #ifndef OGXX_GRAPH_REPR_CONV_HPP_INCLUDED
 #define OGXX_GRAPH_REPR_CONV_HPP_INCLUDED
 
-#include "graph_view.hpp"
-#include "adjacency_list.hpp"
-#include "bit_matrix.hpp"
-#include "edge_list.hpp"
+#include <ogxx/graph_view.hpp>
+#include <ogxx/adjacency_list.hpp>
+#include <ogxx/bit_matrix.hpp>
+#include <ogxx/edge_list.hpp>
 
 
 /// Root namespace of the OGxx library.
