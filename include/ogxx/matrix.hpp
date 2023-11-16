@@ -43,6 +43,13 @@ namespace ogxx
       return (rows > 0 && cols > 0) || (rows == 0 && cols == 0);
     }
 
+    /// Check if the matrix is a square matrix.
+    [[nodiscard]] constexpr auto is_square() const noexcept
+      -> bool
+    {
+      return rows == cols;
+    }
+
     /// Compute total element count of a matrix with this shape.
     /// Throws on overflow.
     [[nodiscard]] auto element_count() const
