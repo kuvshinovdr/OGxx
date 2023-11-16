@@ -147,6 +147,13 @@ namespace ogxx {
 
           auto copy = new_dense_bit_matrix(window.shape);
 
+          for (Scalar_index i = 0; i < window.shape.rows; i++) {
+            for (Scalar_index j = 0; j < window.shape.cols; ++j) {
+              auto value = get({ window.position.row + i, window.position.col + j });
+              copy->set(i, j, value);
+            }
+          }
+
           return copy;
         }
         
