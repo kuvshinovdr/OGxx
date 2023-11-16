@@ -4,19 +4,24 @@
 #ifndef OGXX_GRAPH_VIEW_HPP_INCLUDED
 #define OGXX_GRAPH_VIEW_HPP_INCLUDED
 
-#include "vertex_pair.hpp"
+#include <ogxx/vertex_pair.hpp>
 
 
 /// Root namespace of the OGxx library.
 namespace ogxx
 {
 
+  /// @brief Generic graph interface to provide a common facade over concrete graph representations.
   class Graph_view
   {
   public:
     virtual ~Graph_view() {}
 
     // Constant interface
+
+    /// Check if this graph view represents a directed graph (false for an undirected graph).
+    [[nodiscard]] virtual auto is_directed() const noexcept
+      -> bool = 0;
 
     /// Get the count of vertices in the graph, vertex indices are 0, 1, ..., vertex_count() - 1.
     [[nodiscard]] virtual auto vertex_count() const noexcept
@@ -33,15 +38,24 @@ namespace ogxx
     [[nodiscard]] virtual auto iterate_edges() const
       -> Vertex_pair_iterator_uptr = 0;
 
+    /// @brief Check if two vertices of the graph are connected by an edge.
+    /// @param edge a pair of vertex indices to be checked
+    /// @return true if the two vertices are connected by an edge, false otherwise (including the case of an invalid vertex index)
+    [[nodiscard]] virtual auto are_connected(Vertex_pair edge) const noexcept
+      -> bool = 0;
+
+    /// @brief Check if two vertices of the graph are connected by an edge.
+    /// @param from the index of the outcoming vertex
+    /// @param to   the index of the incoming vertex
+    /// @return true if the two vertices are connected by an edge, false otherwise (including the case of an invalid vertex index)
+    [[nodiscard]] auto are_connected(Vertex_index from, Vertex_index to) const noexcept
+      -> bool { return are_connected(Vertex_pair{ from, to }); }
+
     // Non-constant interface
 
     /// @brief Provide the would-be vertex count. May be used to reserve memory in advance.
     /// @param count how many vertices the graph should contain
     virtual void set_vertex_count(Scalar_size count) = 0;
-
-    /// @brief Provide the would-be edge count. May be used to reserve memory in advance.
-    /// @param count how many edges the graph should contain, aftermath edge_count() call may return another value
-    virtual void set_edge_count(Scalar_size count) = 0;
 
     /// @brief Connect the vertices of the pair edge.
     /// @param edge (first, second) pair of vertex indices
@@ -50,8 +64,8 @@ namespace ogxx
       -> bool = 0;
 
     /// @brief Add edge from -> to.
-    /// @param from vertex index for the outcoming vertex
-    /// @param to vertex index for the incoming vertex
+    /// @param from the index of the outcoming vertex
+    /// @param to   the index of the incoming vertex
     /// @return true if edge has been added, false otherwise (e.g. the edge already exists)
     auto connect(Vertex_index from, Vertex_index to)
       -> bool { return connect(Vertex_pair{ from, to }); }
@@ -63,8 +77,8 @@ namespace ogxx
       -> bool = 0;
 
     /// @brief Remove edge from -> to.
-    /// @param from vertex index for the outcoming vertex
-    /// @param to vertex index for the incoming vertex
+    /// @param from the index of the outcoming vertex
+    /// @param to   the index of the incoming vertex
     /// @return true if edge has been removed, false otherwise (e.g. there was no such edge) 
     auto disconnect(Vertex_index from, Vertex_index to)
       -> bool { return disconnect(Vertex_pair{ from, to }); }
@@ -78,7 +92,6 @@ namespace ogxx
       Scalar_size added_edges = 0;
       Scalar_size const verts = max(vertex_count(), gv.vertex_count());
       set_vertex_count(verts);
-      set_edge_count(edge_count() + gv.edge_count());
 
       auto gv_edge_iter = gv.iterate_edges();
       for (Vertex_pair vp; gv_edge_iter->next(vp);)

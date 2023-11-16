@@ -4,8 +4,8 @@
 #ifndef OGXX_VERTEX_PAIR_HPP_INCLUDED
 #define OGXX_VERTEX_PAIR_HPP_INCLUDED
 
-#include "primitive_definitions.hpp"
-#include "iterable.hpp"
+#include <ogxx/primitive_definitions.hpp>
+#include <ogxx/iterable.hpp>
 
 
 /// Root namespace of the OGxx library.
