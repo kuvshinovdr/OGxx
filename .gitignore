@@ -1,8 +1,10 @@
-.vscode
+.vscode/
+.idea/
+build/
+doc/
 *.exe
 *.a
 *.o
 *.so
 *.pyc
-build/
-doc/
+

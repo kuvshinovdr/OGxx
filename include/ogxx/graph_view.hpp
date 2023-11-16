@@ -19,6 +19,10 @@ namespace ogxx
 
     // Constant interface
 
+    /// Check if this graph view represents a directed graph (false for an undirected graph).
+    [[nodiscard]] virtual auto is_directed() const noexcept
+      -> bool = 0;
+
     /// Get the count of vertices in the graph, vertex indices are 0, 1, ..., vertex_count() - 1.
     [[nodiscard]] virtual auto vertex_count() const noexcept
       -> Scalar_size = 0;

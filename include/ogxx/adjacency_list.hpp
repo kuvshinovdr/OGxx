@@ -29,12 +29,13 @@ namespace ogxx
   using Adjacency_const_uptr = std::unique_ptr<Adjacency const>;
 
   /// Create a new empty Adjacency object based upon Index hashtable.
-  auto new_adjacency_hashtable()
+  [[nodiscard]] auto new_adjacency_hashtable()
     -> Adjacency_uptr;
+
 
   /// @brief Graph representation where, which maps vertex index to the adjacency of that vertex.
   class Adjacency_list 
-    : public virtual Indexed_iterable<Adjacency const*>
+    : public virtual List<Adjacency>
   {
   public:
     /// @brief Compute the sum of sizes of all adjacencies (vertex degrees).
@@ -47,14 +48,6 @@ namespace ogxx
     /// When removing vertices remove all edges incident with the removed vertices.
     /// @param new_vertex_count how many vertices the list should represent after this call (vertices have indices 0, 1, ..., new_vertex_count - 1)
     virtual void set_vertex_count(Scalar_size new_vertex_count) = 0;
-
-    using Indexed_iterable<Adjacency const*>::get;
-
-    /// @brief Allows to change an adjacency of the given vertex.
-    /// @param vertex zero-based index of a vertex < size()
-    /// @return a non-owning pointer to the adjacency of a vertex, may throw or resize on out-of-range index
-    [[nodiscard]] virtual auto get(Vertex_index vertex)
-      -> Adjacency* = 0;
   };
 
 

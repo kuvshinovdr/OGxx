@@ -68,7 +68,7 @@ namespace ogxx
     /// @brief Check if the current index is valid for the given shape and correct negative row or col according to the shape.
     /// @param position the index to be checked and corrected (by reference)
     /// @return true if the index is correct, false otherwise
-    [[nodiscard]] constexpr auto check_and_correct(Matrix_index& position) noexcept
+    [[nodiscard]] constexpr auto check_and_correct(Matrix_index& position) const noexcept
       -> bool
     {
       if (position.row < 0)
@@ -86,6 +86,35 @@ namespace ogxx
       -> Scalar_index
     {
       return cols * position.row + position.col;
+    }
+
+    /// @brief Computes a linear index in a packed matrix where only the upper part (including the main diagonal) is stored.
+    /// @param position 2D index to be transformed into a linear index
+    /// @return index in row-major linear array storage for symmetric matrix
+    [[nodiscard]] constexpr auto upper_index(Matrix_index position) const noexcept
+    {
+      // ASSERT rows == cols
+      auto [row, col] = position;
+      if (col < row)
+        std::swap(row, col);
+      
+      // cols * row - row * (row - 1) / 2 + (col - row) =
+      return (row * ((cols << 1) - (row + 1)) >> 1) + col;
+    }
+
+    /// @brief Computes a linear index in a packed matrix where only the upper part without the main diagonal is stored (unmd means "upper no main diagonal").
+    /// @param position 2D index to be transformed into a linear index
+    /// @return index in row-major linear array storage for symmetric matrix without main diagonal
+    [[nodiscard]] constexpr auto unmd_index(Matrix_index position) const noexcept
+    {
+      // ASSERT rows == cols
+      // ASSERT position.row != position.col
+      auto [row, col] = position;
+      if (col < row)
+        std::swap(row, col);
+
+      // row * cols - row * (row + 1) / 2 + col - row - 1 =
+      return (row * ((cols << 1) - (row + 3)) >> 1) + (col - 1);
     }
 
     /// @brief Make square matrix shape.
