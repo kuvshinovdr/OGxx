@@ -53,6 +53,9 @@ namespace ogxx
             throw std::invalid_argument("Graph_view_undirected_adjacency_matrix::ctor: the matrix must be square.");
         }
 
+        [[nodiscard]] auto is_directed() const noexcept
+          -> bool override { return false; }
+
         [[nodiscard]] auto vertex_count() const noexcept
           -> Scalar_size override
         {
