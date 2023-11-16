@@ -63,17 +63,33 @@ namespace ogxx
     return data_.size();
     }
    
-    auto iterate_row(Scalar_index row) const
-      -> Basic_iterator_uptr<ST> override
-    {
-    throw std::logic_error("Symmetric_dense_st_matrix::iterate_row not implemented.");
-    }
-   
     auto iterate_col(Scalar_index col) const
       -> Basic_iterator_uptr<ST> override
     {
-    throw std::logic_error("Symmetric_dense_st_matrix::iterate_col not implemented.");
+      if (col >= size_)
+        throw std::out_of_range("Row index out of range.");
+
+      std::vector<ST> col_data;
+      for (size_t col = 0; col < size_; ++col) {
+        col_data.push_back(data_[upper_index({col, row})]);
+      }
+
+      return new_stl_iterator(row_data);
     }
+   
+    auto iterate_row(Scalar_index row) const
+      -> Basic_iterator_uptr<ST> override
+    {
+      if (row >= size_)
+        throw std::out_of_range("Row index out of range.");
+
+      std::vector<ST> row_data;
+      for (size_t col = 0; col < size_; ++col) {
+        row_data.push_back(data_[upper_index({row, col})]);
+      }
+
+  return new_stl_iterator(row_data);
+}
     
     auto view(Matrix_window window) const
       -> St_matrix_const_uptr<ST> override
@@ -98,12 +114,11 @@ namespace ogxx
         }
     
         // Создаем новую матрицу с размером окна
-        auto copied_matrix = std::make_unique<St_matrix<ST>>(window.shape.rows,window.shape.cols);
+        auto copied_matrix = new_dense_st_matrix<ST>(window.shape);
     
         // Копируем данные из исходной матрицы в новую
         for (size_t i = 0; i < window.shape.rows; ++i) {
             for (size_t j = 0; j < window.shape.cols; ++j) {
-                Matrix_index index{i + window.position.row, j + window.position.col};
                 copied_matrix->set({i, j}, this->get(index));
             }
         }
@@ -120,7 +135,7 @@ namespace ogxx
       if (position.row > position.col)
         std::swap(position.row, position.col); // Убедитесь, что row <= col для симметрии
 
-      return data_[position.row * size_ - position.row * (position.row + 1) / 2 + position.col];// так вроде верно. Отсчет с 0.
+      return data_[upper_index(position)];// так вроде верно. Отсчет с 0.
 
     }
 
@@ -133,7 +148,7 @@ namespace ogxx
       if (position.row > position.col)
         std::swap(position.row, position.col); // Обеспечиваем row <= col для симметрии
 
-      auto index = position.row * size_ - (position.row - 1) * position.row / 2 + position.col - position.row;
+      auto index = upper_index(position);
       auto old_value = data_[index];
       data_[index] = value;
       return old_value;
