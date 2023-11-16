@@ -13,6 +13,8 @@ namespace ogxx {
     class Symmetric_dense_bit_matrix : public Bit_matrix {
     public:
 
+      // TODO: add ctor
+
         // Возвращает размерность матрицы
         Matrix_shape shape() override {
             return _shape;
@@ -20,7 +22,7 @@ namespace ogxx {
 
         // Изменяет размерность матрицы
         void reshape(Matrix_shape shape) override {
-            if (!shape.is_valid() || shape.rows != shape.cols) {
+            if (!shape.is_valid() || !shape.is_square()) {
                 throw std::invalid_argument("Symmetric_dense_bit_matrix::reshape: shape is invalid or not square")
             }
 
@@ -34,19 +36,9 @@ namespace ogxx {
 
         // Получить значение бита по позиции.
         bool get(Matrix_index position) override {
-            if (position.check_and_correct(_shape)) {
-                auto row = position.row;
-                auto col = position.col;
-                auto const n  = _shape.rows;
-                // Меняем row и col местами, если col < row.
-                if (col < row) {
-                    auto temp = row;
-                    row = col;
-                    col = temp;
-                }
-
+            if (_shape.check_and_correct(position)) {
                 // Вычисляем значение бита.
-                auto const index = (((row * ((n << 1) - (row + 3))) >> 1) + (col - 1));
+                auto const index = _shape.unmd_index(position);
 
                 auto const word_index = index / word_bits;
                 auto const bit_in_word = index % word_bits;
@@ -58,18 +50,8 @@ namespace ogxx {
 
         // Установить значения бита по позиции
         bool set(Matrix_index position, bool value) override {
-            if (position.check_and_correct(_shape)) {
-                auto row = position.row;
-                auto col = position.col;
-                auto const n  = _shape.rows;
-
-                if (col < row) {
-                    auto temp = row;
-                    row = col;
-                    col = temp;
-                }
-
-                auto const index = (((row * ((n << 1) - (row + 3))) >> 1) + (col - 1));
+            if (_shape.check_and_correct(position)) {
+                auto const index = _shape.unmd_index(position);
 
                 auto const word_index = index / word_bits;
                 auto const bit_in_word = bit_index % word_bits;
@@ -85,15 +67,18 @@ namespace ogxx {
 
         // Инвертировать значение бита по позиции
         bool flip(Matrix_index position) override {
-            if (position.row > _shape.rows || position.col > _shape.cols) return false;
+          if (_shape.check_and_correct(position)) {
+            auto const index = _shape.unmd_index(position);
 
-            auto const bit_index = position.row * _shape.cols + position.col;
-            auto const symmetric_index = position.col * _shape.cols + position.row;
-            auto const index = (position.row <= position.col) ? bit_index : symmetric_index;
+            auto const word_index = index / word_bits;
+            auto const bit_in_word = bit_index % word_bits;
 
-            bit_contain[index / word_bits] ^= (Word(1) << (index % word_bits));
+            bool const old = ((bit_contain[word_index] >> bit_in_word) & 1) == 1;
+            bit_contain[word_index] ^= (Word(1) << bit_in_word);
+            return old;
+          }
 
-            return true;
+          throw std::out_of_range("symmetric_dense_bit_matrix::flip: invalid position")
         }
 
         // Заполнить всю(половину) матрицу указанным значением
@@ -106,26 +91,22 @@ namespace ogxx {
 
         //Копируем только нижнюю часть матрицы
        auto copy(Matrix_window window) const
-       -> Bit_matrix_uptr override {
+        -> Bit_matrix_uptr override {
 
-            if (!window.is_valid() || window.start_row >= _shape.rows || window.start_col >= _shape.cols) {
+            if (!window.fits_into(_shape)) {
                 throw std::invalid_argument("Symmetric_dense_bit_matrix::copy: invalid window.");
             }
 
-            auto new_rows = std::min(window.rows, _shape.rows - window.start_row);
-            auto new_cols = std::min(window.cols, _shape.cols - window.start_col);
+            auto new_matrix = new_dense_bit_matrix(window.shape);
 
-            auto new_matrix = std::make_unique<Symmetric_dense_bit_matrix>();
-
-            new_matrix -> reshape({new_rows, new_cols});
-
-            for(Scalar_index i = 0; i < new_rows; i++) {
-                for(Scalar_index j = 0; j < new_cols; ++j) {
-                    auto value = get({window.start_row + i, window.start_col + j});
-                    new_matrix -> set({i, j}, value);
+            for(Scalar_index i = 0; i < window.shape.rows; i++) {
+                for(Scalar_index j = 0; j < window.shape.cols; ++j) {
+                  auto value = get({ window.position.row + i, window.position.col + j });
+                    new_matrix->set(i, j, value);
                 }
             }
-           return new_matrix;
+
+            return new_matrix;
         }
 
         auto iterate_row(Scalar_index row) const
