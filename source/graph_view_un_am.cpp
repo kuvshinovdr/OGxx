@@ -3,50 +3,49 @@
 /// @author Soldatov D. V.
 #include <ogxx/graph_view.hpp>
 #include <ogxx/bit_matrix.hpp>
-#include <cmath>
+
 
 namespace ogxx
 {
     class Undirected_adjacency_matrix_edge_iter
-      : public Vertex_pair_iterator
+        : public Vertex_pair_iterator
     {
     public:
       Undirected_adjacency_matrix_edge_iter(Bit_matrix& bit) noexcept
         : bit_m(bit)
       {
-        sz = bit_m.shape().rows;
+          sz = bit_m.shape().rows;
       }
 
       auto next(Vertex_pair& out_item) noexcept
         -> bool override
       {
-        for (;; ++col)
-        {
-          if (col == sz)
-              col = ++row + 1;
-        
-          if (row == sz)
-              return false;
-          
-          if (bit_m.get(row, col))
+          for (;; ++col)
           {
-            out_item = Vertex_pair(row, col); // u < v
-            return true;
+              if (col == sz)
+                  col = ++row + 1;
+        
+              if (row == sz)
+                  return false;
+          
+              if (bit_m.get(row, col))
+              {
+                  out_item = Vertex_pair(row, col); // u < v
+                  return true;
+              }
           }
-        }
       }
 
     private:
-      Bit_matrix&  bit_m;
-      Scalar_index row = 0, col = 1, sz = 0;
+        Bit_matrix&  bit_m;
+        Scalar_index row = 0, col = 1, sz = 0;
     };
 
 
-    class Graph_view_undirected_adjacency_matrix: public Graph_view
+    class Graph_view_undirected_adjacency_matrix
+        : public Graph_view
     {
-        private:
-        Bit_matrix &bit_m;
-        public:
+    public:
         Graph_view_undirected_adjacency_matrix(Bit_matrix &bit)
           : bit_m(bit)
         {
@@ -109,5 +108,18 @@ namespace ogxx
             return !bit_m.reset(edge.first, edge.second);
         }
 
+    private:
+        Bit_matrix& bit_m;
     };
+
+
+    namespace undirected
+    {
+        auto graph_view(Bit_matrix& am)
+          -> Graph_view_uptr
+        {
+          return std::make_unique<Graph_view_undirected_adjacency_matrix>(am);
+        }
+    }
+
 }
