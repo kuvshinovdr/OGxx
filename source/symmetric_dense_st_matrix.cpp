@@ -70,11 +70,12 @@ namespace ogxx
         throw std::out_of_range("Row index out of range.");
 
       std::vector<ST> col_data;
-      for (size_t col = 0; col < size_; ++col) {
-        col_data.push_back(data_[upper_index({col, row})]);
+      for (size_t row = 0; row < size_; ++col) {
+        Matrix_shape p;
+        col_data.push_back(data_[p.upper_index({col, row})]);
       }
 
-      return new_stl_iterator(row_data);
+      return new_stl_iterator(col_data);
     }
    
     auto iterate_row(Scalar_index row) const
@@ -85,7 +86,8 @@ namespace ogxx
 
       std::vector<ST> row_data;
       for (size_t col = 0; col < size_; ++col) {
-        row_data.push_back(data_[upper_index({row, col})]);
+        Matrix_shape p;
+        row_data.push_back(data_[p.upper_index({row, col})]);
       }
 
   return new_stl_iterator(row_data);
@@ -119,7 +121,7 @@ namespace ogxx
         // Копируем данные из исходной матрицы в новую
         for (size_t i = 0; i < window.shape.rows; ++i) {
             for (size_t j = 0; j < window.shape.cols; ++j) {
-                copied_matrix->set({i, j}, this->get(index));
+                copied_matrix->set({i, j}, this->get({i, j}));
             }
         }
     
@@ -131,11 +133,8 @@ namespace ogxx
     {
       if (position.row >= size_ || position.col >= size_)
         return ST{}; // Значение по умолчанию, когда оно выходит за пределы диапазона
-
-      if (position.row > position.col)
-        std::swap(position.row, position.col); // Убедитесь, что row <= col для симметрии
-
-      return data_[upper_index(position)];// так вроде верно. Отсчет с 0.
+      Matrix_shape p;
+      return data_[p.upper_index(position)];// так вроде верно. Отсчет с 0.
 
     }
 
@@ -145,10 +144,8 @@ namespace ogxx
       if (position.row >= size_ || position.col >= size_)
         throw std::out_of_range("Matrix position out of range.");
 
-      if (position.row > position.col)
-        std::swap(position.row, position.col); // Обеспечиваем row <= col для симметрии
-
-      auto index = upper_index(position);
+      Matrix_shape p;
+      auto index = p.upper_index(position);
       auto old_value = data_[index];
       data_[index] = value;
       return old_value;
