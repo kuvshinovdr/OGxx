@@ -17,13 +17,15 @@ namespace ogxx
   {
   private:
     std::vector<ST> data_; ///< The vector that stores the elements of the matrix.
-    size_t size_; ///< The size of the matrix.
+    size_t size_;          ///< The size of the matrix.
 
   public:
     /// @brief Constructor that initializes the matrix with a given size.
     /// @param size The size of the matrix.
-    Symmetric_dense_st_matrix(size_t size): data_(size * (size + 1) / 2, ST{}), size_(size)
+    Symmetric_dense_st_matrix(size_t size)
+      : data_( (size + (size & 1)) / 2 * (size + (~size & 1)) ), size_(size)
     {
+      // TODO: check size overflow.
       if (size == 0)
         throw std::invalid_argument("Matrix size must be greater than 0.");
     }
@@ -43,8 +45,9 @@ namespace ogxx
         throw std::invalid_argument("Symmetric matrix must have equal rows and cols.");
       
       size_ = new_shape.rows;
-      data_.resize(size_ * (size_ + 1) / 2, ST{});
+      data_.resize(size_ * (size_ + 1) / 2); // TODO: check overflow.
     }
+
     auto iterate() const
       -> Basic_iterator_uptr<ST> override
     {
@@ -67,31 +70,21 @@ namespace ogxx
       -> Basic_iterator_uptr<ST> override
     {
       if (col >= size_)
-        throw std::out_of_range("Row index out of range.");
+        throw std::out_of_range("Symmetric_dense_st_matrix::iterate_col: col index out of range.");
 
-      std::vector<ST> col_data;
-      for (size_t row = 0; row < size_; ++col) {
-        Matrix_shape p;
-        col_data.push_back(data_[p.upper_index({col, row})]);
-      }
-
-      return new_stl_iterator(col_data);
+      // TODO: implement later.
+      throw std::logic_error("Symmetric_dense_st_matrix::iterate_col: not implemented");
     }
    
     auto iterate_row(Scalar_index row) const
       -> Basic_iterator_uptr<ST> override
     {
       if (row >= size_)
-        throw std::out_of_range("Row index out of range.");
+        throw std::out_of_range("Symmetric_dense_st_matrix::iterate_row: row index out of range.");
 
-      std::vector<ST> row_data;
-      for (size_t col = 0; col < size_; ++col) {
-        Matrix_shape p;
-        row_data.push_back(data_[p.upper_index({row, col})]);
-      }
-
-  return new_stl_iterator(row_data);
-}
+      // TODO: implement later.
+      throw std::logic_error("Symmetric_dense_st_matrix::iterate_row: not implemented");
+    }
     
     auto view(Matrix_window window) const
       -> St_matrix_const_uptr<ST> override
@@ -111,8 +104,8 @@ namespace ogxx
     auto copy(Matrix_window window)
         -> St_matrix_uptr<ST> override
     {
-        if (!window.shape.contains({size_-1,size_-1})){
-            throw std::out_of_range("Invalid matrix window.");
+        if (!window.fits_into({ size_, size_ })) {
+            throw std::out_of_range("Symmetric_dense_st_matrix::copy: invalid matrix window.");
         }
     
         // Создаем новую матрицу с размером окна
@@ -121,7 +114,7 @@ namespace ogxx
         // Копируем данные из исходной матрицы в новую
         for (size_t i = 0; i < window.shape.rows; ++i) {
             for (size_t j = 0; j < window.shape.cols; ++j) {
-                copied_matrix->set({i, j}, this->get({i, j}));
+                copied_matrix->set(i, j, this->get(i, j));
             }
         }
     
@@ -131,21 +124,20 @@ namespace ogxx
     
     [[nodiscard]] auto get(Matrix_index position) const noexcept -> ST override
     {
-      if (position.row >= size_ || position.col >= size_)
-        return ST{}; // Значение по умолчанию, когда оно выходит за пределы диапазона
-      Matrix_shape p;
-      return data_[p.upper_index(position)];// так вроде верно. Отсчет с 0.
-
+      Matrix_shape const shape{ size_, size_ };
+      if (shape.check_and_correct(position))
+        return data_[shape.upper_index(position)];// так вроде верно. Отсчет с 0.
+      return ST{}; // Значение по умолчанию, когда оно выходит за пределы диапазона
     }
 
     // Метод set
     auto set(Matrix_index position, ST value) -> ST override
     {
-      if (position.row >= size_ || position.col >= size_)
-        throw std::out_of_range("Matrix position out of range.");
+      Matrix_shape const shape{ size_, size_ };
+      if (shape.check_and_correct(position))
+        throw std::out_of_range("Symmetric_dense_st_matrix::set: matrix position out of range.");
 
-      Matrix_shape p;
-      auto index = p.upper_index(position);
+      auto index = shape.upper_index(position);
       auto old_value = data_[index];
       data_[index] = value;
       return old_value;
@@ -157,6 +149,5 @@ namespace ogxx
       std::fill(data_.begin(), data_.end(), value);
     }
   };
-  
 
 }
