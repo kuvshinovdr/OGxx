@@ -21,7 +21,7 @@ namespace ogxx {
          -> Bit_iterator_uptr override
        {
          return new_dense_bit_iterator(
-           bit_contain.data(), 0, bit_contain.size());
+           bit_contain.data(), 0, size());
        }
 
        auto is_empty() const noexcept
@@ -33,7 +33,7 @@ namespace ogxx {
        auto size() const noexcept
          -> Scalar_size override
        {
-         return bit_contain.size() * word_bits;
+         return _shape.element_count();
        }
 
         // Возвращает размерность матрицы
