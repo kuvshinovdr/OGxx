@@ -43,6 +43,13 @@ namespace ogxx
       return (rows > 0 && cols > 0) || (rows == 0 && cols == 0);
     }
 
+    /// Check if the matrix is a square matrix.
+    [[nodiscard]] constexpr auto is_square() const noexcept
+      -> bool
+    {
+      return rows == cols;
+    }
+
     /// Compute total element count of a matrix with this shape.
     /// Throws on overflow.
     [[nodiscard]] auto element_count() const
@@ -137,6 +144,14 @@ namespace ogxx
     /// @brief The size of a matrix.
     Matrix_shape shape;
 
+    /// Get the right-lower item coordinates.
+    /// Does not work right with negative position indices or empty shape.
+    [[nodiscard]] constexpr auto right_lower_coordinates() const noexcept
+      -> Matrix_index
+    {
+      return { position.row + shape.rows - 1, position.col + shape.cols - 1 };
+    }
+
     /// @brief Create a square matrix window.
     /// @param position where is the left upper corner
     /// @param size     rows and columns in the window
@@ -163,6 +178,13 @@ namespace ogxx
       -> Matrix_window
     {
       return main(Matrix_shape::square(size));
+    }
+
+    /// Check if the window fits in a matrix shape.
+    [[nodiscard]] constexpr auto fits_into(Matrix_shape shape) noexcept
+      -> bool
+    {
+      return shape.contains(position) && shape.contains(right_lower_coordinates());
     }
   };
 
