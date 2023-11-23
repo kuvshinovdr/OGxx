@@ -4,8 +4,8 @@
 #ifndef OGXX_BIT_MATRIX_HPP_INCLUDED
 #define OGXX_BIT_MATRIX_HPP_INCLUDED
 
-#include "matrix.hpp"
-#include "graph_view.hpp"
+#include <ogxx/matrix.hpp>
+#include <ogxx/graph_view.hpp>
 
 
 /// Root namespace of the OGxx library.
@@ -113,6 +113,14 @@ namespace ogxx
       -> Bit_matrix_uptr { return copy(Matrix_window::main(shape())); }
   };
 
+
+  /// Create a dense bit matrix with the given shape.
+  [[nodiscard]] auto new_dense_bit_matrix(Matrix_shape shape)
+    -> Bit_matrix_uptr;
+
+  /// Create a symmetric dense bit matrix with the given shape (it stores only the half of a matrix).
+  [[nodiscard]] auto new_symmetric_dense_bit_matrix(Scalar_size size)
+    -> Bit_matrix_uptr;
 
   /// Directed graph facilities.
   namespace directed

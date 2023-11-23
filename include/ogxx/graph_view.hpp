@@ -4,19 +4,24 @@
 #ifndef OGXX_GRAPH_VIEW_HPP_INCLUDED
 #define OGXX_GRAPH_VIEW_HPP_INCLUDED
 
-#include "vertex_pair.hpp"
+#include <ogxx/vertex_pair.hpp>
 
 
 /// Root namespace of the OGxx library.
 namespace ogxx
 {
 
+  /// @brief Generic graph interface to provide a common facade over concrete graph representations.
   class Graph_view
   {
   public:
     virtual ~Graph_view() {}
 
     // Constant interface
+
+    /// Check if this graph view represents a directed graph (false for an undirected graph).
+    [[nodiscard]] virtual auto is_directed() const noexcept
+      -> bool = 0;
 
     /// Get the count of vertices in the graph, vertex indices are 0, 1, ..., vertex_count() - 1.
     [[nodiscard]] virtual auto vertex_count() const noexcept
