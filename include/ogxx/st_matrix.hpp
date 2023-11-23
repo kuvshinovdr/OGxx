@@ -130,15 +130,15 @@ namespace ogxx
   /// @param shape new matrix shape
   /// @return an object of the created matrix
   template <typename Item>
-  auto new_dense_st_matrix(Matrix_shape shape)
+  [[nodiscard]] auto new_dense_st_matrix(Matrix_shape shape = {})
     -> St_matrix_uptr<Item>;
 
   extern template
-  auto new_dense_st_matrix<Int>(Matrix_shape shape)
+  [[nodiscard]] auto new_dense_st_matrix<Int>(Matrix_shape shape)
     -> St_matrix_uptr<Int>;
 
   extern template
-  auto new_dense_st_matrix<Float>(Matrix_shape shape)
+  [[nodiscard]] auto new_dense_st_matrix<Float>(Matrix_shape shape)
     ->St_matrix_uptr<Float>;
 
 }
