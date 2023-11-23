@@ -6,6 +6,7 @@
 
 #include <ogxx/primitive_definitions.hpp>
 #include <ogxx/iterator.hpp>
+#include <compare>
 
 
 /// Root namespace of the OGxx library.
@@ -24,6 +25,9 @@ namespace ogxx
     Scalar_index row = 0;
     /// @brief The second index of a matrix item (zero-based).
     Scalar_index col = 0;
+
+    friend auto operator<=>(Matrix_index a, Matrix_index b) noexcept = default;
+    friend bool operator== (Matrix_index a, Matrix_index b) noexcept = default;
   };
 
 
@@ -34,6 +38,9 @@ namespace ogxx
     Scalar_size rows = 0;
     /// @brief Quantity of columns in a matrix.
     Scalar_size cols = 0;
+
+    friend auto operator<=>(Matrix_shape a, Matrix_shape b) noexcept = default;
+    friend bool operator== (Matrix_shape a, Matrix_shape b) noexcept = default;
 
     /// @brief Check if the size representation is valid.
     /// @return true if both rows and cols are positive or both are zero
@@ -143,6 +150,8 @@ namespace ogxx
     Matrix_index position;
     /// @brief The size of a matrix.
     Matrix_shape shape;
+
+    friend bool operator==(Matrix_window const& a, Matrix_window const& b) noexcept = default;
 
     /// Get the right-lower item coordinates.
     /// Does not work right with negative position indices or empty shape.
