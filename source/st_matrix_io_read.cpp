@@ -59,7 +59,7 @@ namespace ogxx::io
           if (data.empty())
             data.emplace_back();
 
-          data.back().push_back(*value);
+          data.back().push_back(*opt_val);
         }
         else
         {
