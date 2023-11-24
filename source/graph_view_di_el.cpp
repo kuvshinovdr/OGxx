@@ -4,6 +4,7 @@
 #include <ogxx/graph_view.hpp>
 #include <ogxx/edge_list.hpp>
 #include <ogxx/iterable.hpp>
+#include <ogxx/st_set.hpp>
 
 #include <stdexcept>
 
@@ -15,7 +16,11 @@ namespace ogxx
   {
   public:
     Graph_view_directed_edge_list(Edge_list& el)
-      : _el(el) {}
+      : _el(el)
+      , _as_set(dynamic_cast<St_set<Vertex_pair>*>(&el))
+      , _as_list(dynamic_cast<List<Vertex_pair>*>(&el))
+    {
+    }
 
     // Constant interface
 
@@ -48,27 +53,33 @@ namespace ogxx
 
     void set_vertex_count(Scalar_size count) override
     {
-      // Pending solution: now ignoring this call.
-      //throw std::logic_error("Graph_view_directed_edge_list::set_vertex_count: not implemented");
+      // Ignored.
     }
 
     auto connect(Vertex_pair edge)
       -> bool override 
-    { 
+    {
+      if (_as_set)
+        return _as_set->insert(edge);
+
       _el.put(edge);
       return true;
     }
 
+
     auto disconnect(Vertex_pair edge)
       -> bool override
     {
-      if (auto vp_list_ptr = dynamic_cast<List<Vertex_pair>*>(&_el))
+      if (_as_set)
+        return _as_set->erase(edge);
+
+      if (_as_list)
       {
         auto const pos = _el.find(edge);
         if (pos == npos)
           return false;
 
-        vp_list_ptr->take(pos);
+        _as_list->take(pos);
         return true;
       }
 
@@ -76,7 +87,9 @@ namespace ogxx
     }
 
   private:
-    Edge_list & _el;
+    Edge_list           & _el;
+    St_set<Vertex_pair> * _as_set  = nullptr;
+    List<Vertex_pair>   * _as_list = nullptr;
   };
 
 
