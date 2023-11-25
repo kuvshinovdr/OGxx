@@ -5,6 +5,7 @@
 #include <ogxx/st_set.hpp>
 #include <ogxx/iterable.hpp>
 #include <ogxx/stl_iterator.hpp>
+
 #include <vector>
 #include <algorithm>
 
@@ -17,7 +18,7 @@ namespace ogxx {
         auto insert(Scalar_index index)
         -> bool override {
             auto it = std::lower_bound(sorted_vector.begin(), sorted_vector.end(), index);
-            if(*it == index) return false;
+            if (it != sorted_vector.end() && *it == index) return false;
             sorted_vector.insert(it, index);
             return true;
         }
@@ -56,14 +57,18 @@ namespace ogxx {
         [[nodiscard]] auto get(Scalar_index index) const
         -> Scalar_index override
         {
-            if(index > sorted_vector.size()) return 0;
+            if (static_cast<size_t>(index) >= sorted_vector.size())
+              return npos;
+            
             return sorted_vector[index];
         }
 
         auto set(Scalar_index index, Scalar_index value)
         -> Scalar_index override
         {
-            if(index > sorted_vector.size()) return 0;
+            if (static_cast<size_t>(index) >= sorted_vector.size())
+              throw std::out_of_range("Index_set_sortedvector::set: index is out of range");
+            
             auto ret = sorted_vector[index];
             sorted_vector[index] = value;
             return ret;
