@@ -5,9 +5,10 @@
 #include <ogxx/graph_view.hpp>
 #include <ogxx/iterator.hpp>
 #include <vector>
+
 namespace ogxx {
-	using namespace ogxx;
 	using namespace std;
+
 	bool is_chain(Graph_view const& gv, Index_iterator_uptr vertices) {
 		vector<Vertex_index> vertex_vect;
 
@@ -25,6 +26,7 @@ namespace ogxx {
 		}
 		return true;
 	}
+
 	bool is_loop(Graph_view const& gv, Index_iterator_uptr vertices) {
 		vector<Vertex_index> vertex_vect;
 
@@ -32,8 +34,11 @@ namespace ogxx {
 			vertex_vect.emplace_back(vertex);
 		} 
 
-		if (is_chain(gv, vertices) && (gv.are_connected(vertex_vect[vertex_vect.size() - 1], vertex_vect[0])))
-			return true;
-		return false;
+		for (size_t i = 0; i < vertex_vect.size() - 1; i++) {
+			if (!gv.are_connected(vertex_vect[i], vertex_vect[i + 1]))
+				return false;
+		}
+		
+		return gv.are_connected(vertex_vect.back(), vertex_vect[0]);
 	}
 }
