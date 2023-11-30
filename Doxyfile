@@ -79,7 +79,7 @@ OUTPUT_DIRECTORY       = ./doc
 # control the number of sub-directories.
 # The default value is: NO.
 
-CREATE_SUBDIRS         = NO
+CREATE_SUBDIRS         = YES
 
 # Controls the number of sub-directories that will be created when
 # CREATE_SUBDIRS tag is set to YES. Level 0 represents 16 directories, and every
@@ -390,7 +390,7 @@ AUTOLINK_SUPPORT       = YES
 # diagrams that involve STL classes more complete and accurate.
 # The default value is: NO.
 
-BUILTIN_STL_SUPPORT    = NO
+BUILTIN_STL_SUPPORT    = YES
 
 # If you use Microsoft's C++/CLI language, you should set this option to YES to
 # enable parsing support.
@@ -496,7 +496,7 @@ LOOKUP_CACHE_SIZE      = 0
 # DOT_NUM_THREADS setting.
 # Minimum value: 0, maximum value: 32, default value: 1.
 
-NUM_PROC_THREADS       = 1
+NUM_PROC_THREADS       = 0
 
 # If the TIMESTAMP tag is set different from NO then each generated page will
 # contain the date or date and time when the page was generated. Setting this to
@@ -504,7 +504,7 @@ NUM_PROC_THREADS       = 1
 # Possible values are: YES, NO, DATETIME and DATE.
 # The default value is: NO.
 
-TIMESTAMP              = NO
+TIMESTAMP              = DATE
 
 #---------------------------------------------------------------------------
 # Build related configuration options
@@ -1047,7 +1047,7 @@ RECURSIVE              = YES
 # Note that relative paths are relative to the directory from which doxygen is
 # run.
 
-EXCLUDE                =
+EXCLUDE                = doxygen-awesome-css
 
 # The EXCLUDE_SYMLINKS tag can be used to select whether or not files or
 # directories that are symbolic links (a Unix file system feature) are excluded
@@ -1158,7 +1158,7 @@ FILTER_SOURCE_PATTERNS =
 # (index.html). This can be useful if you have a project on for instance GitHub
 # and want to reuse the introduction page also for the doxygen output.
 
-USE_MDFILE_AS_MAINPAGE =
+USE_MDFILE_AS_MAINPAGE = README.md
 
 # The Fortran standard specifies that for fixed formatted Fortran code all
 # characters from position 72 are to be considered as comment. A common
@@ -1264,7 +1264,7 @@ VERBATIM_HEADERS       = YES
 # generated with the -Duse_libclang=ON option for CMake.
 # The default value is: NO.
 
-CLANG_ASSISTED_PARSING = NO
+CLANG_ASSISTED_PARSING = YES
 
 # If the CLANG_ASSISTED_PARSING tag is set to YES and the CLANG_ADD_INC_PATHS
 # tag is set to YES then doxygen will add the directory of each input to the
@@ -1379,7 +1379,7 @@ HTML_FOOTER            =
 # obsolete.
 # This tag requires that the tag GENERATE_HTML is set to YES.
 
-HTML_STYLESHEET        =
+HTML_STYLESHEET        = doxygen-awesome-css/doxygen-awesome.css
 
 # The HTML_EXTRA_STYLESHEET tag can be used to specify additional user-defined
 # cascading style sheets that are included after the standard style sheets
@@ -1420,7 +1420,7 @@ HTML_EXTRA_FILES       =
 # The default value is: AUTO_LIGHT.
 # This tag requires that the tag GENERATE_HTML is set to YES.
 
-HTML_COLORSTYLE        = AUTO_LIGHT
+HTML_COLORSTYLE        = LIGHT
 
 # The HTML_COLORSTYLE_HUE tag controls the color of the HTML output. Doxygen
 # will adjust the colors in the style sheet and background images according to

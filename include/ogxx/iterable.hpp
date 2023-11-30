@@ -117,6 +117,7 @@ namespace ogxx
     : public virtual Indexed_iterable<Item>
     , public virtual Bag<Item>
   {
+  public:
     /// @brief Insert an item at the given position moving all the following items one position up.
     /// Should throw on bad index.
     /// @param at    the position where to insert, insert(0, item) does prepend(item)

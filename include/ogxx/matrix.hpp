@@ -6,6 +6,7 @@
 
 #include <ogxx/primitive_definitions.hpp>
 #include <ogxx/iterator.hpp>
+#include <compare>
 
 
 /// Root namespace of the OGxx library.
@@ -24,6 +25,9 @@ namespace ogxx
     Scalar_index row = 0;
     /// @brief The second index of a matrix item (zero-based).
     Scalar_index col = 0;
+
+    friend auto operator<=>(Matrix_index a, Matrix_index b) noexcept = default;
+    friend bool operator== (Matrix_index a, Matrix_index b) noexcept = default;
   };
 
 
@@ -35,12 +39,22 @@ namespace ogxx
     /// @brief Quantity of columns in a matrix.
     Scalar_size cols = 0;
 
+    friend auto operator<=>(Matrix_shape a, Matrix_shape b) noexcept = default;
+    friend bool operator== (Matrix_shape a, Matrix_shape b) noexcept = default;
+
     /// @brief Check if the size representation is valid.
     /// @return true if both rows and cols are positive or both are zero
     [[nodiscard]] constexpr auto is_valid() const noexcept
       -> bool
     {
       return (rows > 0 && cols > 0) || (rows == 0 && cols == 0);
+    }
+
+    /// Check if the matrix is a square matrix.
+    [[nodiscard]] constexpr auto is_square() const noexcept
+      -> bool
+    {
+      return rows == cols;
     }
 
     /// Compute total element count of a matrix with this shape.
@@ -68,7 +82,7 @@ namespace ogxx
     /// @brief Check if the current index is valid for the given shape and correct negative row or col according to the shape.
     /// @param position the index to be checked and corrected (by reference)
     /// @return true if the index is correct, false otherwise
-    [[nodiscard]] constexpr auto check_and_correct(Matrix_index& position) noexcept
+    [[nodiscard]] constexpr auto check_and_correct(Matrix_index& position) const noexcept
       -> bool
     {
       if (position.row < 0)
@@ -137,6 +151,16 @@ namespace ogxx
     /// @brief The size of a matrix.
     Matrix_shape shape;
 
+    friend bool operator==(Matrix_window const& a, Matrix_window const& b) noexcept = default;
+
+    /// Get the right-lower item coordinates.
+    /// Does not work right with negative position indices or empty shape.
+    [[nodiscard]] constexpr auto right_lower_coordinates() const noexcept
+      -> Matrix_index
+    {
+      return { position.row + shape.rows - 1, position.col + shape.cols - 1 };
+    }
+
     /// @brief Create a square matrix window.
     /// @param position where is the left upper corner
     /// @param size     rows and columns in the window
@@ -163,6 +187,13 @@ namespace ogxx
       -> Matrix_window
     {
       return main(Matrix_shape::square(size));
+    }
+
+    /// Check if the window fits in a matrix shape.
+    [[nodiscard]] constexpr auto fits_into(Matrix_shape shape) noexcept
+      -> bool
+    {
+      return shape.contains(position) && shape.contains(right_lower_coordinates());
     }
   };
 

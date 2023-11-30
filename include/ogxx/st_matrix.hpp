@@ -67,7 +67,7 @@ namespace ogxx
 
     /// @brief Assigns all elements of the matrix the same value.
     /// @param value the value to be assigned, the default one (ST{}) if not passed explicitly
-    virtual void fill(ST value = ST{}) noexcept = 0;
+    virtual void fill(ST value = ST{}) = 0;
 
     /// @brief Go through all elements in a row.
     /// @param row index of the row to iterate through
@@ -130,15 +130,15 @@ namespace ogxx
   /// @param shape new matrix shape
   /// @return an object of the created matrix
   template <typename Item>
-  auto new_dense_st_matrix(Matrix_shape shape)
+  [[nodiscard]] auto new_dense_st_matrix(Matrix_shape shape = {})
     -> St_matrix_uptr<Item>;
 
   extern template
-  auto new_dense_st_matrix<Int>(Matrix_shape shape)
+  [[nodiscard]] auto new_dense_st_matrix<Int>(Matrix_shape shape)
     -> St_matrix_uptr<Int>;
 
   extern template
-  auto new_dense_st_matrix<Float>(Matrix_shape shape)
+  [[nodiscard]] auto new_dense_st_matrix<Float>(Matrix_shape shape)
     ->St_matrix_uptr<Float>;
 
 }

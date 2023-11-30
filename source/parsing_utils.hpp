@@ -7,6 +7,9 @@
 #include <ogxx/io_head.hpp>
 #include <ogxx/primitive_definitions.hpp>
 
+#include <optional>
+#include <charconv>
+
 
 /// @brief Utility functions intended to facilitate IO implementations.
 namespace ogxx::io::util
@@ -55,6 +58,21 @@ namespace ogxx::io::util
     }
 
     return true;
+  }
+
+  
+  template <typename TypeToRead>
+  inline auto read(string_view& in) noexcept
+    -> std::optional<TypeToRead>
+  {
+    ltrim(in);
+    TypeToRead value {};
+    auto [ptr, ec] = std::from_chars(in.data(), in.data() + in.size(), value);
+    if (ec != std::errc{})
+      return {};
+
+    in.remove_prefix(ptr - in.data());
+    return value;
   }
 
 }
