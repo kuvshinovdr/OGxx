@@ -62,6 +62,14 @@ namespace ogxx
   /// @brief An owning pointer to a read-only set of integer indices.
   using Index_set_const_uptr = St_set_const_uptr<Scalar_index>;
 
+  /// @brief Create a new empty Index_set implemented by a hashtable.
+  [[nodiscard]] auto new_index_set_hashtable()
+    -> Index_set_uptr;
+
+  /// @brief Create a new Index_set containing all elements enumerated by an iterator, implemented by a hashtable.
+  [[nodiscard]] auto new_index_set_hashtable(Index_iterator_uptr)
+    -> Index_set_uptr;
+
   /// @brief Create a new empty Index_set implemented by a sorted vector.
   [[nodiscard]] auto new_index_set_sortedvector()
     -> Index_set_uptr;

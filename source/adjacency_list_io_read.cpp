@@ -52,6 +52,8 @@ namespace ogxx::io
       for (auto v: vs)
         adj->insert(v);
     }
+
+    return true;
   }
 
 }
