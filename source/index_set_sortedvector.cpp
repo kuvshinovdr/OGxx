@@ -15,6 +15,18 @@ namespace ogxx {
         std::vector<Scalar_index> sorted_vector;
         
     public:
+        Index_set_sortedvector() noexcept = default;
+
+        explicit Index_set_sortedvector(Index_iterator_uptr elems)
+        {
+            for (Scalar_index index; elems->next(index);)
+                sorted_vector.emplace_back(index);
+          
+            std::sort(sorted_vector.begin(), sorted_vector.end());
+            sorted_vector.erase(std::unique(sorted_vector.begin(), sorted_vector.end()),
+                sorted_vector.end());
+        }
+
         auto insert(Scalar_index index)
         -> bool override {
             auto it = std::lower_bound(sorted_vector.begin(), sorted_vector.end(), index);
@@ -73,5 +85,16 @@ namespace ogxx {
             sorted_vector[index] = value;
             return ret;
         }
-};
+    };
+
+
+    auto new_index_set_sortedvector() -> Index_set_uptr
+    {
+      return std::make_unique<Index_set_sortedvector>();
+    }
+
+    auto new_index_set_sortedvector(Index_iterator_uptr elems) -> Index_set_uptr
+    {
+      return std::make_unique<Index_set_sortedvector>(std::move(elems));
+    }
 }
