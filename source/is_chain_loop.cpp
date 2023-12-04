@@ -7,38 +7,44 @@
 #include <vector>
 
 namespace ogxx {
-	using namespace std;
 
 	bool is_chain(Graph_view const& gv, Index_iterator_uptr vertices) {
-		vector<Vertex_index> vertex_vect;
+		Vertex_index first_vertex, second_vertex;
 
-		for (Vertex_index vertex; vertices->next(vertex)) {
-			vertex_vect.emplace_back(vertex);
-		}
-
-		if (vertex_vect.size() < 2) {
+		if (!vertices->next(first_vertex)) {
 			return false;
 		}
 
-		for (size_t i = 0; i < vertex_vect.size()-1; i++) {
-			if (!gv.are_connected(vertex_vect[i], vertex_vect[i+1]))
-				return false;	
+		if (!vertices->next(second_vertex)) {
+			return false;
 		}
+		do {
+			if (!gv.are_connected(first_vertex, second_vertex)) {
+				return false;
+			}
+			first_vertex = second_vertex;
+		} while (vertices->next(second_vertex));
+
 		return true;
 	}
-
 	bool is_loop(Graph_view const& gv, Index_iterator_uptr vertices) {
-		vector<Vertex_index> vertex_vect;
-
-		for (Vertex_index vertex; vertices->next(vertex)) {
-			vertex_vect.emplace_back(vertex);
-		} 
-
-		for (size_t i = 0; i < vertex_vect.size() - 1; i++) {
-			if (!gv.are_connected(vertex_vect[i], vertex_vect[i + 1]))
-				return false;
+		Vertex_index first_vertex, second_vertex;
+		if (!vertices->next(first_vertex)) {
+			return false;
 		}
-		
-		return gv.are_connected(vertex_vect.back(), vertex_vect[0]);
+		Vertex_index start = first_vertex;
+
+		if (!vertices->next(second_vertex)) {
+			return false;
+		}
+
+		do {
+			if (!gv.are_connected(first_vertex, second_vertex)) {
+				return false;
+			}
+			first_vertex = second_vertex;
+		} while (vertices->next(second_vertex));
+		Vertex_index end = second_vertex;
+		return gv.are_connected(start, end);
 	}
 }
