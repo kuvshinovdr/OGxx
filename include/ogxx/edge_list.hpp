@@ -37,6 +37,8 @@ namespace ogxx
   /// @brief Owning pointer to a read-only edge list.
   using Edge_list_const_uptr = std::unique_ptr<Edge_list const>;
 
+  /// @brief Create an empty edge list represented by an std::vector<Vertex_pair>.
+  [[nodiscard]] auto new_edge_list_vector() -> Edge_list_uptr;
 
   /// Directed graph facilities.
   namespace directed
