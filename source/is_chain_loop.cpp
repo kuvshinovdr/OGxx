@@ -16,8 +16,9 @@ namespace ogxx {
 		}
 
 		if (!vertices->next(second_vertex)) {
-			return false;
+			return true;
 		}
+
 		do {
 			if (!gv.are_connected(first_vertex, second_vertex)) {
 				return false;
@@ -27,6 +28,7 @@ namespace ogxx {
 
 		return true;
 	}
+
 	bool is_loop(Graph_view const& gv, Index_iterator_uptr vertices) {
 		Vertex_index first_vertex, second_vertex;
 		if (!vertices->next(first_vertex)) {
@@ -35,7 +37,7 @@ namespace ogxx {
 		Vertex_index start = first_vertex;
 
 		if (!vertices->next(second_vertex)) {
-			return false;
+			return true;
 		}
 
 		do {
@@ -44,7 +46,9 @@ namespace ogxx {
 			}
 			first_vertex = second_vertex;
 		} while (vertices->next(second_vertex));
+		
 		Vertex_index end = second_vertex;
-		return gv.are_connected(start, end);
+		
+		return end == start || gv.are_connected(end, start);
 	}
 }
