@@ -1,8 +1,11 @@
 /// @file adjacency_implementations.cpp
 /// @brief ogxx::Adjacency implementations based upon different Index_set implementations
 /// @author Kuvshinov D.R. kuvshinovdr at yandex.ru
-#include "index_set_hashtable.hpp"
 #include <ogxx/adjacency_list.hpp>
+#include "index_set_hashtable.hpp"
+#include "index_set_bitvector.hpp"
+#include "index_set_sortedvector.hpp"
+
 
 namespace ogxx
 {
