@@ -15,35 +15,63 @@ namespace ogxx
   namespace
   {
     template <typename Base>
-    class Adjacency_sized_iterable
+    class Adjacency_sized_iterable final
       : public Base
       , public Adjacency
     {
     public:
       using Base::Base;
-      using Base::contains;
-      using Base::erase;
-      using Base::insert;
-      using Base::is_empty;
-      using Base::iterate;
-      using Base::size;
+      
+      auto contains(Scalar_index item) const noexcept
+        -> bool override { return Base::contains(item); }
+
+      auto erase(Scalar_index item)
+        -> bool override { return Base::erase(item); }
+
+      auto insert(Scalar_index item)
+        -> bool override { return Base::insert(item); }
+
+      auto is_empty() const noexcept
+        -> bool       override { return Base::is_empty(); }
+      
+      auto size() const noexcept
+        -> Scalar_size  override { return Base::size(); }
+
+      auto iterate() const
+        -> Index_iterator_uptr override { return Base::iterate(); }
     };
 
     template <typename Base>
-    class Adjacency_indexed_iterable
+    class Adjacency_indexed_iterable final
       : public Base
       , public Adjacency
     {
     public:
       using Base::Base;
-      using Base::contains;
-      using Base::erase;
-      using Base::insert;
-      using Base::is_empty;
-      using Base::iterate;
-      using Base::size;
-      using Base::set;
-      using Base::get;
+
+      auto contains(Scalar_index item) const noexcept
+        -> bool override { return Base::contains(item); }
+
+      auto erase(Scalar_index item)
+        -> bool override { return Base::erase(item); }
+
+      auto insert(Scalar_index item)
+        -> bool override { return Base::insert(item); }
+
+      auto is_empty() const noexcept
+        -> bool       override { return Base::is_empty(); }
+
+      auto size() const noexcept
+        -> Scalar_size  override { return Base::size(); }
+
+      auto iterate() const
+        -> Index_iterator_uptr override { return Base::iterate(); }
+
+      auto get(Scalar_index index) const
+        -> See_by<Scalar_index>    override { return Base::get(index); }
+
+      auto set(Scalar_index index, Pass_by<Scalar_index> value)
+        -> Pass_by<Scalar_index> override { return Base::set(index, value); }
     };
   }
 
