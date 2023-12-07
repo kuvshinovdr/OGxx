@@ -45,7 +45,7 @@ namespace ogxx {
   }
 
   bool Index_set_bitvector::erase(Scalar_index item) {
-    if (item >= _bits.size())
+    if (static_cast<size_t>(item) >= _bits.size())
       return false;
 
     if (_bits[item])
@@ -70,16 +70,23 @@ namespace ogxx {
 
       bool next(Scalar_index& value) override
       {
-        if (_cur == _end)
-          return false;
-
-        bool const result = *_cur;
-        ++_cur;
-        return result;
+        for (;; ++_cur, ++_item)
+        {
+          if (_cur == _end)
+            return false;
+          if (*_cur)
+          {
+            value = _item;
+            ++_item;
+            ++_cur;
+            return true;
+          }
+        }
       }
 
     private:
       std::vector<bool>::const_iterator _cur, _end;
+      Scalar_index _item = 0;
     };
 
   }
