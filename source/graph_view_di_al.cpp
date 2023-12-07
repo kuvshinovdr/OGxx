@@ -53,7 +53,7 @@ namespace ogxx
 
 
     template <bool is_constant>
-    class Graph_view_di_al
+    class Graph_view_directed_adjacency_list
       : public Graph_view
     {
     public:
@@ -62,7 +62,7 @@ namespace ogxx
                            Adjacency_list const&,
                            Adjacency_list&>;
 
-      explicit Graph_view_di_al(Adjacency_list_ref al)
+      explicit Graph_view_directed_adjacency_list(Adjacency_list_ref al)
         : _al(al) {}
 
       
@@ -77,7 +77,7 @@ namespace ogxx
       [[nodiscard]] auto vertex_count() const noexcept
         -> Scalar_size                  override
       {
-        return static_cast<Scalar_size>(_al.size());
+        return _al.get_vertex_count();
       }
 
       [[nodiscard]] auto edge_count() const noexcept
@@ -90,6 +90,12 @@ namespace ogxx
         -> Vertex_pair_iterator_uptr     override
       {
         return std::make_unique<Vertex_pair_iterator_di_al>(_al);
+      }
+
+      [[nodiscard]] auto iterate_neighbors(Vertex_index from) const
+        -> Index_iterator_uptr                            override
+      {
+        return _al.get(from)->iterate();
       }
 
       [[nodiscard]] auto are_connected(Vertex_pair edge) const noexcept
@@ -157,13 +163,13 @@ namespace ogxx
     auto graph_view(Adjacency_list const& al)
       -> Graph_view_const_uptr
     {
-      return std::make_unique<Graph_view_di_al<true>>(al);
+      return std::make_unique<Graph_view_directed_adjacency_list<true>>(al);
     }
 
     auto graph_view(Adjacency_list& al)
       -> Graph_view_uptr
     {
-      return std::make_unique<Graph_view_di_al<false>>(al);
+      return std::make_unique<Graph_view_directed_adjacency_list<false>>(al);
     }
   }
 
