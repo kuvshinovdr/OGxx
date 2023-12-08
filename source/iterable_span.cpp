@@ -107,10 +107,9 @@ namespace ogxx
       if (!is_within(ptr, _begin, _end))
         throw std::out_of_range("Iterable_span::get: invalid index");
 
-      auto const old = move(*ptr);
-      ptr = move(*value);
-
-      return *old;
+      auto old = move(*ptr);
+      *ptr = move(*value);
+      return old;
       // TODO
       // save old *ptr (old = move(*ptr))
       // move value into *ptr
