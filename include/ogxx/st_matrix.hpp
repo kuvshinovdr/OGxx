@@ -67,7 +67,7 @@ namespace ogxx
 
     /// @brief Assigns all elements of the matrix the same value.
     /// @param value the value to be assigned, the default one (ST{}) if not passed explicitly
-    virtual void fill(ST value = ST{}) noexcept = 0;
+    virtual void fill(ST value = ST{}) = 0;
 
     /// @brief Go through all elements in a row.
     /// @param row index of the row to iterate through

@@ -12,6 +12,8 @@
 namespace ogxx
 {
 
+  // Adjacencies
+
   /// @brief Representation of adjacent vertices of a vertex of a graph.
   /// Vertex degree is the size of the adjacency.
   class Adjacency 
@@ -28,10 +30,34 @@ namespace ogxx
   /// @brief Owning read-only Adjacency object pointer.
   using Adjacency_const_uptr = std::unique_ptr<Adjacency const>;
 
-  /// Create a new empty Adjacency object based upon Index hashtable.
+  /// @brief Create a new empty Adjacency object based upon Index hashtable.
   [[nodiscard]] auto new_adjacency_hashtable()
     -> Adjacency_uptr;
 
+  /// @brief Create a new Adjacency object based upon Index hashtable and fill it with indices provided by an iterator.
+  [[nodiscard]] auto new_adjacency_hashtable(Index_iterator_uptr)
+    -> Adjacency_uptr;
+
+
+  /// @brief Create a new empty Adjacency object based upon Index bitvector.
+  [[nodiscard]] auto new_adjacency_bitvector()
+    -> Adjacency_uptr;
+
+  /// @brief Create a new Adjacency object based upon Index bitvector and fill it with indices provided by an iterator.
+  [[nodiscard]] auto new_adjacency_bitvector(Index_iterator_uptr items)
+    -> Adjacency_uptr;
+
+
+  /// @brief Create a new empty Adjacency object based upon Index sorted vector.
+  [[nodiscard]] auto new_adjacency_sortedvector()
+    -> Adjacency_uptr;
+
+  /// @brief Create a new Adjacency object based upon Index sorted vector and fill it with indices provided by an iterator.
+  [[nodiscard]] auto new_adjacency_sortedvector(Index_iterator_uptr items)
+    -> Adjacency_uptr;
+
+
+  // Adjacency lists
 
   /// @brief Graph representation where, which maps vertex index to the adjacency of that vertex.
   class Adjacency_list 
@@ -42,6 +68,10 @@ namespace ogxx
     /// It is equivalent to quantity of arrows in a directed graph and twice the quantity of edges in an undirected graph.
     /// @return the sum of vertex degrees
     virtual auto degrees_sum() const noexcept
+      -> Scalar_size = 0;
+
+    /// @brief Get maximal known vertex index plus one.
+    virtual auto get_vertex_count() const noexcept
       -> Scalar_size = 0;
 
     /// @brief Add or remove vertices.
