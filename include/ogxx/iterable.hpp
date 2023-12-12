@@ -109,6 +109,12 @@ namespace ogxx
     virtual void clear() = 0;
   };
 
+  /// @brief A bag of scalar indices.
+  using Index_bag = Bag<Scalar_index>;
+
+  /// @brief An owning pointer to a bag of scalar indices.
+  using Index_bag_uptr = std::unique_ptr<Index_bag>;
+
 
   /// @brief Generic container interface with inserts and erases and stores them in linear order as a list.
   /// @tparam Item container item type
@@ -129,6 +135,24 @@ namespace ogxx
     virtual auto take(Scalar_index from)
       -> Pass_by<Item> = 0;
   };
+
+  /// @brief A list of scalar indices.
+  using Index_list = List<Scalar_index>;
+
+  /// @brief An owning pointer to a list of scalar indices.
+  using Index_list_uptr = std::unique_ptr<Index_list>;
+
+  /// @brief A list of 32-bit integers.
+  using Int_list = List<Int>;
+
+  /// @brief An owning pointer to a list of 32-bit integers.
+  using Int_list_uptr = std::unique_ptr<Int>;
+
+  /// @brief A list of floating point numbers.
+  using Float_list = List<Float>;
+
+  /// @brief An owning pointer to a list of floating point numbers.
+  using Float_list_uptr = std::unique_ptr<Float_list>;
 
 }
 
