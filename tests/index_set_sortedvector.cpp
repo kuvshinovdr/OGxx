@@ -34,7 +34,7 @@ TEST_SUITE("Index_set_sortedvector")
     CHECK(isit->size() == 6);
 
     Scalar_index const ref[] { 0, 1, 3, 5, 10, 11 };
-    for (size_t i = 0; i < size(ref); ++i)
+    for (size_t i = 0; i < std::size(ref); ++i)
       CHECK(ref[i] == isit->get(i));
 
     CHECK(equal(isit->iterate(), new_stl_iterator(ref)));
@@ -69,7 +69,7 @@ TEST_SUITE("Index_set_sortedvector")
     CHECK(isit->size() == 6);
 
     Scalar_index const ref[] { 0, 1, 3, 5, 10, 11 };
-    for (size_t i = 0; i < size(ref); ++i)
+    for (size_t i = 0; i < std::size(ref); ++i)
       CHECK(ref[i] == isit->get(i));
 
     CHECK(equal(isit->iterate(), new_stl_iterator(ref)));
@@ -77,8 +77,8 @@ TEST_SUITE("Index_set_sortedvector")
   
   TEST_CASE("Routine 2")
   {
-    Scalar_index const test[] {};
-    auto isp = new_index_set_sortedvector(new_stl_iterator(test));
+    Scalar_index const test[1] {};
+    auto isp = new_index_set_sortedvector(new_stl_iterator(test + 0, test + 0));
     auto isit = dynamic_cast<Indexed_iterable<Scalar_index>*>(isp.get());
     CHECK(isit != nullptr);
     CHECK(isit->size() == 0);
@@ -105,7 +105,7 @@ TEST_SUITE("Index_set_sortedvector")
     CHECK(isit->size() == 7);
 
     Scalar_index const ref[] { 2, 4, 12, 16, 20, 33, 46 };
-    for (size_t i = 0; i < size(ref); ++i)
+    for (size_t i = 0; i < std::size(ref); ++i)
       CHECK(ref[i] == isit->get(i));
   }
 }
