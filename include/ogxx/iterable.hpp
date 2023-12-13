@@ -154,6 +154,24 @@ namespace ogxx
   /// @brief An owning pointer to a list of floating point numbers.
   using Float_list_uptr = std::unique_ptr<Float_list>;
 
+ template <typename Item>
+  class DynArray
+    : public virtual List<Item>
+   {
+   public:
+   
+   virtual auto new_index_dynarray() -> Index_list_uptr;
+   virtual auto new_index_dynarray(Index_iterator_uptr) -> Index_list_uptr;
+   
+   virtual auto new_int_dynarray() -> Int_list_uptr;
+   virtual auto new_int_dynarray(Float_iterator_uptr) -> Int_list_uptr;
+   
+   virtual auto new_float_dynarray() -> Float_list_uptr;
+   virtual auto new_float_dynarray(Float_iterator_uptr) -> Float_list_uptr;
+
+   };
+
+
 }
 
 #endif//OGXX_ITERABLE_HPP_INCLUDED
