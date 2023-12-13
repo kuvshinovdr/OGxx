@@ -114,6 +114,14 @@ namespace ogxx
   };
 
 
+  /// Create a dense bit matrix with the given shape.
+  [[nodiscard]] auto new_dense_bit_matrix(Matrix_shape shape)
+    -> Bit_matrix_uptr;
+
+  /// Create a symmetric dense bit matrix with the given shape (it stores only the half of a matrix).
+  [[nodiscard]] auto new_symmetric_dense_bit_matrix(Scalar_size size)
+    -> Bit_matrix_uptr;
+
   /// Directed graph facilities.
   namespace directed
   {

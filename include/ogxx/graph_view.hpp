@@ -27,7 +27,7 @@ namespace ogxx
     [[nodiscard]] virtual auto vertex_count() const noexcept
       -> Scalar_size = 0;
 
-    /// Get the count of edges in the graph, edge indices are 0, 1, ..., edge_count() - 1.
+    /// @brief Get the count of edges in the graph, edge indices are 0, 1, ..., edge_count() - 1.
     /// The iterator returned by iterate_edges() should make edge_count() steps.
     [[nodiscard]] virtual auto edge_count() const noexcept
       -> Scalar_size = 0;
@@ -37,6 +37,11 @@ namespace ogxx
     /// @return iterator object iterating through (Vertex_index, Vertex_index) pairs.
     [[nodiscard]] virtual auto iterate_edges() const
       -> Vertex_pair_iterator_uptr = 0;
+
+    /// @brief Iterate through neighbors (through the outcoming edges) of the vertex.
+    /// @return iterator object iterating through Vertex_index elements.
+    [[nodiscard]] virtual auto iterate_neighbors(Vertex_index) const
+      -> Index_iterator_uptr = 0;
 
     /// @brief Check if two vertices of the graph are connected by an edge.
     /// @param edge a pair of vertex indices to be checked
