@@ -6,7 +6,7 @@ include<source/stl_iterator.hpp>
 include<vector>
 
 namespace ogxx{
-	class Index_set_vector : public ogxx::Index_set, ogxx::Indexed_iterable<Scalar_index> {
+	class Index_set_vector : public ogxx::Index_set, public ogxx::Indexed_iterable<Scalar_index> {
 	private:
 		vector<Scalar_index> set;
 	public:
