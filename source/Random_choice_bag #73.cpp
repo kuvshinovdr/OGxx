@@ -7,21 +7,18 @@
 template<typename T>
 class Random_choice_bag : public Bag<T> {
 private:
-    std::vector<T> elements;
+    std::vector<Pass_by<T>> elements;
     std::default_random_engine random_engine;
 
 public:
-    Random_choice_bag() {
-        // Инициализация генератора случайных чисел
-        std::random_device rd;
-        random_engine = std::default_random_engine(rd());
-    }
+    Random_choice_bag() // Инициализация генератора случайных чисел
+      : random_engine(std::random_device{}()) {}
 
-    void add(const T& element) override {
+    void put(Pass_by<T> element) override {
         elements.push_back(element);
     }
 
-    T remove_random() override {
+    Pass_by<T> take() override {
         if (elements.empty()) {
             throw std::runtime_error("Bag is empty");
         }
@@ -34,9 +31,27 @@ public:
         std::swap(elements[random_index], elements.back());
 
         // Удаление последнего элемента
-        T removed_element = elements.back();
+        auto removed_element = std::move(elements.back());
         elements.pop_back();
 
         return removed_element;
+    }
+
+    auto iterate() const
+      ->Basic_iterator_uptr<See_by<T>> override
+    {
+      // return new_stl_iterator
+    }
+
+    auto is_empty() const noexcept
+      -> bool override
+    {
+      // TODO
+    }
+
+    auto size() const noexcept
+      -> Scalar_size override
+    {
+      // TODO
     }
 };
