@@ -5,11 +5,11 @@
 namespace ogxx
 {
 
-
-auto floyd_warshall_only_matrix( const ogxx::Int_matrix& distances)
+ template <typename ST>
+auto floyd_warshall_only_matrix( const ogxx::St_matrix<ST>& distances)
 {
 auto n = distances.shape();
-auto result = ogxx::new_dense_st_matrix<Int>(n);
+auto result = distance.copy();
 
 for (int k = 0; k < n.cols; ++k)
 {
@@ -17,7 +17,7 @@ for (int k = 0; k < n.cols; ++k)
     {
         for (int j = 0; j < n.cols ++j)
         {
-           
+           result.get(i,j) = min(result.get(i,j), result.get(i,k) + result.get(k,j));
          }
         }
     }
