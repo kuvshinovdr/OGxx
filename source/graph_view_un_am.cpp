@@ -7,40 +7,73 @@
 
 namespace ogxx
 {
-    class Undirected_adjacency_matrix_edge_iter
-        : public Vertex_pair_iterator
+
+    namespace
     {
-    public:
-      Undirected_adjacency_matrix_edge_iter(Bit_matrix& bit) noexcept
-        : bit_m(bit)
-      {
-          sz = bit_m.shape().rows;
-      }
 
-      auto next(Vertex_pair& out_item) noexcept
-        -> bool override
+      class Undirected_adjacency_matrix_edge_iter
+          : public Vertex_pair_iterator
       {
-          for (;; ++col)
-          {
-              if (col == sz)
-                  col = ++row + 1;
+      public:
+        Undirected_adjacency_matrix_edge_iter(Bit_matrix& bit) noexcept
+          : bit_m(bit)
+        {
+            sz = bit_m.shape().rows;
+        }
+
+        auto next(Vertex_pair& out_item) noexcept
+          -> bool override
+        {
+            for (;; ++col)
+            {
+                if (col == sz)
+                    col = ++row + 1;
         
-              if (row == sz)
-                  return false;
+                if (row == sz)
+                    return false;
           
-              if (bit_m.get(row, col))
-              {
-                  out_item = Vertex_pair(row, col); // u < v
-                  return true;
-              }
+                if (bit_m.get(row, col))
+                {
+                    out_item = Vertex_pair(row, col); // u < v
+                    return true;
+                }
+            }
+        }
+
+      private:
+          Bit_matrix&  bit_m;
+          Scalar_index row = 0, col = 1, sz = 0;
+      };
+
+
+      class Row_ones_indices_iterator
+        : public Index_iterator
+      {
+      public:
+        Row_ones_indices_iterator() noexcept = default;
+        explicit Row_ones_indices_iterator(Basic_iterator_uptr<bool> items)
+          : _item_iter(std::move(items)) {}
+
+        bool next(Scalar_index& value) override
+        {
+          for (bool item; _item_iter->next(item); ++_cur)
+          {
+            if (item) 
+            {
+              value = _cur;
+              return true;
+            }
           }
-      }
 
-    private:
-        Bit_matrix&  bit_m;
-        Scalar_index row = 0, col = 1, sz = 0;
-    };
+          return false;
+        }
 
+      private:
+          Scalar_index              _cur = 0;
+          Basic_iterator_uptr<bool> _item_iter;
+      };
+
+    }
 
     class Graph_view_undirected_adjacency_matrix
         : public Graph_view
@@ -77,7 +110,13 @@ namespace ogxx
         [[nodiscard]] auto iterate_edges() const
           -> Vertex_pair_iterator_uptr override
         {
-          return std::make_unique<Undirected_adjacency_matrix_edge_iter>(bit_m);
+            return std::make_unique<Undirected_adjacency_matrix_edge_iter>(bit_m);
+        }
+
+        [[nodiscard]] auto iterate_neighbors(Vertex_index from) const
+          -> Index_iterator_uptr                                override
+        {
+            return std::make_unique<Row_ones_indices_iterator>(bit_m.iterate_row(from));
         }
 
         [[nodiscard]] auto are_connected(Vertex_pair edge) const noexcept

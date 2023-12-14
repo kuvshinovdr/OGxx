@@ -54,18 +54,17 @@ namespace ogxx::io
 
     item_:
       {
-        Item value;
-        util::ltrim(in);
-        auto [ptr, ec] = std::from_chars(in.data(), in.data() + in.size(), value);
-        if (ec != std::errc{})
+        if (auto opt_val = util::read<Item>(in))
+        {
+          if (data.empty())
+            data.emplace_back();
+
+          data.back().push_back(*opt_val);
+        }
+        else
+        {
           return false;
-
-        in.remove_prefix(ptr - in.data());
-
-        if (data.empty())
-          data.emplace_back();
-
-        data.back().push_back(value);
+        }
       }
 
       goto after_;
