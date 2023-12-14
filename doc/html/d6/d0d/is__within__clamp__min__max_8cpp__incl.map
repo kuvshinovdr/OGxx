@@ -1,0 +1,28 @@
+<map id="tests/is_within_clamp_min_max.cpp" name="tests/is_within_clamp_min_max.cpp">
+<area shape="rect" id="Node000001" title="Tests for is_within, clamp, min and max functions." alt="" coords="237,5,384,48"/>
+<area shape="rect" id="Node000002" href="$d0/d53/testing__head_8hpp.html" title="A helper file to be included in each testing cpp." alt="" coords="153,96,273,123"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="287,51,241,88,238,84,284,47"/>
+<area shape="rect" id="Node000004" href="$de/d2f/primitive__definitions_8hpp.html" title="Primitive type declarations like scalar indices and so on." alt="" coords="215,171,406,197"/>
+<area shape="poly" id="edge12_Node000001_Node000004" title=" " alt="" coords="313,48,313,155,308,155,308,48"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="348,96,406,123"/>
+<area shape="poly" id="edge13_Node000001_Node000013" title=" " alt="" coords="330,47,359,82,355,86,325,50"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="69,171,192,197"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="200,125,158,162,154,158,197,121"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="232,121,283,159,280,164,228,125"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="5,245,69,272"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="261,201,84,247,83,242,260,195"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="92,245,153,272"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="279,200,168,243,166,238,277,195"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="176,245,215,272"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="292,200,230,239,227,235,289,196"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="239,245,291,272"/>
+<area shape="poly" id="edge7_Node000004_Node000008" title=" " alt="" coords="305,199,283,233,279,231,300,196"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="316,245,398,272"/>
+<area shape="poly" id="edge8_Node000004_Node000009" title=" " alt="" coords="321,196,343,231,339,234,316,199"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="423,245,491,272"/>
+<area shape="poly" id="edge9_Node000004_Node000010" title=" " alt="" coords="337,195,419,236,417,240,335,200"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="515,245,567,272"/>
+<area shape="poly" id="edge10_Node000004_Node000011" title=" " alt="" coords="352,195,501,242,499,247,351,201"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="591,245,670,272"/>
+<area shape="poly" id="edge11_Node000004_Node000012" title=" " alt="" coords="369,195,576,242,575,247,368,201"/>
+</map>

@@ -1,0 +1,13 @@
+<map id="ogxx::Index_set_sortedvector" name="ogxx::Index_set_sortedvector">
+<area shape="rect" id="Node000001" title=" " alt="" coords="88,280,278,307"/>
+<area shape="rect" id="Node000002" href="$d3/da1/classogxx_1_1_st__set.html" title="Possibly non&#45;iterable set of simple type items." alt="" coords="5,181,83,208"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="76,215,166,277,163,282,73,219"/>
+<area shape="rect" id="Node000003" href="$d2/d20/classogxx_1_1_indexed__iterable.html" title=" " alt="" coords="107,173,258,216"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="185,232,185,280,180,280,180,232"/>
+<area shape="rect" id="Node000004" href="$d9/d72/classogxx_1_1_sized__iterable.html" title="Not only iterable but we know in advance, how many items it contains." alt="" coords="113,81,252,124"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="185,140,185,173,180,173,180,140"/>
+<area shape="rect" id="Node000005" href="$d8/d9b/classogxx_1_1_iterable.html" title="An interface for an object that can be iterated with an iterator." alt="" coords="109,5,257,32"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="185,48,185,81,180,81,180,48"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="283,173,413,216"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="301,226,206,282,203,277,298,222"/>
+</map>

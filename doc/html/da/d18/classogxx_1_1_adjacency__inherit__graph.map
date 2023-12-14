@@ -1,0 +1,9 @@
+<map id="ogxx::Adjacency" name="ogxx::Adjacency">
+<area shape="rect" id="Node000001" title="Representation of adjacent vertices of a vertex of a graph. Vertex degree is the size of the adjacenc..." alt="" coords="50,171,169,197"/>
+<area shape="rect" id="Node000002" href="$d3/da1/classogxx_1_1_st__set.html" title="Possibly non&#45;iterable set of simple type items." alt="" coords="5,88,83,115"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="66,125,101,169,97,172,62,128"/>
+<area shape="rect" id="Node000003" href="$d9/d72/classogxx_1_1_sized__iterable.html" title=" " alt="" coords="106,80,246,123"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="151,136,122,172,118,168,147,133"/>
+<area shape="rect" id="Node000004" href="$d8/d9b/classogxx_1_1_iterable.html" title="An interface for an object that can be iterated with an iterator." alt="" coords="102,5,250,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="179,48,179,80,173,80,173,48"/>
+</map>

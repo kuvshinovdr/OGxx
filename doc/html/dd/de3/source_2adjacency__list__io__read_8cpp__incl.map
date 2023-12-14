@@ -1,0 +1,57 @@
+<map id="source/adjacency_list_io_read.cpp" name="source/adjacency_list_io_read.cpp">
+<area shape="rect" id="Node000001" title="Implementation of ogxx::io::read function for Adjacency_list." alt="" coords="486,5,633,48"/>
+<area shape="rect" id="Node000002" href="$d8/d3e/adjacency__list__io_8hpp.html" title="Textual input&#45;output for adjacency list." alt="" coords="284,96,420,139"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="512,51,415,92,413,87,510,46"/>
+<area shape="rect" id="Node000021" href="$db/db9/parsing__utils_8hpp.html" title="Utility functions to make text parsing easier." alt="" coords="444,104,563,131"/>
+<area shape="poly" id="edge24_Node000001_Node000021" title=" " alt="" coords="549,50,522,92,517,89,544,47"/>
+<area shape="rect" id="Node000024" title=" " alt="" coords="588,104,643,131"/>
+<area shape="poly" id="edge29_Node000001_Node000024" title=" " alt="" coords="575,47,602,89,597,92,570,50"/>
+<area shape="rect" id="Node000025" title=" " alt="" coords="667,104,778,131"/>
+<area shape="poly" id="edge30_Node000001_Node000025" title=" " alt="" coords="599,46,687,94,685,99,597,51"/>
+<area shape="rect" id="Node000003" href="$d8/d3d/io__head_8hpp.html" title="Shared things for *_io.hpp files." alt="" coords="306,187,429,213"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="358,139,365,171,360,172,353,140"/>
+<area shape="rect" id="Node000006" href="$d6/da0/adjacency__list_8hpp.html" title="Adjacency list graph representation interface." alt="" coords="120,187,282,213"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="314,142,239,181,237,177,312,137"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="426,261,510,288"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="387,212,439,250,436,254,384,216"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="334,261,402,288"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="370,214,370,246,365,246,365,214"/>
+<area shape="rect" id="Node000007" href="$d7/dbf/st__set_8hpp.html" title="Simple type set interface. Set may be ordered or unordered." alt="" coords="321,411,436,437"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="219,212,245,233,272,260,327,332,366,395,362,398,322,335,268,263,242,237,216,216"/>
+<area shape="rect" id="Node000018" href="$d7/d6c/graph__view_8hpp.html" title="Graph view interface that may be used for graph representation coversion." alt="" coords="117,261,258,288"/>
+<area shape="poly" id="edge18_Node000006_Node000018" title=" " alt="" coords="201,214,195,247,190,246,196,213"/>
+<area shape="rect" id="Node000008" href="$de/d2f/primitive__definitions_8hpp.html" title="Primitive type declarations like scalar indices and so on." alt="" coords="215,560,406,587"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="385,437,390,472,389,493,383,513,368,535,348,553,345,549,364,532,379,511,384,492,385,472,379,438"/>
+<area shape="rect" id="Node000017" href="$d9/dde/iterator_8hpp.html" title="Linear sequence iterator interfaces." alt="" coords="251,485,370,512"/>
+<area shape="poly" id="edge16_Node000007_Node000017" title=" " alt="" coords="368,440,334,476,331,472,365,436"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="5,635,69,661"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="261,590,84,636,83,631,260,585"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="92,635,153,661"/>
+<area shape="poly" id="edge9_Node000008_Node000010" title=" " alt="" coords="279,590,168,632,166,627,277,585"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="176,635,215,661"/>
+<area shape="poly" id="edge10_Node000008_Node000011" title=" " alt="" coords="292,589,230,628,227,624,289,585"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="239,635,291,661"/>
+<area shape="poly" id="edge11_Node000008_Node000012" title=" " alt="" coords="305,589,283,623,279,620,300,586"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="316,635,398,661"/>
+<area shape="poly" id="edge12_Node000008_Node000013" title=" " alt="" coords="321,586,343,620,339,623,316,589"/>
+<area shape="rect" id="Node000014" title=" " alt="" coords="423,635,491,661"/>
+<area shape="poly" id="edge13_Node000008_Node000014" title=" " alt="" coords="337,585,419,625,417,630,335,590"/>
+<area shape="rect" id="Node000015" title=" " alt="" coords="515,635,567,661"/>
+<area shape="poly" id="edge14_Node000008_Node000015" title=" " alt="" coords="352,585,501,631,499,636,351,590"/>
+<area shape="rect" id="Node000016" title=" " alt="" coords="591,635,670,661"/>
+<area shape="poly" id="edge15_Node000008_Node000016" title=" " alt="" coords="369,585,576,631,575,636,368,590"/>
+<area shape="poly" id="edge17_Node000017_Node000008" title=" " alt="" coords="313,513,313,544,308,544,308,513"/>
+<area shape="rect" id="Node000019" href="$d4/d1a/vertex__pair_8hpp.html" title="Vertex pair related type declarations." alt="" coords="118,336,258,363"/>
+<area shape="poly" id="edge19_Node000018_Node000019" title=" " alt="" coords="190,289,190,320,185,320,185,289"/>
+<area shape="poly" id="edge20_Node000019_Node000008" title=" " alt="" coords="182,364,168,398,165,417,168,436,187,473,214,504,245,530,275,550,272,554,242,534,211,508,183,476,162,438,159,417,163,396,177,362"/>
+<area shape="rect" id="Node000020" href="$db/d3e/iterable_8hpp.html" title="Iterable interfaces." alt="" coords="177,411,297,437"/>
+<area shape="poly" id="edge21_Node000019_Node000020" title=" " alt="" coords="198,362,222,396,218,399,194,365"/>
+<area shape="poly" id="edge22_Node000020_Node000008" title=" " alt="" coords="237,438,234,472,236,492,242,511,257,532,276,549,273,553,253,535,237,513,231,493,229,472,232,438"/>
+<area shape="poly" id="edge23_Node000020_Node000017" title=" " alt="" coords="252,436,289,472,285,476,248,440"/>
+<area shape="poly" id="edge25_Node000021_Node000003" title=" " alt="" coords="484,133,403,181,400,176,481,129"/>
+<area shape="poly" id="edge26_Node000021_Node000008" title=" " alt="" coords="514,130,546,190,559,231,565,273,565,426,561,453,550,476,534,497,512,514,462,541,407,558,405,553,460,536,510,510,530,493,546,474,556,451,560,425,560,274,554,232,541,192,510,133"/>
+<area shape="rect" id="Node000022" title=" " alt="" coords="600,187,666,213"/>
+<area shape="poly" id="edge27_Node000021_Node000022" title=" " alt="" coords="525,129,602,176,599,181,522,133"/>
+<area shape="rect" id="Node000023" title=" " alt="" coords="453,187,525,213"/>
+<area shape="poly" id="edge28_Node000021_Node000023" title=" " alt="" coords="504,132,497,172,491,171,499,131"/>
+</map>

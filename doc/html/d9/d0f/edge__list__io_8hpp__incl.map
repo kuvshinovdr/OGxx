@@ -1,0 +1,40 @@
+<map id="include/ogxx/edge_list_io.hpp" name="include/ogxx/edge_list_io.hpp">
+<area shape="rect" id="Node000001" title="Textual input&#45;output for edge list." alt="" coords="167,5,318,48"/>
+<area shape="rect" id="Node000002" href="$d8/d3d/io__head_8hpp.html" title="Shared things for *_io.hpp files." alt="" coords="106,96,229,123"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="225,50,191,86,188,83,221,47"/>
+<area shape="rect" id="Node000005" href="$d0/df1/edge__list_8hpp.html" title="Graph edge list interface." alt="" coords="253,96,384,123"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="264,47,298,83,294,86,260,50"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="46,171,130,197"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="156,125,114,162,111,158,152,121"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="154,171,222,197"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="174,122,183,155,178,157,169,124"/>
+<area shape="rect" id="Node000006" href="$db/d3e/iterable_8hpp.html" title="Iterable interfaces." alt="" coords="244,320,364,347"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="320,123,308,305,303,305,315,123"/>
+<area shape="rect" id="Node000017" href="$d7/d6c/graph__view_8hpp.html" title="Graph view interface that may be used for graph representation coversion." alt="" coords="336,171,477,197"/>
+<area shape="poly" id="edge17_Node000005_Node000017" title=" " alt="" coords="335,121,381,159,378,163,332,125"/>
+<area shape="rect" id="Node000007" href="$de/d2f/primitive__definitions_8hpp.html" title="Primitive type declarations like scalar indices and so on." alt="" coords="215,469,406,496"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="285,349,266,363,250,381,240,400,242,420,257,441,276,458,272,462,253,445,237,422,235,399,245,378,263,359,282,345"/>
+<area shape="rect" id="Node000016" href="$d9/dde/iterator_8hpp.html" title="Linear sequence iterator interfaces." alt="" coords="251,395,370,421"/>
+<area shape="poly" id="edge15_Node000006_Node000016" title=" " alt="" coords="307,347,310,379,305,379,302,347"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="5,544,69,571"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="261,499,84,546,83,540,260,494"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="92,544,153,571"/>
+<area shape="poly" id="edge8_Node000007_Node000009" title=" " alt="" coords="279,499,168,541,166,536,277,494"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="176,544,215,571"/>
+<area shape="poly" id="edge9_Node000007_Node000010" title=" " alt="" coords="292,499,230,538,227,533,289,494"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="239,544,291,571"/>
+<area shape="poly" id="edge10_Node000007_Node000011" title=" " alt="" coords="305,498,283,532,279,529,300,495"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="316,544,398,571"/>
+<area shape="poly" id="edge11_Node000007_Node000012" title=" " alt="" coords="321,495,343,530,339,532,316,498"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="423,544,491,571"/>
+<area shape="poly" id="edge12_Node000007_Node000013" title=" " alt="" coords="337,494,419,534,417,539,335,499"/>
+<area shape="rect" id="Node000014" title=" " alt="" coords="515,544,567,571"/>
+<area shape="poly" id="edge13_Node000007_Node000014" title=" " alt="" coords="352,494,501,540,499,545,351,499"/>
+<area shape="rect" id="Node000015" title=" " alt="" coords="591,544,670,571"/>
+<area shape="poly" id="edge14_Node000007_Node000015" title=" " alt="" coords="369,494,576,541,575,546,368,499"/>
+<area shape="poly" id="edge16_Node000016_Node000007" title=" " alt="" coords="313,422,313,454,308,454,308,422"/>
+<area shape="rect" id="Node000018" href="$d4/d1a/vertex__pair_8hpp.html" title="Vertex pair related type declarations." alt="" coords="336,245,477,272"/>
+<area shape="poly" id="edge18_Node000017_Node000018" title=" " alt="" coords="409,198,409,230,404,230,404,198"/>
+<area shape="poly" id="edge20_Node000018_Node000006" title=" " alt="" coords="390,275,336,313,333,308,387,270"/>
+<area shape="poly" id="edge19_Node000018_Node000007" title=" " alt="" coords="410,272,408,339,400,382,383,423,366,445,346,462,343,458,363,441,379,420,394,380,402,338,405,272"/>
+</map>

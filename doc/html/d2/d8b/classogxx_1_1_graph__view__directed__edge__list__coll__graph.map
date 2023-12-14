@@ -1,0 +1,26 @@
+<map id="ogxx::Graph_view_directed_edge_list" name="ogxx::Graph_view_directed_edge_list">
+<area shape="rect" id="Node000001" title=" " alt="" coords="855,48,1031,91"/>
+<area shape="rect" id="Node000002" href="$de/d37/classogxx_1_1_graph__view.html" title="Generic graph interface to provide a common facade over concrete graph representations." alt="" coords="622,5,746,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="738,34,855,58,854,63,737,39"/>
+<area shape="poly" id="edge2_Node000001_Node000002" title=" " alt="" coords="762,23,872,45,871,50,761,28"/>
+<area shape="rect" id="Node000003" href="$df/d8c/classogxx_1_1_edge__list.html" title="Interface (abstract base class) for storing an edge list of a graph." alt="" coords="628,56,740,83"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="755,67,854,67,854,72,755,72"/>
+<area shape="rect" id="Node000004" href="$d2/d24/classogxx_1_1_bag.html" title=" " alt="" coords="392,56,562,83"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="578,67,628,67,628,72,578,72"/>
+<area shape="rect" id="Node000005" href="$d9/d72/classogxx_1_1_sized__iterable.html" title="Not only iterable but we know in advance, how many items it contains." alt="" coords="203,48,342,91"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="358,67,391,67,391,72,358,72"/>
+<area shape="rect" id="Node000006" href="$d8/d9b/classogxx_1_1_iterable.html" title="An interface for an object that can be iterated with an iterator." alt="" coords="5,91,154,117"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="168,85,202,79,203,84,169,91"/>
+<area shape="rect" id="Node000010" href="$d9/d72/classogxx_1_1_sized__iterable.html" title="Not only iterable but we know in advance, how many items it contains." alt="" coords="203,115,342,157"/>
+<area shape="poly" id="edge11_Node000010_Node000006" title=" " alt="" coords="169,116,203,122,202,127,168,121"/>
+<area shape="rect" id="Node000007" href="$d3/da1/classogxx_1_1_st__set.html" title=" " alt="" coords="611,173,757,216"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="748,164,829,126,901,89,903,93,832,130,750,169"/>
+<area shape="rect" id="Node000008" href="$d8/d68/classogxx_1_1_list.html" title=" " alt="" coords="620,107,748,149"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="763,108,854,87,855,92,764,113"/>
+<area shape="rect" id="Node000009" href="$d2/d20/classogxx_1_1_indexed__iterable.html" title="Finally, the linear zero&#45;based integer&#45;indexed iterable collection." alt="" coords="401,107,553,149"/>
+<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="568,125,620,125,620,131,568,131"/>
+<area shape="poly" id="edge10_Node000009_Node000010" title=" " alt="" coords="358,130,401,128,401,134,358,135"/>
+<area shape="rect" id="Node000011" href="$d2/d24/classogxx_1_1_bag.html" title="Generic container interface with inserts and erases but no fixed ordering of items." alt="" coords="412,173,542,200"/>
+<area shape="poly" id="edge13_Node000011_Node000010" title=" " alt="" coords="358,154,421,170,420,175,357,160"/>
+<area shape="poly" id="edge12_Node000008_Node000011" title=" " alt="" coords="540,166,619,144,620,149,542,171"/>
+</map>

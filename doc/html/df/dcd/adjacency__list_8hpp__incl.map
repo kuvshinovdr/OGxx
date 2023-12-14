@@ -1,0 +1,35 @@
+<map id="include/ogxx/adjacency_list.hpp" name="include/ogxx/adjacency_list.hpp">
+<area shape="rect" id="Node000001" title="Adjacency list graph representation interface." alt="" coords="162,5,320,48"/>
+<area shape="rect" id="Node000002" href="$d7/dbf/st__set_8hpp.html" title="Simple type set interface. Set may be ordered or unordered." alt="" coords="113,245,228,272"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="234,50,216,97,194,169,179,231,174,230,189,168,210,95,229,48"/>
+<area shape="rect" id="Node000013" href="$d7/d6c/graph__view_8hpp.html" title="Graph view interface that may be used for graph representation coversion." alt="" coords="225,96,366,123"/>
+<area shape="poly" id="edge13_Node000001_Node000013" title=" " alt="" coords="257,47,281,82,276,85,253,50"/>
+<area shape="rect" id="Node000003" href="$de/d2f/primitive__definitions_8hpp.html" title="Primitive type declarations like scalar indices and so on." alt="" coords="215,395,406,421"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="173,272,177,308,184,327,194,345,220,369,252,386,250,391,217,373,190,348,179,330,172,309,168,273"/>
+<area shape="rect" id="Node000012" href="$d9/dde/iterator_8hpp.html" title="Linear sequence iterator interfaces." alt="" coords="203,320,322,347"/>
+<area shape="poly" id="edge11_Node000002_Node000012" title=" " alt="" coords="188,270,236,308,233,313,185,275"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="5,469,69,496"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="261,425,84,471,83,466,260,419"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="92,469,153,496"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="279,424,168,467,166,462,277,419"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="176,469,215,496"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="292,424,230,463,227,459,289,420"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="239,469,291,496"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="305,423,283,457,279,455,300,420"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="316,469,398,496"/>
+<area shape="poly" id="edge7_Node000003_Node000008" title=" " alt="" coords="321,420,343,455,339,458,316,423"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="423,469,491,496"/>
+<area shape="poly" id="edge8_Node000003_Node000009" title=" " alt="" coords="337,419,419,460,417,464,335,424"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="515,469,567,496"/>
+<area shape="poly" id="edge9_Node000003_Node000010" title=" " alt="" coords="352,419,501,466,499,471,351,425"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="591,469,670,496"/>
+<area shape="poly" id="edge10_Node000003_Node000011" title=" " alt="" coords="369,419,576,466,575,471,368,425"/>
+<area shape="poly" id="edge12_Node000012_Node000003" title=" " alt="" coords="273,346,296,380,291,383,268,349"/>
+<area shape="rect" id="Node000014" href="$d4/d1a/vertex__pair_8hpp.html" title="Vertex pair related type declarations." alt="" coords="242,171,382,197"/>
+<area shape="poly" id="edge14_Node000013_Node000014" title=" " alt="" coords="301,123,308,155,303,156,296,124"/>
+<area shape="poly" id="edge15_Node000014_Node000003" title=" " alt="" coords="338,196,364,216,386,244,389,258,386,273,377,304,363,334,332,384,327,381,358,332,372,302,381,271,384,258,381,246,361,220,334,200"/>
+<area shape="rect" id="Node000015" href="$db/d3e/iterable_8hpp.html" title="Iterable interfaces." alt="" coords="252,245,372,272"/>
+<area shape="poly" id="edge16_Node000014_Node000015" title=" " alt="" coords="314,198,314,230,309,230,309,198"/>
+<area shape="poly" id="edge17_Node000015_Node000003" title=" " alt="" coords="321,271,333,305,337,326,336,347,325,381,320,379,330,346,331,326,328,306,316,273"/>
+<area shape="poly" id="edge18_Node000015_Node000012" title=" " alt="" coords="305,274,282,309,277,306,301,271"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="ogxx::Edge_list" name="ogxx::Edge_list">
+<area shape="rect" id="Node000001" title="Interface (abstract base class) for storing an edge list of a graph." alt="" coords="35,245,146,272"/>
+<area shape="rect" id="Node000002" href="$d2/d24/classogxx_1_1_bag.html" title=" " alt="" coords="5,171,176,197"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="93,213,93,245,88,245,88,213"/>
+<area shape="rect" id="Node000003" href="$d9/d72/classogxx_1_1_sized__iterable.html" title="Not only iterable but we know in advance, how many items it contains." alt="" coords="21,80,160,123"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="93,139,93,170,88,170,88,139"/>
+<area shape="rect" id="Node000004" href="$d8/d9b/classogxx_1_1_iterable.html" title="An interface for an object that can be iterated with an iterator." alt="" coords="16,5,165,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="93,48,93,80,88,80,88,48"/>
+</map>

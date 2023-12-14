@@ -1,0 +1,27 @@
+<map id="tests/testing_head.hpp" name="tests/testing_head.hpp">
+<area shape="rect" id="Node000001" title="A helper file to be included in each testing cpp." alt="" coords="681,5,835,32"/>
+<area shape="rect" id="Node000002" href="$d0/d40/tests_2adjacency__list__io__read_8cpp.html" title="Adjacency list io::read function tests." alt="" coords="5,80,143,123"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="666,28,433,46,293,62,154,83,144,85,143,79,154,77,293,57,432,41,665,22"/>
+<area shape="rect" id="Node000004" href="$db/dc8/tests_2dense__st__matrix_8cpp.html" title="A helper file to be included in each testing cpp." alt="" coords="166,88,342,115"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="666,35,353,83,314,90,313,85,352,77,666,30"/>
+<area shape="rect" id="Node000005" href="$d2/d31/tests_2index__set__sortedvector_8cpp.html" title="Testing Index_set_sortedvector class." alt="" coords="365,88,578,115"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="699,39,517,90,516,85,698,34"/>
+<area shape="rect" id="Node000006" href="$dc/d9b/is__within__clamp__min__max_8cpp.html" title="Tests for is_within, clamp, min and max functions." alt="" coords="602,80,749,123"/>
+<area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="736,45,698,82,694,78,732,41"/>
+<area shape="rect" id="Node000007" href="$d8/d88/matrix__index__shape__window_8cpp.html" title="Tests Matrix_index, Matrix_shape, Matrix_window structs." alt="" coords="772,80,909,123"/>
+<area shape="poly" id="edge9_Node000001_Node000007" title=" " alt="" coords="784,41,822,78,818,82,780,45"/>
+<area shape="rect" id="Node000008" href="$d0/ddf/tests_2st__matrix__io__read_8cpp.html" title="St_matrix io::read function tests." alt="" coords="934,80,1059,123"/>
+<area shape="poly" id="edge11_Node000001_Node000008" title=" " alt="" coords="811,35,936,77,934,82,809,40"/>
+<area shape="rect" id="Node000009" href="$dd/d7e/stl__iterator__and__iterator__algorithms_8cpp.html" title="Testing Stl_iterator and iterator_algorithms.hpp." alt="" coords="1084,80,1272,123"/>
+<area shape="poly" id="edge13_Node000001_Node000009" title=" " alt="" coords="839,33,1084,79,1083,85,838,38"/>
+<area shape="rect" id="Node000010" href="$d5/d40/symmetric__dense__st__matrix__test_8cpp.html" title="Tests for Symmetric_dense_st_matrix." alt="" coords="1297,80,1454,123"/>
+<area shape="poly" id="edge15_Node000001_Node000010" title=" " alt="" coords="850,25,1050,45,1285,77,1297,79,1296,85,1284,83,1050,50,850,30"/>
+<area shape="rect" id="Node000003" href="$da/d4a/build__all_8cpp.html" title="Include all test files here to build them at once." alt="" coords="612,171,739,197"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="159,121,288,141,413,156,612,175,611,181,413,162,287,146,158,126"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="331,116,353,120,612,169,611,174,352,125,330,121"/>
+<area shape="poly" id="edge6_Node000005_Node000003" title=" " alt="" coords="518,118,644,168,642,173,516,123"/>
+<area shape="poly" id="edge8_Node000006_Node000003" title=" " alt="" coords="678,139,678,170,673,170,673,139"/>
+<area shape="poly" id="edge10_Node000007_Node000003" title=" " alt="" coords="785,132,702,173,700,168,783,128"/>
+<area shape="poly" id="edge12_Node000008_Node000003" title=" " alt="" coords="920,126,729,173,728,167,918,121"/>
+<area shape="poly" id="edge14_Node000009_Node000003" title=" " alt="" coords="1069,126,739,176,738,171,1068,120"/>
+</map>

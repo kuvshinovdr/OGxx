@@ -1,0 +1,14 @@
+<map id="ogxx::Graph_view_undirected_adjacency_matrix" name="ogxx::Graph_view_undirected_adjacency_matrix">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,264,196,307"/>
+<area shape="rect" id="Node000002" href="$de/d37/classogxx_1_1_graph__view.html" title="Generic graph interface to provide a common facade over concrete graph representations." alt="" coords="39,173,162,200"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="95,215,96,263,90,263,90,215"/>
+<area shape="poly" id="edge2_Node000001_Node000002" title=" " alt="" coords="111,215,111,263,105,263,106,215"/>
+<area shape="rect" id="Node000003" href="$d4/def/classogxx_1_1_bit__matrix.html" title="Bit matrix interface. Iterating the matrix means going through all its elements in row&#45;major order." alt="" coords="186,173,303,200"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="214,211,133,266,130,261,211,207"/>
+<area shape="rect" id="Node000004" href="$d0/d06/classogxx_1_1_matrix__base.html" title="Common matrix function independent of matrix item type." alt="" coords="134,89,262,116"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="215,128,240,172,235,174,210,131"/>
+<area shape="rect" id="Node000005" href="$d9/d72/classogxx_1_1_sized__iterable.html" title=" " alt="" coords="286,81,425,124"/>
+<area shape="poly" id="edge5_Node000003_Node000005" title=" " alt="" coords="317,136,263,175,260,171,313,131"/>
+<area shape="rect" id="Node000006" href="$d8/d9b/classogxx_1_1_iterable.html" title="An interface for an object that can be iterated with an iterator." alt="" coords="281,5,429,32"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="358,48,358,81,353,81,353,48"/>
+</map>

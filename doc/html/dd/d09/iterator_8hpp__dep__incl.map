@@ -1,0 +1,133 @@
+<map id="include/ogxx/iterator.hpp" name="include/ogxx/iterator.hpp">
+<area shape="rect" id="Node000001" title="Linear sequence iterator interfaces." alt="" coords="1823,5,1987,32"/>
+<area shape="rect" id="Node000002" href="$db/d3e/iterable_8hpp.html" title="Iterable interfaces." alt="" coords="1926,80,2092,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1937,39,1992,77,1989,82,1934,43"/>
+<area shape="rect" id="Node000032" href="$d0/d9c/is__chain__loop_8cpp.html" title="ogxx::functions, that check a subgraph of the graph gv contains (contour) on the vertices enumerated ..." alt="" coords="583,344,752,371"/>
+<area shape="poly" id="edge82_Node000001_Node000032" title=" " alt="" coords="1808,34,1664,54,1504,83,1381,111,1256,146,1019,223,823,295,698,346,696,341,822,290,1018,218,1255,141,1379,106,1503,77,1663,49,1807,29"/>
+<area shape="rect" id="Node000033" href="$d7/dc5/make__clique_8cpp.html" title="make_undirected_clique" alt="" coords="776,344,938,371"/>
+<area shape="poly" id="edge83_Node000001_Node000033" title=" " alt="" coords="1822,38,1602,85,1471,119,1340,157,1204,206,1072,260,884,346,882,341,1070,256,1202,201,1339,152,1469,113,1601,80,1821,33"/>
+<area shape="rect" id="Node000040" href="$d7/d63/iterator__algorithms_8hpp.html" title="Helper functions to work with iterators inspired by STL algorithm header." alt="" coords="369,336,507,379"/>
+<area shape="poly" id="edge53_Node000001_Node000040" title=" " alt="" coords="1808,22,1615,26,1493,33,1358,45,1216,62,1070,85,925,117,784,157,688,197,598,247,521,298,466,338,463,333,518,293,595,243,686,193,783,152,923,112,1069,80,1215,56,1358,39,1492,28,1615,21,1808,16"/>
+<area shape="rect" id="Node000043" href="$df/dce/matrix_8hpp.html" title="Abstract matrix interface." alt="" coords="3513,253,3673,280"/>
+<area shape="poly" id="edge59_Node000001_Node000043" title=" " alt="" coords="2002,19,2195,25,2432,35,2660,52,2754,64,2826,77,2855,90,2883,104,3057,156,3232,198,3390,229,3513,251,3513,256,3389,235,3231,203,3055,161,2881,109,2853,95,2824,83,2753,69,2660,58,2432,41,2195,30,2002,24"/>
+<area shape="rect" id="Node000046" href="$d7/dbf/st__set_8hpp.html" title="Simple type set interface. Set may be ordered or unordered." alt="" coords="1721,253,1881,280"/>
+<area shape="poly" id="edge65_Node000001_Node000046" title=" " alt="" coords="1890,46,1858,96,1829,156,1813,209,1805,253,1800,252,1808,208,1824,154,1854,93,1885,43"/>
+<area shape="rect" id="Node000047" href="$d4/d29/stl__iterator_8hpp.html" title="This file defines the Stl_iterator class, which provides an iterator for standard C++ containers." alt="" coords="2599,344,2784,371"/>
+<area shape="poly" id="edge72_Node000001_Node000047" title=" " alt="" coords="1969,34,2104,77,2277,149,2442,226,2669,341,2667,346,2440,231,2275,154,2103,83,1967,39"/>
+<area shape="rect" id="Node000048" href="$d1/d52/dense__bit__iterator_8cpp.html" title="Dense bit iterator + &#39;next&#39; method." alt="" coords="2894,80,3086,107"/>
+<area shape="poly" id="edge81_Node000001_Node000048" title=" " alt="" coords="2002,22,2385,43,2876,77,2894,79,2894,84,2875,83,2384,48,2002,27"/>
+<area shape="rect" id="Node000003" href="$d0/df1/edge__list_8hpp.html" title="Graph edge list interface." alt="" coords="1013,344,1189,371"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="1911,108,1738,129,1531,160,1429,179,1336,200,1258,223,1201,248,1171,270,1145,297,1110,345,1106,342,1141,293,1167,266,1198,243,1256,218,1335,195,1428,174,1530,155,1737,123,1911,102"/>
+<area shape="rect" id="Node000006" href="$d1/d63/graph__view__di__el_8cpp.html" title="Graph view implementation for directed graph represented by an edge list." alt="" coords="474,427,618,469"/>
+<area shape="poly" id="edge43_Node000002_Node000006" title=" " alt="" coords="1911,102,1652,120,1496,136,1340,157,1217,171,1108,174,1010,174,919,176,832,187,790,198,748,213,706,234,663,261,619,296,574,338,560,358,552,381,547,426,542,426,546,380,555,355,569,334,615,292,660,257,703,229,746,208,789,192,831,181,918,170,1010,168,1108,169,1217,166,1339,152,1495,131,1651,115,1911,96"/>
+<area shape="rect" id="Node000007" href="$dd/d0c/point__distance__matrix_8hpp.html" title="Facilities to compute distance matrices according to selected metrics." alt="" coords="3710,427,3855,469"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="2090,108,2885,261,3699,424,3709,426,3708,432,3698,429,2884,266,2089,113"/>
+<area shape="rect" id="Node000009" href="$df/dd1/st__matrix_8hpp.html" title="St_matrix interface, st_ stands for &quot;simple type&quot;, i.e. a thing like int or double." alt="" coords="3504,344,3682,371"/>
+<area shape="poly" id="edge8_Node000002_Node000009" title=" " alt="" coords="2107,92,2232,95,2386,104,2556,122,2724,152,2757,162,2782,172,2839,195,3027,244,3215,285,3514,341,3513,346,3214,291,3026,249,2837,200,2780,177,2756,167,2723,157,2555,128,2386,110,2231,100,2107,97"/>
+<area shape="rect" id="Node000018" href="$d4/d1a/vertex__pair_8hpp.html" title="Vertex pair related type declarations." alt="" coords="1839,155,1971,197"/>
+<area shape="poly" id="edge19_Node000002_Node000018" title=" " alt="" coords="1982,118,1933,156,1930,152,1979,114"/>
+<area shape="rect" id="Node000034" href="$d7/d92/index__set__bitvector_8hpp.html" title="Index_set implemented via bit vector." alt="" coords="1865,344,2065,371"/>
+<area shape="poly" id="edge44_Node000002_Node000034" title=" " alt="" coords="2007,123,1970,344,1964,343,2002,122"/>
+<area shape="rect" id="Node000036" href="$d2/d73/index__set__hashtable_8hpp.html" title="This file defines Index_set and Sized_iterable implementation based upon std::unordered_set." alt="" coords="2089,344,2297,371"/>
+<area shape="poly" id="edge47_Node000002_Node000036" title=" " alt="" coords="2029,118,2186,342,2182,345,2024,121"/>
+<area shape="rect" id="Node000038" href="$d5/df8/index__set__sortedvector_8hpp.html" title="Index_set implementation based upon a sorted vector of set elements." alt="" coords="2322,344,2544,371"/>
+<area shape="poly" id="edge50_Node000002_Node000038" title=" " alt="" coords="2043,113,2414,341,2411,346,2041,117"/>
+<area shape="rect" id="Node000004" href="$d6/d2b/edge__list__io_8hpp.html" title="Textual input&#45;output for edge list." alt="" coords="643,427,793,469"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="1032,377,805,429,794,432,793,427,804,424,1031,372"/>
+<area shape="rect" id="Node000005" href="$d3/dcc/graph__repr__conv_8hpp.html" title="Graph representation conversion operations." alt="" coords="1198,427,1329,469"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="1139,376,1227,424,1225,429,1136,381"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="1022,377,995,381,893,396,813,404,733,413,632,429,619,432,618,427,631,424,733,408,812,399,892,390,994,376,1021,371"/>
+<area shape="rect" id="Node000008" href="$d3/d60/point__distance__matrix_8cpp.html" title="Implementation of point distance matrix adapter for a metrics object." alt="" coords="3164,517,3312,560"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="3694,473,3590,488,3508,496,3427,505,3325,520,3313,522,3312,517,3324,515,3427,499,3508,491,3590,483,3693,467"/>
+<area shape="poly" id="edge9_Node000009_Node000007" title=" " alt="" coords="3635,375,3739,424,3737,429,3632,380"/>
+<area shape="rect" id="Node000010" href="$dd/db4/st__matrix__io_8hpp.html" title="St_matrix reading and printing operations." alt="" coords="3879,427,4032,469"/>
+<area shape="poly" id="edge10_Node000009_Node000010" title=" " alt="" coords="3660,372,3880,426,3878,431,3659,377"/>
+<area shape="rect" id="Node000014" href="$df/da6/source_2dense__st__matrix_8cpp.html" title="Dense matrix implementation (of abstract matrix interface from matrix.hpp)." alt="" coords="3500,435,3686,461"/>
+<area shape="poly" id="edge14_Node000009_Node000014" title=" " alt="" coords="3596,386,3596,434,3590,434,3590,386"/>
+<area shape="rect" id="Node000015" href="$d8/d4d/symmetric__dense__st__matrix_8cpp.html" title="Implementation of a class for compact storage of a symmetric matrix." alt="" coords="3309,427,3477,469"/>
+<area shape="poly" id="edge15_Node000009_Node000015" title=" " alt="" coords="3551,380,3441,429,3439,424,3549,375"/>
+<area shape="rect" id="Node000017" href="$db/dc8/tests_2dense__st__matrix_8cpp.html" title="A helper file to be included in each testing cpp." alt="" coords="3852,525,4027,552"/>
+<area shape="poly" id="edge17_Node000009_Node000017" title=" " alt="" coords="3669,371,3694,376,3774,381,3879,383,3931,386,3979,393,4018,406,4045,425,4053,436,4054,447,4046,471,4032,490,4014,505,3976,527,3974,522,4011,501,4028,486,4041,468,4049,447,4048,438,4042,429,4016,411,3977,399,3930,392,3878,388,3774,386,3694,381,3668,377"/>
+<area shape="rect" id="Node000011" href="$d1/d44/source_2st__matrix__io__read_8cpp.html" title="Implementation of st_matrix_io.hpp&#39;s read function." alt="" coords="3543,517,3678,560"/>
+<area shape="poly" id="edge11_Node000010_Node000011" title=" " alt="" coords="3865,475,3679,523,3678,517,3863,470"/>
+<area shape="rect" id="Node000012" href="$d0/ddf/tests_2st__matrix__io__read_8cpp.html" title="St_matrix io::read function tests." alt="" coords="3702,517,3828,560"/>
+<area shape="poly" id="edge12_Node000010_Node000012" title=" " alt="" coords="3898,479,3810,519,3808,514,3896,474"/>
+<area shape="rect" id="Node000013" href="$da/d4a/build__all_8cpp.html" title="Include all test files here to build them at once." alt="" coords="2988,608,3115,635"/>
+<area shape="poly" id="edge13_Node000012_Node000013" title=" " alt="" coords="3687,563,3522,587,3362,604,3115,620,3115,615,3362,599,3522,582,3687,558"/>
+<area shape="rect" id="Node000016" href="$d5/d40/symmetric__dense__st__matrix__test_8cpp.html" title="Tests for Symmetric_dense_st_matrix." alt="" coords="3337,517,3494,560"/>
+<area shape="poly" id="edge16_Node000015_Node000016" title=" " alt="" coords="3404,484,3413,516,3408,518,3399,485"/>
+<area shape="poly" id="edge18_Node000017_Node000013" title=" " alt="" coords="3868,558,3840,563,3633,586,3427,603,3115,620,3115,615,3427,598,3632,581,3839,557,3867,553"/>
+<area shape="rect" id="Node000019" href="$d7/d6c/graph__view_8hpp.html" title="Graph view interface that may be used for graph representation coversion." alt="" coords="1212,245,1342,288"/>
+<area shape="poly" id="edge20_Node000018_Node000019" title=" " alt="" coords="1823,191,1343,259,1342,254,1823,186"/>
+<area shape="poly" id="edge36_Node000019_Node000003" title=" " alt="" coords="1223,298,1127,346,1125,341,1221,293"/>
+<area shape="poly" id="edge37_Node000019_Node000005" title=" " alt="" coords="1277,304,1268,427,1262,426,1272,303"/>
+<area shape="poly" id="edge39_Node000019_Node000006" title=" " alt="" coords="1197,281,1101,301,1050,317,1002,338,987,349,978,360,967,371,951,381,906,399,866,410,795,417,722,419,632,429,619,432,618,427,631,424,722,413,794,412,865,405,904,394,949,376,964,367,974,356,984,345,1000,334,1048,313,1100,296,1196,275"/>
+<area shape="rect" id="Node000020" href="$d6/da0/adjacency__list_8hpp.html" title="Adjacency list graph representation interface." alt="" coords="1365,336,1522,379"/>
+<area shape="poly" id="edge21_Node000019_Node000020" title=" " alt="" coords="1331,293,1406,333,1403,338,1328,298"/>
+<area shape="rect" id="Node000026" href="$d0/da2/graph__view__di__al_8cpp.html" title="Graph view implementation for directed graph represented by an adjacency list." alt="" coords="1030,427,1174,469"/>
+<area shape="poly" id="edge38_Node000019_Node000026" title=" " alt="" coords="1261,303,1235,342,1203,381,1172,407,1140,428,1137,424,1168,403,1199,377,1231,338,1256,300"/>
+<area shape="rect" id="Node000027" href="$dc/dbd/bit__matrix_8hpp.html" title="Bit_matrix interface." alt="" coords="1597,344,1778,371"/>
+<area shape="poly" id="edge30_Node000019_Node000027" title=" " alt="" coords="1358,283,1629,341,1628,346,1357,288"/>
+<area shape="rect" id="Node000030" href="$dc/d24/graph__view__un__am_8cpp.html" title="Adjacency matrix of undirected graph adapter." alt="" coords="1353,427,1502,469"/>
+<area shape="poly" id="edge40_Node000019_Node000030" title=" " alt="" coords="1358,276,1464,298,1508,314,1536,334,1543,346,1545,357,1536,380,1513,408,1482,428,1479,424,1509,404,1532,377,1539,356,1538,348,1532,338,1506,319,1462,303,1357,281"/>
+<area shape="poly" id="edge41_Node000019_Node000032" title=" " alt="" coords="1197,279,999,304,764,339,725,346,724,341,763,333,999,298,1196,274"/>
+<area shape="poly" id="edge42_Node000019_Node000033" title=" " alt="" coords="1197,287,918,346,917,341,1196,282"/>
+<area shape="poly" id="edge26_Node000020_Node000005" title=" " alt="" coords="1389,388,1307,429,1304,424,1386,384"/>
+<area shape="rect" id="Node000021" href="$d8/d3e/adjacency__list__io_8hpp.html" title="Textual input&#45;output for adjacency list." alt="" coords="242,427,400,469"/>
+<area shape="poly" id="edge22_Node000020_Node000021" title=" " alt="" coords="1350,369,1201,381,993,394,831,402,670,411,462,429,400,437,400,432,462,424,669,406,831,396,993,389,1201,376,1349,364"/>
+<area shape="rect" id="Node000024" href="$d6/dda/adjacency__implementations_8cpp.html" title="ogxx::Adjacency implementations based upon different Index_set implementations" alt="" coords="2121,435,2371,461"/>
+<area shape="poly" id="edge27_Node000020_Node000024" title=" " alt="" coords="1538,370,1585,376,1732,391,1847,400,1962,409,2109,424,2165,431,2164,437,2109,429,1961,414,1847,405,1732,396,1585,381,1537,375"/>
+<area shape="rect" id="Node000025" href="$d5/d8b/adjacency__list__vector_8cpp.html" title="Adjacency_list interface implementation over std::vector." alt="" coords="2395,427,2543,469"/>
+<area shape="poly" id="edge28_Node000020_Node000025" title=" " alt="" coords="1538,370,1585,376,1706,386,1809,391,1985,394,2160,400,2263,409,2384,424,2395,426,2394,431,2383,429,2262,414,2160,405,1985,399,1809,397,1706,392,1585,381,1537,376"/>
+<area shape="poly" id="edge29_Node000020_Node000026" title=" " alt="" coords="1350,385,1175,431,1174,425,1349,380"/>
+<area shape="rect" id="Node000022" href="$df/d01/source_2adjacency__list__io__read_8cpp.html" title="Implementation of ogxx::io::read function for Adjacency_list." alt="" coords="247,517,395,560"/>
+<area shape="poly" id="edge23_Node000021_Node000022" title=" " alt="" coords="324,485,324,517,318,517,318,485"/>
+<area shape="rect" id="Node000023" href="$d0/d40/tests_2adjacency__list__io__read_8cpp.html" title="Adjacency list io::read function tests." alt="" coords="1291,517,1428,560"/>
+<area shape="poly" id="edge24_Node000021_Node000023" title=" " alt="" coords="415,466,419,467,670,495,918,515,1291,533,1291,538,918,520,669,501,418,472,414,471"/>
+<area shape="poly" id="edge25_Node000023_Node000013" title=" " alt="" coords="1444,545,1606,557,2019,579,2421,597,2988,616,2988,621,2421,602,2019,585,1606,563,1443,550"/>
+<area shape="poly" id="edge32_Node000027_Node000005" title=" " alt="" coords="1602,377,1341,429,1330,432,1329,427,1340,424,1601,371"/>
+<area shape="rect" id="Node000028" href="$d6/d1d/bit__matrix__io_8hpp.html" title="Bit_matrix reading and printing operations." alt="" coords="1526,427,1681,469"/>
+<area shape="poly" id="edge31_Node000027_Node000028" title=" " alt="" coords="1667,384,1625,428,1621,424,1663,380"/>
+<area shape="rect" id="Node000029" href="$d9/d93/dense__bit__matrix_8cpp.html" title=" " alt="" coords="2567,435,2755,461"/>
+<area shape="poly" id="edge33_Node000027_Node000029" title=" " alt="" coords="1793,370,1853,376,2050,390,2204,396,2358,404,2555,424,2601,431,2600,437,2554,429,2357,409,2204,402,2050,396,1853,381,1793,375"/>
+<area shape="poly" id="edge34_Node000027_Node000030" title=" " alt="" coords="1637,379,1489,429,1487,424,1635,374"/>
+<area shape="rect" id="Node000031" href="$d5/d69/symmetric__dense__bit__matrix_8cpp.html" title="Symmetric_dense_bit matrix implementation (of abstract matrix interface from matrix...." alt="" coords="1705,427,1873,469"/>
+<area shape="poly" id="edge35_Node000027_Node000031" title=" " alt="" coords="1715,379,1767,424,1764,428,1712,383"/>
+<area shape="poly" id="edge45_Node000034_Node000024" title=" " alt="" coords="2021,373,2207,432,2205,437,2019,378"/>
+<area shape="rect" id="Node000035" href="$de/d57/index__set__bitvector_8cpp.html" title="Defining interfaces for bitvector." alt="" coords="1897,435,2097,461"/>
+<area shape="poly" id="edge46_Node000034_Node000035" title=" " alt="" coords="1977,384,1995,433,1990,435,1972,386"/>
+<area shape="poly" id="edge48_Node000036_Node000024" title=" " alt="" coords="2211,383,2241,433,2236,435,2206,386"/>
+<area shape="rect" id="Node000037" href="$da/d7f/index__set__hashtable_8cpp.html" title="index_set_hashtable.hpp implementation" alt="" coords="2779,435,2988,461"/>
+<area shape="poly" id="edge49_Node000036_Node000037" title=" " alt="" coords="2278,371,2311,376,2439,391,2539,400,2639,409,2768,424,2815,431,2815,437,2767,429,2639,414,2539,405,2438,397,2310,381,2277,376"/>
+<area shape="poly" id="edge51_Node000038_Node000024" title=" " alt="" coords="2394,380,2274,436,2272,432,2391,375"/>
+<area shape="rect" id="Node000039" href="$d4/d0c/source_2index__set__sortedvector_8cpp.html" title="Index_set implemented via sorted vector." alt="" coords="3012,435,3235,461"/>
+<area shape="poly" id="edge52_Node000038_Node000039" title=" " alt="" coords="2544,371,2588,376,2794,399,3000,424,3049,431,3048,437,2999,429,2793,404,2587,381,2544,376"/>
+<area shape="poly" id="edge54_Node000040_Node000008" title=" " alt="" coords="438,394,443,434,451,452,464,467,497,475,576,482,846,495,1669,516,2565,528,3164,534,3164,539,2565,534,1669,521,845,501,576,487,496,480,461,472,447,455,438,435,433,395"/>
+<area shape="rect" id="Node000041" href="$d2/d31/tests_2index__set__sortedvector_8cpp.html" title="Testing Index_set_sortedvector class." alt="" coords="5,435,218,461"/>
+<area shape="poly" id="edge55_Node000040_Node000041" title=" " alt="" coords="355,384,159,437,158,431,353,379"/>
+<area shape="rect" id="Node000042" href="$dd/d7e/stl__iterator__and__iterator__algorithms_8cpp.html" title="Testing Stl_iterator and iterator_algorithms.hpp." alt="" coords="817,427,1006,469"/>
+<area shape="poly" id="edge57_Node000040_Node000042" title=" " alt="" coords="523,372,805,424,817,426,816,432,804,429,522,377"/>
+<area shape="poly" id="edge56_Node000041_Node000013" title=" " alt="" coords="131,472,176,518,204,541,236,557,284,567,375,575,664,589,1058,599,1509,606,2405,615,2988,617,2988,623,2405,620,1509,612,1058,604,664,594,375,580,283,572,235,563,202,545,172,522,128,475"/>
+<area shape="poly" id="edge58_Node000042_Node000013" title=" " alt="" coords="1021,467,1320,502,1623,531,2204,576,2685,602,2988,615,2988,621,2685,608,2204,581,1623,537,1319,507,1021,472"/>
+<area shape="poly" id="edge61_Node000043_Node000009" title=" " alt="" coords="3596,296,3596,343,3590,343,3590,296"/>
+<area shape="poly" id="edge60_Node000043_Node000027" title=" " alt="" coords="3498,272,3218,277,2812,288,2337,308,1853,339,1779,346,1778,341,1853,333,2337,302,2812,282,3218,271,3498,266"/>
+<area shape="rect" id="Node000044" href="$d2/d4a/matrix__read__write__sample_8cpp.html" title="A simple console application demonstrating reading and writing matrices." alt="" coords="3706,336,3848,379"/>
+<area shape="poly" id="edge62_Node000043_Node000044" title=" " alt="" coords="3634,285,3735,333,3733,338,3632,290"/>
+<area shape="rect" id="Node000045" href="$d8/d88/matrix__index__shape__window_8cpp.html" title="Tests Matrix_index, Matrix_shape, Matrix_window structs." alt="" coords="4051,517,4188,560"/>
+<area shape="poly" id="edge63_Node000043_Node000045" title=" " alt="" coords="3689,273,3778,289,3879,316,3930,336,3979,360,4026,390,4068,425,4086,446,4100,471,4117,516,4112,518,4095,473,4082,449,4064,429,4023,394,3977,365,3928,341,3877,321,3777,294,3688,279"/>
+<area shape="poly" id="edge64_Node000045_Node000013" title=" " alt="" coords="4036,563,3901,581,3765,595,3501,613,3275,621,3115,623,3115,618,3275,615,3501,607,3764,589,3901,576,4035,558"/>
+<area shape="poly" id="edge67_Node000046_Node000006" title=" " alt="" coords="1706,282,1541,305,1353,339,1278,361,1245,371,1201,381,1115,395,1042,402,917,407,791,411,718,418,632,429,619,432,618,426,631,424,717,412,791,406,916,402,1042,397,1115,389,1200,376,1243,366,1276,356,1352,333,1540,299,1705,276"/>
+<area shape="poly" id="edge66_Node000046_Node000020" title=" " alt="" coords="1736,287,1523,339,1522,334,1734,282"/>
+<area shape="poly" id="edge68_Node000046_Node000034" title=" " alt="" coords="1839,285,1943,341,1940,346,1836,290"/>
+<area shape="poly" id="edge69_Node000046_Node000036" title=" " alt="" coords="1872,281,2137,341,2136,346,1871,286"/>
+<area shape="poly" id="edge70_Node000046_Node000038" title=" " alt="" coords="1897,277,2309,333,2357,341,2356,346,2308,339,1896,283"/>
+<area shape="poly" id="edge71_Node000046_Node000041" title=" " alt="" coords="1706,275,918,311,357,339,291,359,228,386,133,436,131,432,226,381,289,354,356,333,917,305,1705,270"/>
+<area shape="poly" id="edge78_Node000047_Node000008" title=" " alt="" coords="2772,371,2802,376,2847,379,2904,379,3036,378,3103,380,3163,387,3213,402,3233,412,3248,425,3260,447,3261,472,3257,497,3250,518,3245,516,3252,495,3256,472,3254,448,3244,428,3230,416,3211,406,3162,393,3102,385,3036,383,2904,384,2847,384,2802,381,2771,376"/>
+<area shape="poly" id="edge75_Node000047_Node000014" title=" " alt="" coords="2770,371,2802,376,2995,394,3146,399,3296,405,3489,424,3534,431,3533,437,3488,429,3296,410,3145,405,2995,399,2802,381,2769,376"/>
+<area shape="poly" id="edge79_Node000047_Node000015" title=" " alt="" coords="2772,371,2803,376,2939,392,3046,399,3154,407,3291,424,3309,427,3308,432,3290,429,3153,413,3046,405,2939,397,2802,381,2771,377"/>
+<area shape="poly" id="edge73_Node000047_Node000025" title=" " alt="" coords="2646,379,2522,429,2520,424,2645,374"/>
+<area shape="poly" id="edge74_Node000047_Node000029" title=" " alt="" coords="2685,386,2668,435,2663,433,2680,384"/>
+<area shape="poly" id="edge76_Node000047_Node000037" title=" " alt="" coords="2734,375,2857,432,2855,437,2732,380"/>
+<area shape="poly" id="edge77_Node000047_Node000039" title=" " alt="" coords="2769,372,3062,431,3061,437,2768,377"/>
+<area shape="poly" id="edge80_Node000047_Node000042" title=" " alt="" coords="2601,376,2556,381,2322,398,2124,404,1949,404,1786,400,1624,398,1449,399,1252,409,1018,429,1007,431,1006,425,1018,424,1251,403,1449,394,1624,392,1786,395,1949,398,2124,399,2322,392,2555,376,2601,371"/>
+</map>

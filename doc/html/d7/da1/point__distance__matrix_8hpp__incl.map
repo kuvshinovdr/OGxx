@@ -1,0 +1,35 @@
+<map id="include/ogxx/point_distance_matrix.hpp" name="include/ogxx/point_distance_matrix.hpp">
+<area shape="rect" id="Node000001" title="Facilities to compute distance matrices according to selected metrics." alt="" coords="244,5,390,48"/>
+<area shape="rect" id="Node000002" href="$db/d3e/iterable_8hpp.html" title="Iterable interfaces." alt="" coords="205,171,325,197"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="311,50,293,97,275,156,270,155,288,95,306,48"/>
+<area shape="rect" id="Node000013" href="$df/dd1/st__matrix_8hpp.html" title="St_matrix interface, st_ stands for &quot;simple type&quot;, i.e. a thing like int or double." alt="" coords="303,96,435,123"/>
+<area shape="poly" id="edge13_Node000001_Node000013" title=" " alt="" coords="333,47,355,81,350,84,328,50"/>
+<area shape="rect" id="Node000003" href="$de/d2f/primitive__definitions_8hpp.html" title="Primitive type declarations like scalar indices and so on." alt="" coords="215,320,406,347"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="259,199,242,233,238,252,242,271,257,292,276,309,272,313,253,295,237,273,233,252,237,231,254,196"/>
+<area shape="rect" id="Node000012" href="$d9/dde/iterator_8hpp.html" title="Linear sequence iterator interfaces." alt="" coords="251,245,370,272"/>
+<area shape="poly" id="edge11_Node000002_Node000012" title=" " alt="" coords="275,196,297,231,292,233,271,199"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="5,395,69,421"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="261,350,84,396,83,391,260,345"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="92,395,153,421"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="279,350,168,392,166,387,277,345"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="176,395,215,421"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="292,349,230,388,227,384,289,345"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="239,395,291,421"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="305,349,283,383,279,380,300,346"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="316,395,398,421"/>
+<area shape="poly" id="edge7_Node000003_Node000008" title=" " alt="" coords="321,346,343,380,339,383,316,349"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="423,395,491,421"/>
+<area shape="poly" id="edge8_Node000003_Node000009" title=" " alt="" coords="337,345,419,385,417,390,335,350"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="515,395,567,421"/>
+<area shape="poly" id="edge9_Node000003_Node000010" title=" " alt="" coords="352,345,501,391,499,396,351,350"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="591,395,670,421"/>
+<area shape="poly" id="edge10_Node000003_Node000011" title=" " alt="" coords="369,345,576,391,575,396,368,350"/>
+<area shape="poly" id="edge12_Node000012_Node000003" title=" " alt="" coords="313,273,313,304,308,304,308,273"/>
+<area shape="poly" id="edge14_Node000013_Node000002" title=" " alt="" coords="352,125,297,164,294,159,349,121"/>
+<area shape="rect" id="Node000014" href="$df/dce/matrix_8hpp.html" title="Abstract matrix interface." alt="" coords="349,171,464,197"/>
+<area shape="poly" id="edge15_Node000013_Node000014" title=" " alt="" coords="378,122,395,156,391,158,373,124"/>
+<area shape="poly" id="edge16_Node000014_Node000003" title=" " alt="" coords="408,198,400,233,383,273,365,295,345,313,341,309,361,291,379,271,395,232,402,197"/>
+<area shape="poly" id="edge17_Node000014_Node000012" title=" " alt="" coords="391,200,341,238,338,234,388,196"/>
+<area shape="rect" id="Node000015" title=" " alt="" coords="444,245,515,272"/>
+<area shape="poly" id="edge18_Node000014_Node000015" title=" " alt="" coords="421,196,458,232,454,236,417,200"/>
+</map>

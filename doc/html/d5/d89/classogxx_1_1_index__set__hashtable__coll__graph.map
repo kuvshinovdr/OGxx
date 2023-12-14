@@ -1,0 +1,11 @@
+<map id="ogxx::Index_set_hashtable" name="ogxx::Index_set_hashtable">
+<area shape="rect" id="Node000001" title=" " alt="" coords="88,188,264,215"/>
+<area shape="rect" id="Node000002" href="$d3/da1/classogxx_1_1_st__set.html" title="Possibly non&#45;iterable set of simple type items." alt="" coords="5,89,83,116"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="75,123,160,185,157,190,72,128"/>
+<area shape="rect" id="Node000003" href="$d9/d72/classogxx_1_1_sized__iterable.html" title=" " alt="" coords="106,81,246,124"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="179,140,179,188,173,188,173,140"/>
+<area shape="rect" id="Node000004" href="$d8/d9b/classogxx_1_1_iterable.html" title="An interface for an object that can be iterated with an iterator." alt="" coords="102,5,250,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="179,48,179,81,173,81,173,48"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="270,81,399,124"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="289,135,198,190,195,185,286,130"/>
+</map>

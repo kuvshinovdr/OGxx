@@ -1,0 +1,26 @@
+<map id="include/ogxx/io_head.hpp" name="include/ogxx/io_head.hpp">
+<area shape="rect" id="Node000001" title="Shared things for *_io.hpp files." alt="" coords="357,5,526,32"/>
+<area shape="rect" id="Node000002" href="$d8/d3e/adjacency__list__io_8hpp.html" title="Textual input&#45;output for adjacency list." alt="" coords="5,80,163,123"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="371,38,164,85,163,80,370,33"/>
+<area shape="rect" id="Node000006" href="$d6/d1d/bit__matrix__io_8hpp.html" title="Bit_matrix reading and printing operations." alt="" coords="186,80,342,123"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="401,41,311,82,309,77,399,36"/>
+<area shape="rect" id="Node000007" href="$d6/d2b/edge__list__io_8hpp.html" title="Textual input&#45;output for edge list." alt="" coords="366,80,517,123"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="444,48,444,80,439,80,439,48"/>
+<area shape="rect" id="Node000008" href="$dd/db4/st__matrix__io_8hpp.html" title="St_matrix reading and printing operations." alt="" coords="727,80,879,123"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="515,33,715,77,726,80,725,85,714,83,514,38"/>
+<area shape="rect" id="Node000011" href="$db/db9/parsing__utils_8hpp.html" title="Utility functions to make text parsing easier." alt="" coords="540,88,703,115"/>
+<area shape="poly" id="edge11_Node000001_Node000011" title=" " alt="" coords="484,36,594,85,592,90,482,41"/>
+<area shape="rect" id="Node000003" href="$df/d01/source_2adjacency__list__io__read_8cpp.html" title="Implementation of ogxx::io::read function for Adjacency_list." alt="" coords="338,171,486,213"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="176,125,339,168,337,173,175,130"/>
+<area shape="rect" id="Node000004" href="$d0/d40/tests_2adjacency__list__io__read_8cpp.html" title="Adjacency list io::read function tests." alt="" coords="74,171,211,213"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="108,134,131,169,127,172,104,137"/>
+<area shape="rect" id="Node000005" href="$da/d4a/build__all_8cpp.html" title="Include all test files here to build them at once." alt="" coords="406,261,533,288"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="227,211,418,258,417,263,226,217"/>
+<area shape="rect" id="Node000009" href="$d1/d44/source_2st__matrix__io__read_8cpp.html" title="Implementation of st_matrix_io.hpp&#39;s read function." alt="" coords="560,171,696,213"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="750,132,670,173,667,168,747,128"/>
+<area shape="rect" id="Node000010" href="$d0/ddf/tests_2st__matrix__io__read_8cpp.html" title="St_matrix io::read function tests." alt="" coords="733,171,859,213"/>
+<area shape="poly" id="edge9_Node000008_Node000010" title=" " alt="" coords="803,138,800,171,795,170,797,138"/>
+<area shape="poly" id="edge10_Node000010_Node000005" title=" " alt="" coords="719,215,521,263,520,258,718,210"/>
+<area shape="poly" id="edge12_Node000011_Node000003" title=" " alt="" coords="579,123,462,173,460,168,577,119"/>
+<area shape="poly" id="edge13_Node000011_Node000009" title=" " alt="" coords="626,130,629,170,624,170,621,131"/>
+</map>

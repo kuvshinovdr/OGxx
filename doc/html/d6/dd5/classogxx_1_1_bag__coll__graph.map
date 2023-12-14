@@ -1,0 +1,7 @@
+<map id="ogxx::Bag&lt; Item &gt;" name="ogxx::Bag&lt; Item &gt;">
+<area shape="rect" id="Node000001" title="Generic container interface with inserts and erases but no fixed ordering of items." alt="" coords="15,171,144,197"/>
+<area shape="rect" id="Node000002" href="$d9/d72/classogxx_1_1_sized__iterable.html" title="Not only iterable but we know in advance, how many items it contains." alt="" coords="10,80,149,123"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="82,139,82,170,77,170,77,139"/>
+<area shape="rect" id="Node000003" href="$d8/d9b/classogxx_1_1_iterable.html" title="An interface for an object that can be iterated with an iterator." alt="" coords="5,5,154,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="82,48,82,80,77,80,77,48"/>
+</map>

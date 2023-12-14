@@ -1,0 +1,14 @@
+<map id="ogxx::Symmetric_dense_st_matrix&lt; ST &gt;" name="ogxx::Symmetric_dense_st_matrix&lt; ST &gt;">
+<area shape="rect" id="Node000001" title="A class that represents a symmetric matrix in dense storage format." alt="" coords="5,264,168,307"/>
+<area shape="rect" id="Node000002" href="$da/dce/classogxx_1_1_st__matrix.html" title="Simple type matrix interface. Iterating the matrix means going through all its elements in row&#45;major ..." alt="" coords="10,173,163,200"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="81,215,82,263,76,263,76,215"/>
+<area shape="poly" id="edge5_Node000001_Node000002" title=" " alt="" coords="97,215,97,263,91,263,92,215"/>
+<area shape="rect" id="Node000003" href="$d0/d06/classogxx_1_1_matrix__base.html" title="Common matrix function independent of matrix item type." alt="" coords="6,89,135,116"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="78,131,87,172,81,173,73,132"/>
+<area shape="rect" id="Node000004" href="$d9/d72/classogxx_1_1_sized__iterable.html" title=" " alt="" coords="158,81,298,124"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="180,134,110,175,107,170,178,130"/>
+<area shape="rect" id="Node000005" href="$d8/d9b/classogxx_1_1_iterable.html" title="An interface for an object that can be iterated with an iterator." alt="" coords="154,5,302,32"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="231,48,231,81,225,81,225,48"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="187,173,309,200"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="215,211,123,266,120,261,212,206"/>
+</map>

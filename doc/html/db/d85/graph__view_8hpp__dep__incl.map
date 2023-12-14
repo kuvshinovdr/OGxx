@@ -1,0 +1,47 @@
+<map id="include/ogxx/graph_view.hpp" name="include/ogxx/graph_view.hpp">
+<area shape="rect" id="Node000001" title="Graph view interface that may be used for graph representation coversion." alt="" coords="1097,5,1227,48"/>
+<area shape="rect" id="Node000002" href="$d6/da0/adjacency__list_8hpp.html" title="Adjacency list graph representation interface." alt="" coords="1228,96,1386,139"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1210,54,1275,93,1272,98,1207,59"/>
+<area shape="rect" id="Node000007" href="$d3/dcc/graph__repr__conv_8hpp.html" title="Graph representation conversion operations." alt="" coords="761,187,891,229"/>
+<area shape="poly" id="edge20_Node000001_Node000007" title=" " alt="" coords="1082,39,997,60,954,76,914,98,890,118,869,142,838,188,834,185,864,139,886,114,911,94,952,71,996,54,1081,34"/>
+<area shape="rect" id="Node000010" href="$d0/da2/graph__view__di__al_8cpp.html" title="Graph view implementation for directed graph represented by an adjacency list." alt="" coords="1884,187,2029,229"/>
+<area shape="poly" id="edge21_Node000001_Node000010" title=" " alt="" coords="1243,40,1320,61,1399,94,1415,105,1425,116,1434,127,1449,136,1510,158,1562,171,1610,176,1656,176,1752,173,1808,176,1873,184,1884,186,1883,191,1872,189,1807,181,1752,179,1656,181,1610,181,1561,176,1508,163,1447,141,1431,131,1421,120,1411,109,1396,98,1318,66,1241,45"/>
+<area shape="rect" id="Node000011" href="$dc/dbd/bit__matrix_8hpp.html" title="Bit_matrix interface." alt="" coords="482,104,663,131"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="1082,43,657,106,657,101,1081,37"/>
+<area shape="rect" id="Node000014" href="$dc/d24/graph__view__un__am_8cpp.html" title="Adjacency matrix of undirected graph adapter." alt="" coords="588,187,736,229"/>
+<area shape="poly" id="edge23_Node000001_Node000014" title=" " alt="" coords="1082,43,977,64,864,99,816,119,770,143,694,188,691,184,767,139,814,114,862,93,975,59,1081,37"/>
+<area shape="rect" id="Node000016" href="$d0/df1/edge__list_8hpp.html" title="Graph edge list interface." alt="" coords="925,104,1100,131"/>
+<area shape="poly" id="edge16_Node000001_Node000016" title=" " alt="" coords="1115,59,1035,106,1032,101,1112,54"/>
+<area shape="rect" id="Node000018" href="$d1/d63/graph__view__di__el_8cpp.html" title="Graph view implementation for directed graph represented by an edge list." alt="" coords="1090,187,1234,229"/>
+<area shape="poly" id="edge22_Node000001_Node000018" title=" " alt="" coords="1164,63,1164,186,1159,186,1159,63"/>
+<area shape="rect" id="Node000019" href="$d0/d9c/is__chain__loop_8cpp.html" title="ogxx::functions, that check a subgraph of the graph gv contains (contour) on the vertices enumerated ..." alt="" coords="1460,104,1629,131"/>
+<area shape="poly" id="edge24_Node000001_Node000019" title=" " alt="" coords="1243,44,1490,101,1489,106,1242,49"/>
+<area shape="rect" id="Node000020" href="$d7/dc5/make__clique_8cpp.html" title="make_undirected_clique" alt="" coords="1653,104,1815,131"/>
+<area shape="poly" id="edge25_Node000001_Node000020" title=" " alt="" coords="1242,35,1425,59,1641,93,1679,101,1678,106,1640,99,1424,65,1242,40"/>
+<area shape="rect" id="Node000003" href="$d8/d3e/adjacency__list__io_8hpp.html" title="Textual input&#45;output for adjacency list." alt="" coords="1258,187,1415,229"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="1321,153,1332,186,1327,187,1316,154"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="1214,135,1067,158,904,189,892,192,891,187,902,184,1066,153,1213,129"/>
+<area shape="rect" id="Node000008" href="$d6/dda/adjacency__implementations_8cpp.html" title="ogxx::Adjacency implementations based upon different Index_set implementations" alt="" coords="1439,195,1690,221"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="1383,142,1528,192,1527,197,1381,147"/>
+<area shape="rect" id="Node000009" href="$d5/d8b/adjacency__list__vector_8cpp.html" title="Adjacency_list interface implementation over std::vector." alt="" coords="1713,187,1861,229"/>
+<area shape="poly" id="edge8_Node000002_Node000009" title=" " alt="" coords="1401,135,1405,136,1554,159,1702,184,1714,186,1713,192,1701,189,1553,165,1404,141,1400,141"/>
+<area shape="poly" id="edge9_Node000002_Node000010" title=" " alt="" coords="1401,136,1405,136,1536,152,1639,159,1742,166,1873,184,1884,186,1883,191,1872,189,1741,172,1638,164,1535,157,1404,141,1401,141"/>
+<area shape="rect" id="Node000004" href="$df/d01/source_2adjacency__list__io__read_8cpp.html" title="Implementation of ogxx::io::read function for Adjacency_list." alt="" coords="1179,277,1326,320"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="1308,243,1274,279,1270,275,1304,239"/>
+<area shape="rect" id="Node000005" href="$d0/d40/tests_2adjacency__list__io__read_8cpp.html" title="Adjacency list io::read function tests." alt="" coords="1350,277,1488,320"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="1368,239,1402,275,1398,279,1364,243"/>
+<area shape="rect" id="Node000006" href="$da/d4a/build__all_8cpp.html" title="Include all test files here to build them at once." alt="" coords="1356,368,1482,395"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="1422,336,1422,367,1416,367,1416,336"/>
+<area shape="poly" id="edge12_Node000011_Node000007" title=" " alt="" coords="624,134,767,184,766,189,622,139"/>
+<area shape="rect" id="Node000012" href="$d6/d1d/bit__matrix__io_8hpp.html" title="Bit_matrix reading and printing operations." alt="" coords="5,187,161,229"/>
+<area shape="poly" id="edge11_Node000011_Node000012" title=" " alt="" coords="476,136,173,189,161,192,160,186,172,184,475,131"/>
+<area shape="rect" id="Node000013" href="$d9/d93/dense__bit__matrix_8cpp.html" title=" " alt="" coords="185,195,373,221"/>
+<area shape="poly" id="edge13_Node000011_Node000013" title=" " alt="" coords="517,138,322,197,320,192,515,133"/>
+<area shape="poly" id="edge14_Node000011_Node000014" title=" " alt="" coords="598,140,643,184,639,188,594,144"/>
+<area shape="rect" id="Node000015" href="$d5/d69/symmetric__dense__bit__matrix_8cpp.html" title="Symmetric_dense_bit matrix implementation (of abstract matrix interface from matrix...." alt="" coords="397,187,564,229"/>
+<area shape="poly" id="edge15_Node000011_Node000015" title=" " alt="" coords="550,144,504,188,500,184,546,140"/>
+<area shape="poly" id="edge18_Node000016_Node000007" title=" " alt="" coords="973,140,870,189,868,184,971,135"/>
+<area shape="rect" id="Node000017" href="$d6/d2b/edge__list__io_8hpp.html" title="Textual input&#45;output for edge list." alt="" coords="915,187,1065,229"/>
+<area shape="poly" id="edge17_Node000016_Node000017" title=" " alt="" coords="1008,147,998,187,992,186,1003,145"/>
+<area shape="poly" id="edge19_Node000016_Node000018" title=" " alt="" coords="1048,137,1128,184,1126,189,1046,141"/>
+</map>

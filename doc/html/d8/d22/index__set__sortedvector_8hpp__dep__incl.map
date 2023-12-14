@@ -1,0 +1,7 @@
+<map id="source/index_set_sortedvector.hpp" name="source/index_set_sortedvector.hpp">
+<area shape="rect" id="Node000001" title="Index_set implementation based upon a sorted vector of set elements." alt="" coords="149,5,371,32"/>
+<area shape="rect" id="Node000002" href="$d6/dda/adjacency__implementations_8cpp.html" title="ogxx::Adjacency implementations based upon different Index_set implementations" alt="" coords="5,80,256,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="225,42,155,82,152,77,223,38"/>
+<area shape="rect" id="Node000003" href="$d4/d0c/source_2index__set__sortedvector_8cpp.html" title="Index_set implemented via sorted vector." alt="" coords="279,80,502,107"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="297,38,369,77,366,82,295,42"/>
+</map>

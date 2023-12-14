@@ -1,0 +1,37 @@
+<map id="ogxx::Sized_iterable&lt; Item &gt;" name="ogxx::Sized_iterable&lt; Item &gt;">
+<area shape="rect" id="Node000001" title="Not only iterable but we know in advance, how many items it contains." alt="" coords="202,173,341,216"/>
+<area shape="rect" id="Node000003" href="$d2/d24/classogxx_1_1_bag.html" title=" " alt="" coords="392,5,557,32"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="289,158,329,99,356,68,388,42,410,30,412,35,390,46,360,72,333,102,293,161"/>
+<area shape="rect" id="Node000004" href="$d2/d24/classogxx_1_1_bag.html" title=" " alt="" coords="389,56,559,83"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="301,160,341,125,388,92,414,81,416,86,390,97,344,129,305,164"/>
+<area shape="rect" id="Node000006" href="$d2/d20/classogxx_1_1_indexed__iterable.html" title=" " alt="" coords="399,107,550,149"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="352,166,406,147,408,153,353,171"/>
+<area shape="rect" id="Node000007" href="$d2/d20/classogxx_1_1_indexed__iterable.html" title=" " alt="" coords="399,173,550,216"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="357,192,398,192,398,197,357,197"/>
+<area shape="rect" id="Node000009" href="$d2/d20/classogxx_1_1_indexed__iterable.html" title=" " alt="" coords="399,240,550,283"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="353,219,408,237,406,242,352,224"/>
+<area shape="rect" id="Node000010" href="$d2/d24/classogxx_1_1_bag.html" title="Generic container interface with inserts and erases but no fixed ordering of items." alt="" coords="410,373,539,400"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="291,229,330,296,358,330,391,359,411,370,408,375,387,364,354,334,326,299,286,231"/>
+<area shape="rect" id="Node000016" href="$d2/d20/classogxx_1_1_indexed__iterable.html" title="Finally, the linear zero&#45;based integer&#45;indexed iterable collection." alt="" coords="399,307,550,349"/>
+<area shape="poly" id="edge16_Node000001_Node000016" title=" " alt="" coords="306,225,345,260,390,292,412,304,410,308,388,297,342,264,303,229"/>
+<area shape="rect" id="Node000002" href="$d8/d9b/classogxx_1_1_iterable.html" title="An interface for an object that can be iterated with an iterator." alt="" coords="5,181,154,208"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="169,192,201,192,201,197,169,197"/>
+<area shape="rect" id="Node000005" href="$df/d8c/classogxx_1_1_edge__list.html" title="Interface (abstract base class) for storing an edge list of a graph." alt="" coords="647,56,758,83"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="575,67,647,67,647,72,575,72"/>
+<area shape="rect" id="Node000008" href="$d2/d01/classogxx_1_1_index__set__sortedvector.html" title=" " alt="" coords="607,181,798,208"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="565,192,607,192,607,197,565,197"/>
+<area shape="rect" id="Node000011" href="$d8/d68/classogxx_1_1_list.html" title=" " alt="" coords="621,285,784,312"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="545,365,558,359,582,340,606,322,635,310,637,315,609,326,585,345,561,364,548,370"/>
+<area shape="rect" id="Node000014" href="$d8/d68/classogxx_1_1_list.html" title=" " alt="" coords="638,336,767,379"/>
+<area shape="poly" id="edge14_Node000010_Node000014" title=" " alt="" coords="554,374,637,363,638,368,554,379"/>
+<area shape="rect" id="Node000015" href="$d8/d68/classogxx_1_1_list.html" title="Generic container interface with inserts and erases and stores them in linear order as a list." alt="" coords="639,403,766,429"/>
+<area shape="poly" id="edge15_Node000010_Node000015" title=" " alt="" coords="554,394,639,405,638,410,554,400"/>
+<area shape="rect" id="Node000012" href="$d3/d35/classogxx_1_1_adjacency__list.html" title="Graph representation where, which maps vertex index to the adjacency of that vertex." alt="" coords="846,285,988,312"/>
+<area shape="poly" id="edge11_Node000011_Node000012" title=" " alt="" coords="800,296,845,296,845,301,800,301"/>
+<area shape="rect" id="Node000013" href="$d4/dae/classogxx_1_1_adjacency__list__vector.html" title=" " alt="" coords="1036,277,1178,320"/>
+<area shape="poly" id="edge12_Node000012_Node000013" title=" " alt="" coords="1004,305,1036,305,1036,310,1004,310"/>
+<area shape="poly" id="edge13_Node000012_Node000013" title=" " alt="" coords="1004,287,1036,287,1036,293,1004,292"/>
+<area shape="poly" id="edge17_Node000016_Node000011" title=" " alt="" coords="565,314,620,307,621,312,565,319"/>
+<area shape="poly" id="edge18_Node000016_Node000014" title=" " alt="" coords="565,337,638,346,637,352,565,342"/>
+<area shape="poly" id="edge19_Node000016_Node000015" title=" " alt="" coords="549,354,561,359,584,374,608,388,641,400,639,405,606,393,582,379,558,364,547,358"/>
+</map>

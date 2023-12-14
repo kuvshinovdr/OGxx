@@ -1,0 +1,10 @@
+<map id="ogxx::Edge_list_neighbor_iterator" name="ogxx::Edge_list_neighbor_iterator">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,219,173,261"/>
+<area shape="rect" id="Node000002" href="$dc/d8e/classogxx_1_1_basic__iterator.html" title="Generic iterator for traversing a sequence of items of a small easily&#45;copyable or movable type." alt="" coords="39,120,139,147"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="84,162,84,218,79,218,78,162"/>
+<area shape="poly" id="edge2_Node000001_Node000002" title=" " alt="" coords="100,162,99,218,94,218,94,162"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="162,112,320,155"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="200,166,120,220,117,216,197,162"/>
+<area shape="rect" id="Node000004" href="$dc/d8e/classogxx_1_1_basic__iterator.html" title="Generic iterator for traversing a sequence of items of a small easily&#45;copyable or movable type." alt="" coords="172,5,310,48"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="244,64,244,111,238,111,238,64"/>
+</map>

@@ -1,0 +1,16 @@
+<map id="ogxx::Symmetric_dense_bit_matrix" name="ogxx::Symmetric_dense_bit_matrix">
+<area shape="rect" id="Node000001" title="Symmetric dense bit matrix stores only one half without the main diagonal." alt="" coords="80,264,243,307"/>
+<area shape="rect" id="Node000002" href="$d4/def/classogxx_1_1_bit__matrix.html" title="Bit matrix interface. Iterating the matrix means going through all its elements in row&#45;major order." alt="" coords="27,173,144,200"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="99,211,140,262,136,265,95,215"/>
+<area shape="poly" id="edge5_Node000001_Node000002" title=" " alt="" coords="114,210,155,262,151,265,110,213"/>
+<area shape="rect" id="Node000003" href="$d0/d06/classogxx_1_1_matrix__base.html" title="Common matrix function independent of matrix item type." alt="" coords="5,89,134,116"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="77,131,86,172,80,173,72,132"/>
+<area shape="rect" id="Node000004" href="$d9/d72/classogxx_1_1_sized__iterable.html" title=" " alt="" coords="157,81,297,124"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="179,134,109,175,106,170,177,130"/>
+<area shape="rect" id="Node000005" href="$d8/d9b/classogxx_1_1_iterable.html" title="An interface for an object that can be iterated with an iterator." alt="" coords="153,5,301,32"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="230,48,230,81,224,81,224,48"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="168,173,304,200"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="219,214,180,265,175,262,215,211"/>
+<area shape="rect" id="Node000007" href="$d3/d28/structogxx_1_1_matrix__shape.html" title="Matrix shape description (just two sizes)." alt="" coords="329,173,464,200"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="357,209,281,242,220,266,218,261,279,238,355,204"/>
+</map>

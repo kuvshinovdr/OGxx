@@ -1,0 +1,12 @@
+<map id="include/ogxx/iterator_algorithms.hpp" name="include/ogxx/iterator_algorithms.hpp">
+<area shape="rect" id="Node000001" title="Helper functions to work with iterators inspired by STL algorithm header." alt="" coords="214,5,353,48"/>
+<area shape="rect" id="Node000002" href="$d3/d60/point__distance__matrix_8cpp.html" title="Implementation of point distance matrix adapter for a metrics object." alt="" coords="5,96,154,139"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="223,57,128,98,126,93,221,52"/>
+<area shape="rect" id="Node000003" href="$d2/d31/tests_2index__set__sortedvector_8cpp.html" title="Testing Index_set_sortedvector class." alt="" coords="177,104,390,131"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="286,64,286,104,281,104,281,64"/>
+<area shape="rect" id="Node000005" href="$dd/d7e/stl__iterator__and__iterator__algorithms_8cpp.html" title="Testing Stl_iterator and iterator_algorithms.hpp." alt="" coords="413,96,602,139"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="351,52,456,93,454,98,349,57"/>
+<area shape="rect" id="Node000004" href="$da/d4a/build__all_8cpp.html" title="Include all test files here to build them at once." alt="" coords="332,187,459,213"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="315,138,380,184,377,188,311,142"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="468,150,415,188,412,184,465,146"/>
+</map>

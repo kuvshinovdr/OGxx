@@ -1,0 +1,23 @@
+<map id="include/ogxx/iterator_algorithms.hpp" name="include/ogxx/iterator_algorithms.hpp">
+<area shape="rect" id="Node000001" title="Helper functions to work with iterators inspired by STL algorithm header." alt="" coords="241,5,380,48"/>
+<area shape="rect" id="Node000002" href="$d9/dde/iterator_8hpp.html" title="Linear sequence iterator interfaces." alt="" coords="251,96,370,123"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="313,49,313,80,308,80,308,49"/>
+<area shape="rect" id="Node000003" href="$de/d2f/primitive__definitions_8hpp.html" title="Primitive type declarations like scalar indices and so on." alt="" coords="215,171,406,197"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="313,123,313,155,308,155,308,123"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="5,245,69,272"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="261,201,84,247,83,242,260,195"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="92,245,153,272"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="279,200,168,243,166,238,277,195"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="176,245,215,272"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="292,200,230,239,227,235,289,196"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="239,245,291,272"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="305,199,283,233,279,231,300,196"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="316,245,398,272"/>
+<area shape="poly" id="edge7_Node000003_Node000008" title=" " alt="" coords="321,196,343,231,339,234,316,199"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="423,245,491,272"/>
+<area shape="poly" id="edge8_Node000003_Node000009" title=" " alt="" coords="337,195,419,236,417,240,335,200"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="515,245,567,272"/>
+<area shape="poly" id="edge9_Node000003_Node000010" title=" " alt="" coords="352,195,501,242,499,247,351,201"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="591,245,670,272"/>
+<area shape="poly" id="edge10_Node000003_Node000011" title=" " alt="" coords="369,195,576,242,575,247,368,201"/>
+</map>

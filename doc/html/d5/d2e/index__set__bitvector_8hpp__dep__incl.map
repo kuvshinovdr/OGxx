@@ -1,0 +1,7 @@
+<map id="source/index_set_bitvector.hpp" name="source/index_set_bitvector.hpp">
+<area shape="rect" id="Node000001" title="Index_set implemented via bit vector." alt="" coords="154,5,355,32"/>
+<area shape="rect" id="Node000002" href="$d6/dda/adjacency__implementations_8cpp.html" title="ogxx::Adjacency implementations based upon different Index_set implementations" alt="" coords="5,80,256,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="222,42,154,82,151,77,219,38"/>
+<area shape="rect" id="Node000003" href="$de/d57/index__set__bitvector_8cpp.html" title="Defining interfaces for bitvector." alt="" coords="280,80,480,107"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="290,38,359,77,357,82,288,42"/>
+</map>

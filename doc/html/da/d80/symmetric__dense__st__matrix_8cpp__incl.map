@@ -1,0 +1,42 @@
+<map id="source/symmetric_dense_st_matrix.cpp" name="source/symmetric_dense_st_matrix.cpp">
+<area shape="rect" id="Node000001" title="Implementation of a class for compact storage of a symmetric matrix." alt="" coords="493,5,661,48"/>
+<area shape="rect" id="Node000002" href="$df/dd1/st__matrix_8hpp.html" title="St_matrix interface, st_ stands for &quot;simple type&quot;, i.e. a thing like int or double." alt="" coords="297,96,430,123"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="523,51,412,93,410,88,521,46"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="591,395,669,421"/>
+<area shape="poly" id="edge22_Node000001_Node000012" title=" " alt="" coords="591,47,618,106,629,144,633,183,633,260,633,379,628,379,628,260,628,183,623,145,613,108,586,49"/>
+<area shape="rect" id="Node000016" href="$d4/d29/stl__iterator_8hpp.html" title="This file defines the Stl_iterator class, which provides an iterator for standard C++ containers." alt="" coords="454,96,593,123"/>
+<area shape="poly" id="edge18_Node000001_Node000016" title=" " alt="" coords="565,50,543,84,538,81,561,47"/>
+<area shape="rect" id="Node000018" title=" " alt="" coords="668,96,723,123"/>
+<area shape="poly" id="edge21_Node000001_Node000018" title=" " alt="" coords="609,46,666,85,663,89,606,51"/>
+<area shape="rect" id="Node000003" href="$db/d3e/iterable_8hpp.html" title="Iterable interfaces." alt="" coords="315,171,436,197"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="368,123,374,155,368,156,363,124"/>
+<area shape="rect" id="Node000014" href="$df/dce/matrix_8hpp.html" title="Abstract matrix interface." alt="" coords="177,171,291,197"/>
+<area shape="poly" id="edge14_Node000002_Node000014" title=" " alt="" coords="342,126,271,165,269,160,340,121"/>
+<area shape="rect" id="Node000004" href="$de/d2f/primitive__definitions_8hpp.html" title="Primitive type declarations like scalar indices and so on." alt="" coords="270,320,460,347"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="397,196,414,210,431,229,440,250,438,273,423,295,403,313,399,309,419,292,433,271,435,251,426,232,411,214,393,200"/>
+<area shape="rect" id="Node000013" href="$d9/dde/iterator_8hpp.html" title="Linear sequence iterator interfaces." alt="" coords="306,245,424,272"/>
+<area shape="poly" id="edge12_Node000003_Node000013" title=" " alt="" coords="376,198,372,230,366,230,371,197"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="357,395,421,421"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="372,346,382,379,377,381,366,348"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="444,395,504,421"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="385,345,444,384,441,388,382,349"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="528,395,567,421"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="398,345,515,391,513,396,396,350"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="5,395,58,421"/>
+<area shape="poly" id="edge7_Node000004_Node000008" title=" " alt="" coords="293,350,193,369,73,397,72,392,192,364,292,345"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="82,395,165,421"/>
+<area shape="poly" id="edge8_Node000004_Node000009" title=" " alt="" coords="324,350,180,393,178,387,322,345"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="189,395,258,421"/>
+<area shape="poly" id="edge9_Node000004_Node000010" title=" " alt="" coords="341,350,263,390,261,385,339,345"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="281,395,334,421"/>
+<area shape="poly" id="edge10_Node000004_Node000011" title=" " alt="" coords="357,349,329,384,325,381,353,346"/>
+<area shape="poly" id="edge11_Node000004_Node000012" title=" " alt="" coords="412,345,577,389,576,395,410,350"/>
+<area shape="poly" id="edge13_Node000013_Node000004" title=" " alt="" coords="368,273,368,304,362,304,362,273"/>
+<area shape="poly" id="edge15_Node000014_Node000004" title=" " alt="" coords="224,200,211,215,200,234,195,253,200,271,226,295,258,312,256,317,223,300,196,273,190,253,195,232,207,212,219,196"/>
+<area shape="poly" id="edge16_Node000014_Node000013" title=" " alt="" coords="258,196,330,235,327,240,256,200"/>
+<area shape="rect" id="Node000015" title=" " alt="" coords="211,245,282,272"/>
+<area shape="poly" id="edge17_Node000014_Node000015" title=" " alt="" coords="239,197,244,230,239,231,234,198"/>
+<area shape="poly" id="edge20_Node000016_Node000013" title=" " alt="" coords="532,122,543,158,543,179,535,199,516,219,492,235,440,253,439,248,490,230,512,215,531,196,537,178,537,159,527,124"/>
+<area shape="rect" id="Node000017" title=" " alt="" coords="460,171,521,197"/>
+<area shape="poly" id="edge19_Node000016_Node000017" title=" " alt="" coords="520,124,505,158,500,155,515,122"/>
+</map>

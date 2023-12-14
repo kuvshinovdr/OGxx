@@ -1,0 +1,21 @@
+<map id="include/ogxx/iterator.hpp" name="include/ogxx/iterator.hpp">
+<area shape="rect" id="Node000001" title="Linear sequence iterator interfaces." alt="" coords="229,5,392,32"/>
+<area shape="rect" id="Node000002" href="$de/d2f/primitive__definitions_8hpp.html" title="Primitive type declarations like scalar indices and so on." alt="" coords="215,80,406,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="313,33,313,64,308,64,308,33"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,155,69,181"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="261,110,84,156,83,151,260,105"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="92,155,153,181"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="279,110,168,152,166,147,277,105"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="176,155,215,181"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="292,109,230,148,227,144,289,105"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="239,155,291,181"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="305,109,283,143,279,140,300,106"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="316,155,398,181"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="321,106,343,140,339,143,316,109"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="423,155,491,181"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="337,105,419,145,417,150,335,110"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="515,155,567,181"/>
+<area shape="poly" id="edge8_Node000002_Node000009" title=" " alt="" coords="352,105,501,151,499,156,351,110"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="591,155,670,181"/>
+<area shape="poly" id="edge9_Node000002_Node000010" title=" " alt="" coords="369,105,576,151,575,156,368,110"/>
+</map>

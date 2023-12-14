@@ -1,0 +1,24 @@
+<map id="include/ogxx/st_matrix.hpp" name="include/ogxx/st_matrix.hpp">
+<area shape="rect" id="Node000001" title="St_matrix interface, st_ stands for &quot;simple type&quot;, i.e. a thing like int or double." alt="" coords="358,5,535,32"/>
+<area shape="rect" id="Node000002" href="$dd/d0c/point__distance__matrix_8hpp.html" title="Facilities to compute distance matrices according to selected metrics." alt="" coords="7,80,152,123"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="371,38,165,83,153,85,152,80,164,77,370,33"/>
+<area shape="rect" id="Node000004" href="$dd/db4/st__matrix__io_8hpp.html" title="St_matrix reading and printing operations." alt="" coords="177,80,329,123"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="403,41,304,82,302,77,401,36"/>
+<area shape="rect" id="Node000008" href="$df/da6/source_2dense__st__matrix_8cpp.html" title="Dense matrix implementation (of abstract matrix interface from matrix.hpp)." alt="" coords="354,88,539,115"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="449,48,449,88,444,88,444,48"/>
+<area shape="rect" id="Node000009" href="$d8/d4d/symmetric__dense__st__matrix_8cpp.html" title="Implementation of a class for compact storage of a symmetric matrix." alt="" coords="563,80,730,123"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="493,36,596,77,594,82,491,41"/>
+<area shape="rect" id="Node000011" href="$db/dc8/tests_2dense__st__matrix_8cpp.html" title="A helper file to be included in each testing cpp." alt="" coords="680,179,855,205"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="551,27,664,45,712,60,744,78,760,102,769,130,771,178,766,178,763,131,756,104,740,82,710,65,663,51,550,32"/>
+<area shape="rect" id="Node000003" href="$d3/d60/point__distance__matrix_8cpp.html" title="Implementation of point distance matrix adapter for a metrics object." alt="" coords="5,171,154,213"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="82,138,82,170,77,170,77,138"/>
+<area shape="rect" id="Node000005" href="$d1/d44/source_2st__matrix__io__read_8cpp.html" title="Implementation of st_matrix_io.hpp&#39;s read function." alt="" coords="185,171,321,213"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="256,138,256,170,250,170,250,138"/>
+<area shape="rect" id="Node000006" href="$d0/ddf/tests_2st__matrix__io__read_8cpp.html" title="St_matrix io::read function tests." alt="" coords="348,171,473,213"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="304,128,375,168,372,172,301,133"/>
+<area shape="rect" id="Node000007" href="$da/d4a/build__all_8cpp.html" title="Include all test files here to build them at once." alt="" coords="524,261,651,288"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="471,218,561,258,559,263,469,223"/>
+<area shape="rect" id="Node000010" href="$d5/d40/symmetric__dense__st__matrix__test_8cpp.html" title="Tests for Symmetric_dense_st_matrix." alt="" coords="498,171,656,213"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="623,136,595,172,591,169,619,133"/>
+<area shape="poly" id="edge11_Node000011_Node000007" title=" " alt="" coords="727,214,617,263,614,258,725,209"/>
+</map>

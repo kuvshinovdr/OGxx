@@ -1,0 +1,18 @@
+<map id="ogxx::Bag&lt; Item &gt;" name="ogxx::Bag&lt; Item &gt;">
+<area shape="rect" id="Node000001" title="Generic container interface with inserts and erases but no fixed ordering of items." alt="" coords="192,171,321,197"/>
+<area shape="rect" id="Node000004" href="$d8/d68/classogxx_1_1_list.html" title=" " alt="" coords="5,253,169,280"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="217,207,114,255,112,251,215,202"/>
+<area shape="rect" id="Node000007" href="$d8/d68/classogxx_1_1_list.html" title=" " alt="" coords="192,245,321,288"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="259,213,259,245,254,245,254,213"/>
+<area shape="rect" id="Node000008" href="$d8/d68/classogxx_1_1_list.html" title="Generic container interface with inserts and erases and stores them in linear order as a list." alt="" coords="345,253,472,280"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="295,203,386,251,384,255,292,207"/>
+<area shape="rect" id="Node000002" href="$d9/d72/classogxx_1_1_sized__iterable.html" title="Not only iterable but we know in advance, how many items it contains." alt="" coords="187,80,326,123"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="259,139,259,170,254,170,254,139"/>
+<area shape="rect" id="Node000003" href="$d8/d9b/classogxx_1_1_iterable.html" title="An interface for an object that can be iterated with an iterator." alt="" coords="182,5,331,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="259,48,259,80,254,80,254,48"/>
+<area shape="rect" id="Node000005" href="$d3/d35/classogxx_1_1_adjacency__list.html" title="Graph representation where, which maps vertex index to the adjacency of that vertex." alt="" coords="16,336,158,363"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="90,296,90,336,84,336,84,296"/>
+<area shape="rect" id="Node000006" href="$d4/dae/classogxx_1_1_adjacency__list__vector.html" title=" " alt="" coords="16,411,158,453"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="81,378,82,410,76,411,76,378"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="98,378,98,411,92,410,93,378"/>
+</map>
