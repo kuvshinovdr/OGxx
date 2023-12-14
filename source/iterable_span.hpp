@@ -1,4 +1,6 @@
-/// doc-comment
+/// @file source/iterable_span.hpp
+/// @brief Iterable span iterator class
+/// @author Klimentov A. D.
 #include <ogxx/iterable.hpp>
 #include <ogxx/stl_iterator.hpp>
 #include <iterator>
