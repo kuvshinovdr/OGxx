@@ -53,9 +53,70 @@ namespace ogxx
       -> bool { return !(a == b); }
   }
 
-  
+
   template <typename Item>
   class Iterable_span
+    : public ogxx::Indexed_iterable<Item>
+  {
+  public:
+    Iterable_span() = default;
+
+    Iterable_span(
+      Pass_by<Item>* begin,
+      Pass_by<Item>* end)
+      : _begin(begin), _end(end) {}
+
+    [[nodiscard]] auto iterate() const
+      -> Basic_iterator_uptr<See_by<Item>> override
+    {
+      return new_stl_iterator(_begin, _end));
+    }
+
+    [[nodiscard]] auto is_empty() const noexcept
+      -> bool override
+    {
+      return _begin == _end;
+    }
+
+    [[nodiscard]] auto size() const noexcept
+      -> Scalar_size override
+    {
+      return _end - _begin;
+    }
+
+    [[nodiscard]] auto get(Scalar_index index) const
+      -> See_by<Item> override
+    {
+      auto const ptr = _begin + index;
+      if (!is_within(ptr, _begin, _end))
+        throw std::out_of_range("Iterable_span::get: invalid index");
+
+      if constexpr (std::is_pointer_v<See_by<Item>>) // abstract class
+        return ptr->get();
+      else // non-abstract
+        return *ptr; // only if See_by<Item> === Item
+    }
+
+    [[nodiscard]] auto set(Scalar_index index, Pass_by<Item> value)
+      -> Pass_by<Item> override
+    {
+      auto const ptr = _begin + index;
+      if (!is_within(ptr, _begin, _end))
+        throw std::out_of_range("Iterable_span::get: invalid index");
+
+      auto old = move(*ptr);
+      *ptr = move(value);
+      return old;
+    }
+
+  private:
+    Pass_by<Item>* _begin = nullptr;
+    Pass_by<Item>* _end = nullptr;
+  };
+
+  
+  template <typename Item>
+  class Iterable_span_strided
     : public ogxx::Indexed_iterable<Item>
   {
   public:
@@ -72,7 +133,7 @@ namespace ogxx
     {
       return new_stl_iterator(
         Iterable_span_iterator(_begin, _stride),
-        Iterable_span_iterator(_end, _stride));
+        Iterable_span_iterator(_end,   _stride));
     }
 
     [[nodiscard]] auto is_empty() const noexcept
@@ -108,12 +169,8 @@ namespace ogxx
         throw std::out_of_range("Iterable_span::get: invalid index");
 
       auto old = move(*ptr);
-      *ptr = move(*value);
+      *ptr = move(value);
       return old;
-      // TODO
-      // save old *ptr (old = move(*ptr))
-      // move value into *ptr
-      // return old
     }
 
   private:
@@ -121,5 +178,28 @@ namespace ogxx
     Pass_by<Item> *_end   = nullptr;
     Scalar_index _stride  = 1;
   };
+
+
+  template <typename Item>
+  auto new_iterable_span(
+      Pass_by<Item>* begin,
+      Pass_by<Item>* end,
+      Scalar_index stride
+  )
+    -> std::unique_ptr<ogxx::Indexed_iterable<Item>>
+  {
+    return std::make_unique<Iterable_span_strided<Item>>(begin, end, stride);
+  }
+
+
+  template <typename Item>
+  auto new_iterable_span(
+    Pass_by<Item>* begin,
+    Pass_by<Item>* end
+  )
+    -> std::unique_ptr<ogxx::Indexed_iterable<Item>>
+  {
+    return std::make_unique<Iterable_span<Item>>(begin, end);
+  }
 
 }
