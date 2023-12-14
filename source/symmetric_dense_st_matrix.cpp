@@ -45,7 +45,14 @@ namespace ogxx
         throw std::invalid_argument("Symmetric matrix must have equal rows and cols.");
       
       size_ = new_shape.rows;
+
+      size_t max_size = std::sqrt(std::numeric_limits<size_t>::max());
+      if (size_ > max_size) {
+        throw std::overflow_error("Symmetric_dense_st_matrix::reshape: Size is too large and will cause overflow.");
+      }
+
       data_.resize(size_ * (size_ + 1) / 2); // TODO: check overflow.
+      
     }
 
     auto iterate() const
