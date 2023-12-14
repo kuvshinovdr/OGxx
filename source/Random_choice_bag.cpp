@@ -39,19 +39,21 @@ public:
 
     auto iterate() const
       ->Basic_iterator_uptr<See_by<T>> override
-    {
-      // return new_stl_iterator
+    {  
+      using IteratorType = typename std::vector<Pass_by<T>>::const_iterator; 
+      auto iterator = std::make_unique<STL_iterator<IteratorType>>(elements.begin(), elements.end()); 
+      return iterator; 
     }
 
     auto is_empty() const noexcept
       -> bool override
     {
-      // TODO
+      return elements.empty();
     }
 
     auto size() const noexcept
       -> Scalar_size override
     {
-      // TODO
+      return elements.size();
     }
 };
