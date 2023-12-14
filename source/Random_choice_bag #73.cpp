@@ -1,3 +1,6 @@
+/// @file Random_choice_bag #73.cpp
+/// @brief the Random_choice_bag<T> class, which implements the Bag<T> interface and allows items to be retrieved in random order
+/// @author Sutyagin A.I., nickname Alexanders2007, email asutagin062@gmail.com
 #include <vector>
 #include <random>
 
