@@ -4,7 +4,6 @@
 #include <ogxx/edge_list.hpp>
 #include <ogxx/iterable.hpp>
 #include <ogxx/stl_iterator.hpp>
-#include <ogxx/vertex_pair.hpp>
 #include <vector>
 
 namespace ogxx
@@ -26,7 +25,8 @@ namespace ogxx
                     return i;
                 }
             }
-            return static_cast<Scalar_index>(-1); // Not found
+			
+            return npos; // Not found
         }
 
         auto max_vertex_index() const noexcept
@@ -34,7 +34,7 @@ namespace ogxx
         {
             Vertex_index maxIndex = 0;
             for (const auto& edge : _edges) {
-                maxIndex = max(maxIndex,max( edge.first, edge.second ));
+                maxIndex = max(maxIndex, edge.first, edge.second);
             }
             return maxIndex;
         }
