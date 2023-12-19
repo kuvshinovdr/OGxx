@@ -39,37 +39,6 @@ namespace ogxx
       }
     }
 
-    // From List<Adjacency>
-
-    void put(Scalar_index at, Pass_by<Adjacency> item) override
-    {
-      // TODO: insert
-    }
-
-    auto take(Scalar_index from)
-      -> Pass_by<Adjacency> override
-    {
-      // TODO: erase
-      return {};
-    }
-
-    // From Bag<Adjacency>
-
-    void put(Pass_by<Adjacency> item) override
-    {
-      _adj.push_back(std::move(item));
-    }
-
-    auto take() -> Pass_by<Adjacency> override
-    {
-      if (_adj.empty())
-        throw std::logic_error("Adjacency_list_vector::take: the list is empty");
-
-      auto result = std::move(_adj.back());
-      _adj.pop_back();
-      return result;
-    }
-
     void clear() override
     {
       _adj.clear();

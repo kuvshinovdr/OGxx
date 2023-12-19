@@ -61,9 +61,12 @@ namespace ogxx
 
   /// @brief Graph representation where, which maps vertex index to the adjacency of that vertex.
   class Adjacency_list 
-    : public virtual List<Adjacency>
+    : public virtual Indexed_iterable<Adjacency>
   {
   public:
+    /// @brief Remove everything making the list empty.
+    virtual void clear() = 0;
+
     /// @brief Compute the sum of sizes of all adjacencies (vertex degrees).
     /// It is equivalent to quantity of arrows in a directed graph and twice the quantity of edges in an undirected graph.
     /// @return the sum of vertex degrees
