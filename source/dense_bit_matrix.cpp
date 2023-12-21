@@ -46,7 +46,7 @@ namespace ogxx {
             if (!shape.is_valid())
               throw std::invalid_argument("Dense_bit_matrix::reshape: shape is invalid");
             
-            auto const element_count = _shape.element_count();
+            auto const element_count = shape.element_count();
 
             // Изменяем размер вектора, но не заботимся о содержимом
             bit_contain.resize((element_count + word_bits - 1) / word_bits);
