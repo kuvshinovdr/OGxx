@@ -70,6 +70,20 @@ namespace ogxx
       if (new_vertex_count < old_size)
       {
         // TODO: удалить рёбра, ведущие к вершинам с индексами >= new_vertex_count
+        // 
+        // Для каждого ap из _adj // ap -- указатель на Adjacency
+        //    Создать пустой vector<Vertex_index> v;
+        //    Добавить все номера вершин из *ap в v:
+        //    auto it = ap->iterate();
+        //    for (Vertex_index value; it->next(value);)
+        //       добавить value в v
+        //    Убрать из v лишние элементы:
+        //    v.erase(std::remove_if(v.begin(), v.end(),
+        //         [=](Vertex_index u) { return u < new_vertex_count; }),
+        //         v.end());
+        //    Пройти по всем u из v:
+        //         удалить: ap->erase(u)
+        //  
       }
     }
 
