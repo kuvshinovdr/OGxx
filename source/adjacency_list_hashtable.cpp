@@ -43,50 +43,6 @@ namespace ogxx
         }
       }
 
-    // From List<Adjacency>
-
-    void put(Scalar_index at, Pass_by<Adjacency> item) override{
-      _adj[at] = std::move(item);
-    }
-
-    auto take(Scalar_index from)
-    -> Pass_by<Adjacency> override{
-      auto it = _adj.find(from);
-      if (it == _adj.end()){
-        throw std::out_of_range("Index out of range");
-      }
-      auto item = std::move(it->second);
-      _adj.erase(it);
-      return item;
-    }
-
-    // From Bag<Adjacency>
-
-    void put(Pass_by<Adjacency> item) override
-    {
-      Scalar_index max_index = 0;
-
-      // Find highest index
-      for(const auto& pair : _adj){
-        if(pair.first > max_index){
-          max_index = pair.first;
-        }
-      }
-
-      _adj[max_index+1] = std::move(item);
-    }
-
-    auto take() -> Pass_by<Adjacency> override
-    {
-      if (_adj.empty())
-      {
-        throw std::out_of_range("The hashtable is empty");
-      }
-      auto item = std::move(_adj.rbegin()->second);
-      _adj.erase(_adj.rbegin()->first);
-      return item;
-    }
-
     void clear() override
     {
       _adj.clear();
@@ -129,10 +85,10 @@ namespace ogxx
     // From Iterable<Adjacency>
 
     auto iterate() const
-      -> Basic_iterator_uptr<See_by<Adjacency>> override
-    {
-      return std::make_unique<Stl_iterator<decltype(_adj.begin()), See_by<Adjacency>>>(_adj.cbegin(), _adj.cend());
+    -> Basic_iterator_uptr<See_by<Adjacency>> override{
+      throw std::runtime_error("iterate() is not implemented yet");
     }
+
 
     auto is_empty() const noexcept
       -> bool override
