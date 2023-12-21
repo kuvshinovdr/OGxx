@@ -30,9 +30,9 @@ namespace ogxx::io
         auto shape = bm.shape();
         Matrix_index position {};
         os<<format.matrix_open;
-        for (;position.is_valid_for(shape);++position.row)
+        for (;position.row < shape.rows; ++position.row)
         {
-            for(;position.is_valid_for(shape);++position.col)
+            for(;position.col < shape.cols; ++position.col)
             {
 
                 os<<(bm.get(position)? format.one : format.zero);
@@ -50,7 +50,7 @@ namespace ogxx::io
   /// @param bm      the Bit_matrix object being printed
   /// @param format  bit matrix format description
   /// @return reference to std::cout
-  auto print(ogxx::Bit_matrix const& bm, Bit_matrix_format const& format = {})
+  auto print(ogxx::Bit_matrix const& bm, Bit_matrix_format const& format)
     -> std::ostream&
     {
         return print(std::cout , bm, format);
