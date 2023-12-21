@@ -89,6 +89,5 @@ namespace ogxx
       return _adj.empty();
     }
 
-  
   };
 }
