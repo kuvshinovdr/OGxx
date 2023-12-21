@@ -93,7 +93,8 @@ namespace ogxx {
 
 
   auto Index_set_bitvector::iterate() const
-    -> Index_iterator_uptr {
+    -> Index_iterator_uptr
+  {
     return std::make_unique<Bit_index_iterator>(_bits);
   }
 
@@ -109,4 +110,5 @@ namespace ogxx {
   {
     return std::make_unique<Index_set_bitvector>(std::move(ind));
   }
+
 }
