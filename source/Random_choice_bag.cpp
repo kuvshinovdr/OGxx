@@ -3,7 +3,7 @@
 /// @author Sutyagin A.I., nickname Alexanders2007, email asutagin062@gmail.com
 #include <vector>
 #include <random>
-#include <ogxx>
+#include <ogxx/iterable.hpp>
 
 template<typename T>
 class Random_choice_bag : public Bag<T> {
