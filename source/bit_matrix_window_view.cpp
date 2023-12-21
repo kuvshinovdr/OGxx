@@ -65,21 +65,22 @@ namespace ogxx
       -> Bit_matrix_const_uptr      override
     {
         auto window_view = std::make_unique<Bit_matrix_window_view>(window, *_matrix);
-        return std::move(matrix_view);
+        return matrix_view;
     }
 
     auto view(Matrix_window window)
       -> Bit_matrix_uptr override
     {
         auto window_view = std::make_unique<Bit_matrix_window_view>(window, *_matrix);
-        return std::move(matrix_view);
+        return matrix_view;
     }
 
     auto copy(Matrix_window window) const
       -> Bit_matrix_uptr override
     {
-        auto matrix_copy = std::make_unique<Bit_matrix>();
-        return std::move(matrix_copy);
+        window.position.row += _window.position.row;
+        window.position.col += _window.position.col;
+        return _matrix->copy(window);
     }
 
     // Matrix_base
