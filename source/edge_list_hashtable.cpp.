@@ -1,6 +1,6 @@
 #include <unordered_set>
 #include <utility>
-#include <iostream>  // Для примера, чтобы вы могли увидеть, как использовать
+#include <iostream>  
 
 namespace ogxx {
 
