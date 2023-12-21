@@ -16,12 +16,11 @@ TEST_SUITE("print")
     bm->set(1,1,0);
     std::ostringstream os;
     io::print(os, *bm);
-    CHECK(os.str() == "bit_matrix
-    {
-      0100 01
-      1011 00
-      0110 01
-      }
-      " );
+    CHECK(os.str() == "bit_matrix\
+    {\
+      0100 01\
+      1011 00\
+      0110 01\
+      }" );
   }
 }
