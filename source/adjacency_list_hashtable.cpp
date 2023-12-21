@@ -48,15 +48,13 @@ namespace ogxx
       _adj.clear();
     }
 
-    // From Indexed_iterable<Adjacency>
-
     auto get(Scalar_index index) const
     -> See_by<Adjacency> override
     {
       auto it = _adj.find(index);
       if (it == _adj.end())
       {
-        throw std::out_of_range("Index out of range");
+        throw std::out_of_range("Adjacency_list_hashtable::get: Index out of range");
       }
       return it->second.get();
     }
@@ -67,14 +65,12 @@ namespace ogxx
       auto it = _adj.find(index);
       if (it == _adj.end())
       {
-        throw std::out_of_range("Index out of range");
+        throw std::out_of_range("Adjacency_list_hashtable::set: Index out of range");
       }
       auto old_value = std::move(it->second);
       it->second = std::move(value);
       return old_value;
     }
-
-    // From Sized_iterable<Adjacency>
 
     auto size() const noexcept
       -> Scalar_size  override
@@ -82,13 +78,10 @@ namespace ogxx
       return static_cast<Scalar_size>(_adj.size());
     }
 
-    // From Iterable<Adjacency>
-
     auto iterate() const
     -> Basic_iterator_uptr<See_by<Adjacency>> override{
-      throw std::runtime_error("iterate() is not implemented yet");
+      throw std::logic_error("Adjacency_list_hashtable::iterate: not implemented");
     }
-
 
     auto is_empty() const noexcept
       -> bool override
