@@ -72,6 +72,17 @@ namespace ogxx
       _adj.resize(new_vertex_count);
       if (new_vertex_count < old_size)
       {
+          for (auto& ap: _adj) {
+              vector <Vertex_index> v;
+              auto it = ap->iterate();
+              for (Vertex_index value; it->next(value);)
+                  v.push_back(value);
+              v.erase(std::remove_if(v.begin(), v.end(), [=](Vertex_index u) { return u < new_vertex_count; }), v.end());
+              for (auto u: v) {
+                  ap->erase(u);
+              }
+          
+          }
         // TODO: удалить рёбра, ведущие к вершинам с индексами >= new_vertex_count
       }
     }
