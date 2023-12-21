@@ -27,13 +27,19 @@ namespace ogxx
     auto set(Matrix_index position, bool value)
       -> bool override
     {
-      // TODO: as get
+        if (_window.shape.check_and_correct(position))
+            return _matrix.set(position.row + _window.position.row,
+                position.col + _window.position.col, value);
+        return false;
     }
 
     auto flip(Matrix_index position)
       -> bool override
     {
-      // TODO: as get
+        if (_window.shape.check_and_correct(position))
+            return _matrix.flip(position.row + _window.position.row,
+                position.col + _window.position.col);
+        return false;
     }
 
     void fill(bool value) override
@@ -58,19 +64,22 @@ namespace ogxx
     auto view(Matrix_window window) const
       -> Bit_matrix_const_uptr      override
     {
-      // TODO
+        auto window_view = std::make_unique<Bit_matrix_window_view>(window, *_matrix);
+        return std::move(matrix_view);
     }
 
     auto view(Matrix_window window)
       -> Bit_matrix_uptr override
     {
-      // TODO
+        auto window_view = std::make_unique<Bit_matrix_window_view>(window, *_matrix);
+        return std::move(matrix_view);
     }
 
     auto copy(Matrix_window window) const
       -> Bit_matrix_uptr override
     {
-      // TODO
+        auto matrix_copy = std::make_unique<Bit_matrix>();
+        return std::move(matrix_copy);
     }
 
     // Matrix_base
