@@ -59,9 +59,19 @@ namespace ogxx
 
   // Adjacency lists
 
+  /// @brief Entries describing an adjacency list via iterating it.
+  struct Adjacency_list_entry
+  {
+    /// @brief Index of a vertex, which adjacency we've got.
+    Vertex_index vertex    = npos;
+    /// @brief Adjacency of the vertex (may be nullptr if the vertex is an isolated vertex).
+    Adjacency*   adjacency = nullptr;
+  };
+
+
   /// @brief Graph representation where, which maps vertex index to the adjacency of that vertex.
-  class Adjacency_list 
-    : public virtual Indexed_iterable<Adjacency>
+  class Adjacency_list
+    : public virtual Indexed_iterable<Adjacency_list_entry>
   {
   public:
     /// @brief Remove everything making the list empty.

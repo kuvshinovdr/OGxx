@@ -17,14 +17,17 @@ namespace ogxx::io
 
             ostr << vertex_ind << format.adjacency_open;
 
-            Scalar_size adj_sz = neighbours->size(), i = 1;
+            if (auto const adj = neighbours.adjacency)
+            {
+              Scalar_size adj_sz = adj->size(), i = 1;
 
-            auto iterator = neighbours->iterate();
-            for (Scalar_index neighbour_index; iterator->next(neighbour_index);) {
-                ostr << neighbour_index;
-                if (i != adj_sz)
-                    ostr << format.adjacency_sep;
-                ++i;
+              auto iterator = adj->iterate();
+              for (Scalar_index neighbour_index; iterator->next(neighbour_index);) {
+                  ostr << neighbour_index;
+                  if (i != adj_sz)
+                      ostr << format.adjacency_sep;
+                  ++i;
+              }
             }
 
             ostr << format.adjacency_close;

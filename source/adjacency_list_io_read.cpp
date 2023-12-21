@@ -48,9 +48,19 @@ namespace ogxx::io
     al.set_vertex_count(max_vertex_index + 1);
     for (auto&& [u, vs] : list)
     {
-      auto const adj = al.get(u);
+      auto adj = al.get(u).adjacency;
+      Adjacency_uptr owned_adj;
+      if (!adj)
+      {
+        owned_adj = new_adjacency_sortedvector();
+        adj       = owned_adj.get();
+      }
+
       for (auto v: vs)
         adj->insert(v);
+
+      if (owned_adj)
+        al.set(u, Adjacency_list_entry { u, owned_adj.release() });
     }
 
     return true;
