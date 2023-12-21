@@ -20,9 +20,9 @@ namespace ogxx
         auto find(Vertex_pair edge) const noexcept
             -> Scalar_index override
         {
-            for (Scalar_index i = 0; i < _edges.size(); ++i) {
+            for (size_t i = 0; i < _edges.size(); ++i) {
                 if (_edges[i] == edge) {
-                    return i;
+                    return static_cast<Scalar_index>(i);
                 }
             }
 			
@@ -44,7 +44,7 @@ namespace ogxx
         auto take(Scalar_index from)
             -> Pass_by<Vertex_pair> override
         {
-            if (from >= _edges.size()) {
+            if (static_cast<size_t>(from) >= _edges.size()) {
                 throw std::out_of_range("Edge_list_vector::take: index out of range");
             }
             auto item = _edges[from];
@@ -54,7 +54,7 @@ namespace ogxx
 
         void put(Scalar_index at, Pass_by<Vertex_pair> item) override
         {
-            if (at > _edges.size()) {
+            if (static_cast<size_t>(at) > _edges.size()) {
                 throw std::out_of_range("Edge_list_vector::put: index out of range");
             }
             _edges.insert(_edges.begin() + at, item);
