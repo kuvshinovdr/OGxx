@@ -8,6 +8,40 @@
 namespace ogxx
 {
 
+  namespace
+  {
+    using Adjacency_list_vector_storage
+      = std::vector<std::unique_ptr<Adjacency>>;
+
+    class Adjacency_list_vector_iterator
+      : public Basic_iterator<See_by<Adjacency_list_entry>>
+    {
+    public:
+      Adjacency_list_vector_iterator(
+        Adjacency_list_vector_storage const& vector)
+        : _begin(vector.begin()), _end(vector.end()) {}
+
+      auto next(See_by<Adjacency_list_entry>& value) noexcept
+        -> bool override
+      {
+        if (_begin == _end)
+          return false;
+
+        value.vertex    = _cur++;
+        value.adjacency = _begin->get();
+        ++_begin;
+        return true;
+      }
+
+    private:
+      Adjacency_list_vector_storage::const_iterator 
+        _begin,
+        _end;
+
+      Vertex_index _cur = 0;
+    };
+  }
+
   class Adjacency_list_vector
     : public Adjacency_list
   {
@@ -46,21 +80,24 @@ namespace ogxx
 
     // From Indexed_iterable<Adjacency>
 
-    auto get(Scalar_index index) const
-      -> See_by<Adjacency>        override
+    auto get(Scalar_index index)      const
+      -> See_by<Adjacency_list_entry> override
     {
-      return _adj.at(index).get();
+      return { index, _adj.at(index).get() };
     }
 
-    auto set(Scalar_index index, Pass_by<Adjacency> value)
-      -> Pass_by<Adjacency> override
+    auto set(
+      Scalar_index                  index, 
+      Pass_by<Adjacency_list_entry> value)
+        -> Pass_by<Adjacency_list_entry> override
     {
       if (auto const needed_sz = static_cast<size_t>(index + 1); _adj.size() <= needed_sz)
         _adj.resize(needed_sz);
 
-      auto old = std::move(_adj[index]);
-      _adj[index] = std::move(value);
-      return old;
+      _adj[index].reset(value.adjacency);
+      return { index }; // TODO: fail to return the old adjacency.
+      // We return nullptr because it is forbidden to
+      // transfer ownership by passing an ordinary pointer.
     }
 
     // From Sized_iterable<Adjacency>
@@ -74,15 +111,9 @@ namespace ogxx
     // From Iterable<Adjacency>
 
     auto iterate() const
-      -> Basic_iterator_uptr<See_by<Adjacency>> override
+      -> Basic_iterator_uptr<See_by<Adjacency_list_entry>> override
     {
-      using AdjVec  = std::vector<Adjacency_uptr>;
-      using AdjIt   = AdjVec::const_iterator;
-      using AdjCref = AdjVec::const_reference;
-
-      return std::make_unique<Stl_iterator<
-        Adjacency*, AdjIt, AdjIt, [](AdjCref up) { return up.get(); }>>
-          (_adj.begin(), _adj.end());
+      return std::make_unique<Adjacency_list_vector_iterator>(_adj);
     }
 
     auto is_empty() const noexcept
@@ -92,7 +123,7 @@ namespace ogxx
     }
 
   private:
-    std::vector<Adjacency_uptr> _adj;
+    Adjacency_list_vector_storage _adj;
   };
 
 }

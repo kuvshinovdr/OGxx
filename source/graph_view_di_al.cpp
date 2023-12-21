@@ -3,7 +3,7 @@
 /// @author Kuvshinov D.R. kuvshinovdr at yandex.ru
 #include <ogxx/graph_view.hpp>
 #include <ogxx/adjacency_list.hpp>
-
+#include <ogxx/stl_iterator.hpp>
 
 namespace ogxx
 {
@@ -19,7 +19,10 @@ namespace ogxx
         : _al(al), _al_size(_al.size()), _cur_from(0)
       {
         if (_cur_from < _al_size)
-          _adj = _al.get(_cur_from)->iterate();
+        {
+          if (auto const adj_ptr = _al.get(_cur_from).adjacency)
+            _adj = adj_ptr->iterate();
+        }
       }
 
 
@@ -40,7 +43,8 @@ namespace ogxx
           if (++_cur_from == _al_size)
             return false;
           
-          _adj = _al.get(_cur_from)->iterate();
+          if (auto const adj_ptr = _al.get(_cur_from).adjacency)
+            _adj = adj_ptr->iterate();
         }
       }
 
@@ -93,9 +97,13 @@ namespace ogxx
       }
 
       [[nodiscard]] auto iterate_neighbors(Vertex_index from) const
-        -> Index_iterator_uptr                            override
+        -> Index_iterator_uptr                                override
       {
-        return _al.get(from)->iterate();
+        if (auto const adj_ptr = _al.get(from).adjacency)
+          return adj_ptr->iterate();
+
+        static Scalar_index const dummy;
+        return new_stl_iterator(&dummy, &dummy);
       }
 
       [[nodiscard]] auto are_connected(Vertex_pair edge) const noexcept
@@ -105,7 +113,9 @@ namespace ogxx
         if (max(from, to) >= _al.size())
           return false;
 
-        return _al.get(from)->contains(to);
+        if (auto const adj_ptr = _al.get(from).adjacency)
+          return adj_ptr->contains(to);
+        return false;
       }
 
      
@@ -133,7 +143,21 @@ namespace ogxx
         else
         {
           auto const [from, to] = edge;
-          return _al.get(from)->insert(to);
+
+          auto adj_ptr = _al.get(from).adjacency;
+          Adjacency_uptr adj_storage;
+          if (!adj_ptr)
+          {
+            adj_storage = new_adjacency_sortedvector();
+            adj_ptr     = adj_storage.get();
+          }
+
+          auto const result = adj_ptr->insert(to);
+
+          if (adj_storage)
+            _al.set(from, { from, adj_storage.release() });
+
+          return result;
         }
       }
 
@@ -147,7 +171,9 @@ namespace ogxx
         else
         {
           auto const [from, to] = edge;
-          return _al.get(from)->erase(to);
+          if (auto const adj_ptr = _al.get(from).adjacency)
+            return adj_ptr->erase(to);
+          return false;
         }
       }
 
