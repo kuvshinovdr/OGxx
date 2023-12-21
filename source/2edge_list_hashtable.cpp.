@@ -1,0 +1,56 @@
+#include <unordered_set>
+#include <utility>
+#include <iostream>
+#include <functional>
+
+namespace ogxx {
+
+// Определение типа Vertex_pair
+struct Vertex_pair {
+    int first;
+    int second;
+
+    // Конструктор для удобства
+    Vertex_pair(int f, int s) : first(f), second(s) {}
+
+    // Оператор сравнения для использования в std::unordered_set
+    bool operator==(const Vertex_pair& other) const {
+        return first == other.first && second == other.second;
+    }
+};
+
+// Хэш-функция для типа Vertex_pair
+struct Vertex_pair_hash {
+    std::size_t operator()(const Vertex_pair& p) const {
+        std::hash<int> h;
+        return h(p.first) * 15485863 ^ h(p.second);
+    }
+};
+
+// Класс Edge_list_hashtable
+class Edge_list_hashtable : public Edge_list, public St_set<Vertex_pair> {
+public:
+    // Конструктор, который принимает параметры для инициализации
+    Edge_list_hashtable(std::size_t table_size) {
+        // Инициализация, используя переданный размер хэш-таблицы, например
+        St_set<Vertex_pair>::set_container(std::unordered_set<Vertex_pair, Vertex_pair_hash>(table_size));
+    }
+
+    // Метод для добавления ребра в список
+    void add_edge(int vertex1, int vertex2) {
+        Vertex_pair new_edge(vertex1, vertex2);
+
+        // Используем хэш-таблицу для добавления ребра
+        St_set<Vertex_pair>::get_container().insert(new_edge);
+    }
+
+    // Метод для вывода всех рёбер
+    void print_edges() const {
+        std::cout << "Edges in the hashtable:" << std::endl;
+        for (const auto& edge : St_set<Vertex_pair>::get_container()) {
+            std::cout << "(" << edge.first << ", " << edge.second << ")" << std::endl;
+        }
+    }
+};
+
+} 
