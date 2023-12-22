@@ -1,100 +1,73 @@
-/// @file Index_set_sortedvector.cpp
-/// @brief 
+/// @file source/index_set_sortedvector.cpp
+/// @brief Index_set implemented via sorted vector.
 /// @author Nasonenko I. D.
+#include "index_set_sortedvector.hpp"
 
-#include <ogxx/st_set.hpp>
-#include <ogxx/iterable.hpp>
 #include <ogxx/stl_iterator.hpp>
-
-#include <vector>
 #include <algorithm>
 
+
 namespace ogxx {
-    class Index_set_sortedvector : public Index_set, public Indexed_iterable<Scalar_index> {
-    private:
-        std::vector<Scalar_index> sorted_vector;
-        
-    public:
-        Index_set_sortedvector() noexcept = default;
 
-        explicit Index_set_sortedvector(Index_iterator_uptr elems)
-        {
-            for (Scalar_index index; elems->next(index);)
-                sorted_vector.emplace_back(index);
+  Index_set_sortedvector::Index_set_sortedvector(Index_iterator_uptr elems)
+  {
+      for (Scalar_index index; elems->next(index);)
+          sorted_vector.emplace_back(index);
           
-            std::sort(sorted_vector.begin(), sorted_vector.end());
-            sorted_vector.erase(std::unique(sorted_vector.begin(), sorted_vector.end()),
-                sorted_vector.end());
-        }
+      std::sort(sorted_vector.begin(), sorted_vector.end());
+      sorted_vector.erase(std::unique(sorted_vector.begin(), sorted_vector.end()),
+          sorted_vector.end());
+  }
 
-        auto insert(Scalar_index index)
-        -> bool override {
-            auto it = std::lower_bound(sorted_vector.begin(), sorted_vector.end(), index);
-            if (it != sorted_vector.end() && *it == index) return false;
-            sorted_vector.insert(it, index);
-            return true;
-        }
+  auto Index_set_sortedvector::insert(Scalar_index index) -> bool {
+      auto it = std::lower_bound(sorted_vector.begin(), sorted_vector.end(), index);
+      if (it != sorted_vector.end() && *it == index) return false;
+      sorted_vector.insert(it, index);
+      return true;
+  }
 
-        auto erase(Scalar_index index)
-        -> bool override {
-            auto it = std::lower_bound(sorted_vector.begin(), sorted_vector.end(), index);
-            if (it == sorted_vector.end() || *it != index) return false;
-            sorted_vector.erase(it);
-            return true;
-        }
+  auto Index_set_sortedvector::erase(Scalar_index index) -> bool {
+      auto it = std::lower_bound(sorted_vector.begin(), sorted_vector.end(), index);
+      if (it == sorted_vector.end() || *it != index) return false;
+      sorted_vector.erase(it);
+      return true;
+  }
 
-        auto contains(Scalar_index index) const noexcept
-        -> bool override {
-            auto it = std::lower_bound(sorted_vector.begin(), sorted_vector.end(), index);
-            return (it != sorted_vector.end() && *it == index);
-        }
+  auto Index_set_sortedvector::contains(Scalar_index index) const noexcept -> bool {
+      auto it = std::lower_bound(sorted_vector.begin(), sorted_vector.end(), index);
+      return (it != sorted_vector.end() && *it == index);
+  }
 
-        [[nodiscard]] auto iterate() const
-        -> Basic_iterator_uptr<Scalar_index> override{
-            return new_stl_iterator(sorted_vector);
-        }
+  auto Index_set_sortedvector::iterate() const -> Index_iterator_uptr {
+      return new_stl_iterator(sorted_vector);
+  }
 
-        [[nodiscard]] auto is_empty() const noexcept
-        -> bool override
-        {
-            return sorted_vector.empty();
-        }
-
-        [[nodiscard]] auto size() const noexcept
-        -> Scalar_size override
-        {
-            return sorted_vector.size();
-        }
-
-        [[nodiscard]] auto get(Scalar_index index) const
-        -> Scalar_index override
-        {
-            if (static_cast<size_t>(index) >= sorted_vector.size())
-              return npos;
+  auto Index_set_sortedvector::get(Scalar_index index) const -> Scalar_index
+  {
+      if (static_cast<size_t>(index) >= sorted_vector.size())
+        return npos;
             
-            return sorted_vector[index];
-        }
+      return sorted_vector[index];
+  }
 
-        auto set(Scalar_index index, Scalar_index value)
-        -> Scalar_index override
-        {
-            if (static_cast<size_t>(index) >= sorted_vector.size())
-              throw std::out_of_range("Index_set_sortedvector::set: index is out of range");
+  auto Index_set_sortedvector::set(Scalar_index index, Scalar_index value) -> Scalar_index
+  {
+      if (static_cast<size_t>(index) >= sorted_vector.size())
+        throw std::out_of_range("Index_set_sortedvector::set: index is out of range");
             
-            auto ret = sorted_vector[index];
-            sorted_vector[index] = value;
-            return ret;
-        }
-    };
+      auto ret = sorted_vector[index];
+      sorted_vector[index] = value;
+      return ret;
+  }
 
 
-    auto new_index_set_sortedvector() -> Index_set_uptr
-    {
-      return std::make_unique<Index_set_sortedvector>();
-    }
+  auto new_index_set_sortedvector() -> Index_set_uptr
+  {
+    return std::make_unique<Index_set_sortedvector>();
+  }
 
-    auto new_index_set_sortedvector(Index_iterator_uptr elems) -> Index_set_uptr
-    {
-      return std::make_unique<Index_set_sortedvector>(std::move(elems));
-    }
+  auto new_index_set_sortedvector(Index_iterator_uptr elems) -> Index_set_uptr
+  {
+    return std::make_unique<Index_set_sortedvector>(std::move(elems));
+  }
 }

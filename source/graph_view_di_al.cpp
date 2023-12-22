@@ -3,7 +3,7 @@
 /// @author Kuvshinov D.R. kuvshinovdr at yandex.ru
 #include <ogxx/graph_view.hpp>
 #include <ogxx/adjacency_list.hpp>
-
+#include <ogxx/stl_iterator.hpp>
 
 namespace ogxx
 {
@@ -19,7 +19,10 @@ namespace ogxx
         : _al(al), _al_size(_al.size()), _cur_from(0)
       {
         if (_cur_from < _al_size)
-          _adj = _al.get(_cur_from)->iterate();
+        {
+          if (auto const adj_ptr = _al.get(_cur_from).adjacency)
+            _adj = adj_ptr->iterate();
+        }
       }
 
 
@@ -40,7 +43,8 @@ namespace ogxx
           if (++_cur_from == _al_size)
             return false;
           
-          _adj = _al.get(_cur_from)->iterate();
+          if (auto const adj_ptr = _al.get(_cur_from).adjacency)
+            _adj = adj_ptr->iterate();
         }
       }
 
@@ -53,7 +57,7 @@ namespace ogxx
 
 
     template <bool is_constant>
-    class Graph_view_di_al
+    class Graph_view_directed_adjacency_list
       : public Graph_view
     {
     public:
@@ -62,7 +66,7 @@ namespace ogxx
                            Adjacency_list const&,
                            Adjacency_list&>;
 
-      explicit Graph_view_di_al(Adjacency_list_ref al)
+      explicit Graph_view_directed_adjacency_list(Adjacency_list_ref al)
         : _al(al) {}
 
       
@@ -77,7 +81,7 @@ namespace ogxx
       [[nodiscard]] auto vertex_count() const noexcept
         -> Scalar_size                  override
       {
-        return static_cast<Scalar_size>(_al.size());
+        return _al.get_vertex_count();
       }
 
       [[nodiscard]] auto edge_count() const noexcept
@@ -92,6 +96,16 @@ namespace ogxx
         return std::make_unique<Vertex_pair_iterator_di_al>(_al);
       }
 
+      [[nodiscard]] auto iterate_neighbors(Vertex_index from) const
+        -> Index_iterator_uptr                                override
+      {
+        if (auto const adj_ptr = _al.get(from).adjacency)
+          return adj_ptr->iterate();
+
+        static Scalar_index const dummy;
+        return new_stl_iterator(&dummy, &dummy);
+      }
+
       [[nodiscard]] auto are_connected(Vertex_pair edge) const noexcept
         -> bool                                          override
       {
@@ -99,7 +113,9 @@ namespace ogxx
         if (max(from, to) >= _al.size())
           return false;
 
-        return _al.get(from)->contains(to);
+        if (auto const adj_ptr = _al.get(from).adjacency)
+          return adj_ptr->contains(to);
+        return false;
       }
 
      
@@ -127,7 +143,21 @@ namespace ogxx
         else
         {
           auto const [from, to] = edge;
-          return _al.get(from)->insert(to);
+
+          auto adj_ptr = _al.get(from).adjacency;
+          Adjacency_uptr adj_storage;
+          if (!adj_ptr)
+          {
+            adj_storage = new_adjacency_sortedvector();
+            adj_ptr     = adj_storage.get();
+          }
+
+          auto const result = adj_ptr->insert(to);
+
+          if (adj_storage)
+            _al.set(from, { from, adj_storage.release() });
+
+          return result;
         }
       }
 
@@ -141,7 +171,9 @@ namespace ogxx
         else
         {
           auto const [from, to] = edge;
-          return _al.get(from)->erase(to);
+          if (auto const adj_ptr = _al.get(from).adjacency)
+            return adj_ptr->erase(to);
+          return false;
         }
       }
 
@@ -157,13 +189,13 @@ namespace ogxx
     auto graph_view(Adjacency_list const& al)
       -> Graph_view_const_uptr
     {
-      return std::make_unique<Graph_view_di_al<true>>(al);
+      return std::make_unique<Graph_view_directed_adjacency_list<true>>(al);
     }
 
     auto graph_view(Adjacency_list& al)
       -> Graph_view_uptr
     {
-      return std::make_unique<Graph_view_di_al<false>>(al);
+      return std::make_unique<Graph_view_directed_adjacency_list<false>>(al);
     }
   }
 

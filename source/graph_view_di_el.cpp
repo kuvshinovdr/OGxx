@@ -12,6 +12,37 @@
 namespace ogxx
 {
 
+  class Edge_list_neighbor_iterator
+    : public Index_iterator
+  {
+  public:
+    Edge_list_neighbor_iterator() noexcept = default;
+    Edge_list_neighbor_iterator(
+        Vertex_index              from,
+        Vertex_pair_iterator_uptr edges)
+      : _from(from)
+      , _edge_iter(std::move(edges)) {}
+
+    bool next(Vertex_index& value) override
+    {
+      for (Vertex_pair edge; _edge_iter->next(edge);)
+      {
+        if (edge.first == _from)
+        {
+          value = edge.second;
+          return true;
+        }
+      }
+      
+      return false;
+    }
+
+  private:
+    Vertex_index              _from = 0;
+    Vertex_pair_iterator_uptr _edge_iter;
+  };
+
+
   class Graph_view_directed_edge_list : public Graph_view
   {
   public:
@@ -43,6 +74,12 @@ namespace ogxx
       -> Vertex_pair_iterator_uptr     override
     {
        return _el.iterate();
+    }
+
+    [[nodiscard]] auto iterate_neighbors(Vertex_index from) const
+      -> Index_iterator_uptr                                override
+    {
+      return std::make_unique<Edge_list_neighbor_iterator>(from, _el.iterate());
     }
 
     [[nodiscard]] auto are_connected(Vertex_pair edge) const noexcept
