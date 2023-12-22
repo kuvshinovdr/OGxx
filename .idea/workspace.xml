@@ -13,8 +13,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a6f48a29-75a3-45a8-ae8a-999876c7b20d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/symmetric_dense_bit_matrix.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/source/symmetric_dense_bit_matrix.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/Stack-Queue-Mixed_stack_queue.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/source/Stack-Queue-Mixed_stack_queue.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,6 +64,10 @@
       <workItem from="1699368270071" duration="2080000" />
       <workItem from="1699371701976" duration="678000" />
       <workItem from="1699380058779" duration="1067000" />
+      <workItem from="1703192290199" duration="1193000" />
+      <workItem from="1703194848124" duration="941000" />
+      <workItem from="1703225187598" duration="187000" />
+      <workItem from="1703227208430" duration="300000" />
     </task>
     <servers />
   </component>
