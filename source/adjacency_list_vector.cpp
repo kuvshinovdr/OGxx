@@ -1,5 +1,6 @@
 /// @file source/adjacency_list_vector.cpp
 /// @brief Adjacency_list interface implementation over std::vector.
+/// @author Kuvshinov D.R., Abdullaeva A.V.
 #include <ogxx/adjacency_list.hpp>
 #include <ogxx/stl_iterator.hpp>
 #include <vector>
@@ -53,8 +54,11 @@ namespace ogxx
     auto degrees_sum() const noexcept
       -> Scalar_size   override
     {
-      // TODO
-      return 0;
+        Scalar_size deg_sum = 0;
+        for (int i = 0; i < _adj.size(); i++) {
+            deg_sum += _adj[i]->size();
+        }
+        return deg_sum;
     }
 
     auto get_vertex_count() const noexcept
@@ -67,9 +71,22 @@ namespace ogxx
     {
       Scalar_size const old_size = _adj.size();
       _adj.resize(new_vertex_count);
+
+      // Удалить рёбра, ведущие к вершинам с индексами >= new_vertex_count.
       if (new_vertex_count < old_size)
       {
-        // TODO: удалить рёбра, ведущие к вершинам с индексами >= new_vertex_count
+          std::vector <Vertex_index> v;
+          for (auto& ap: _adj) {
+              v.clear();
+              auto it = ap->iterate();
+              for (Vertex_index value; it->next(value);)
+                  v.push_back(value);
+              v.erase(std::remove_if(v.begin(), v.end(), [=](Vertex_index u) { return u < new_vertex_count; }), v.end());
+              for (auto u: v) {
+                  ap->erase(u);
+              }
+          
+          }
       }
     }
 
