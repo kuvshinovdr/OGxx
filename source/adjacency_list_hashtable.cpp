@@ -5,16 +5,20 @@
 #include <unordered_map>
 #include <stdexcept>
 
+
 namespace ogxx
 {
+  // Функция для преобразования pair в map в Adjacency_list_entry
+  Adjacency_list_entry convertToEntry(const std::pair<const Scalar_index, std::unique_ptr<Adjacency>>& pair) {
+    return Adjacency_list_entry{pair.first, pair.second.get()};
+  }
   class Adjacency_list_hashtable: public Adjacency_list
   {
     private:
-      std::unordered_map<Scalar_index, std::unique_ptr<Adjacency>> _adj;
+      std::unordered_map<Scalar_index, std::unique_ptr<Adjacency>> _adj;      
     public:
       Adjacency_list_hashtable() noexcept = default;
       ~Adjacency_list_hashtable() noexcept = default;
-    // From Adjacency_list:
 
       auto degrees_sum() const noexcept
       -> Scalar_size override{
@@ -48,29 +52,28 @@ namespace ogxx
       _adj.clear();
     }
 
-    auto get(Scalar_index index) const
-    -> See_by<Adjacency> override
+  auto get(Scalar_index index) const
+  -> See_by<Adjacency_list_entry> override{
+    auto it = _adj.find(index);
+    if (it == _adj.end())
     {
-      auto it = _adj.find(index);
-      if (it == _adj.end())
-      {
-        throw std::out_of_range("Adjacency_list_hashtable::get: Index out of range");
-      }
-      return it->second.get();
+      throw std::out_of_range("Adjacency_list_hashtable::get: Index out of range");
     }
+    return Adjacency_list_entry{index, it->second.get()};
+  }
 
-    auto set(Scalar_index index, Pass_by<Adjacency> value)
-    -> Pass_by<Adjacency> override
+  auto set(Scalar_index index, Pass_by<Adjacency_list_entry> value)
+  -> Pass_by<Adjacency_list_entry> override
+  {
+    auto it = _adj.find(index);
+    if (it == _adj.end())
     {
-      auto it = _adj.find(index);
-      if (it == _adj.end())
-      {
-        throw std::out_of_range("Adjacency_list_hashtable::set: Index out of range");
-      }
-      auto old_value = std::move(it->second);
-      it->second = std::move(value);
-      return old_value;
+      throw std::out_of_range("Adjacency_list_hashtable::set: Index out of range");
     }
+    auto old_value = Adjacency_list_entry{index, it->second.release()};
+    it->second.reset(value.adjacency);
+    return old_value;
+  }
 
     auto size() const noexcept
       -> Scalar_size  override
@@ -79,9 +82,13 @@ namespace ogxx
     }
 
     auto iterate() const
-    -> Basic_iterator_uptr<See_by<Adjacency>> override{
-      throw std::logic_error("Adjacency_list_hashtable::iterate: not implemented");
-    }
+    -> Basic_iterator_uptr<See_by<Adjacency_list_entry>> override {
+      using MapIter = decltype(_adj.cbegin());
+      using MapSent = decltype(_adj.cend());
+      using Entry = Adjacency_list_entry;
+      using Iter = Stl_iterator<Entry, MapIter, MapSent, convertToEntry>;
+      return std::make_unique<Iter>(_adj.cbegin(), _adj.cend());
+}
 
     auto is_empty() const noexcept
       -> bool override
@@ -90,4 +97,7 @@ namespace ogxx
     }
 
   };
+  
+      
 }
+
