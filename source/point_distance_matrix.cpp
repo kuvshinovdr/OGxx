@@ -140,7 +140,7 @@ namespace ogxx::metrics
         throw std::logic_error("Point_distance_matrix::view: can not change a read-only matrix");
       }
 
-      auto copy(Matrix_window window)
+      auto copy(Matrix_window window) const
         -> Float_matrix_uptr override
       {
         // TODO: make a dense matrix.
