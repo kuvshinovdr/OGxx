@@ -86,6 +86,14 @@ namespace ogxx
   [[nodiscard]] auto new_index_set_bitvector(Index_iterator_uptr)
     -> Index_set_uptr;
 
+  /// @brief Create a new empty Index_set implemented with an unsorted vector. 
+  [[nodiscard]] auto new_index_set_vector()
+    -> Index_set_uptr;
+
+  /// @brief Create a new Index_set containing all elements enumerated by an iterator, implemented with an unsorted vector. 
+  [[nodiscard]] auto new_index_set_vector(Index_iterator_uptr)
+    -> Index_set_uptr;
+
 }
 
 #endif//OGXX_ST_SET_HPP_INCLUDED

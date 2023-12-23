@@ -115,6 +115,14 @@ namespace ogxx
   /// @brief An owning pointer to a bag of scalar indices.
   using Index_bag_uptr = std::unique_ptr<Index_bag>;
 
+  /// @brief Create an empty Scalar_index random choice bag.
+  [[nodiscard]] auto new_index_random_choice_bag() 
+    -> Index_bag_uptr;
+
+  /// @brief Create a Scalar_index random choice bag containing the given items.
+  [[nodiscard]] auto new_index_random_choice_bag(Index_iterator_uptr items) 
+    -> Index_bag_uptr;
+
 
   /// @brief Generic container interface with inserts and erases and stores them in linear order as a list.
   /// @tparam Item container item type
