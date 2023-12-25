@@ -5,6 +5,7 @@
 
 namespace ogxx {
 
+// Определение типа Vertex_pair
 struct Vertex_pair {
     Scalar_index first;
     Scalar_index second;
@@ -16,6 +17,7 @@ struct Vertex_pair {
     }
 };
 
+// Хэш-функция для типа Vertex_pair
 struct Vertex_pair_hash {
     std::size_t operator()(const Vertex_pair& p) const {
         std::hash<Scalar_index> h;
@@ -23,6 +25,24 @@ struct Vertex_pair_hash {
     }
 };
 
+// Интерфейс Edge_list
+class Edge_list {
+public:
+    virtual void add_edge(Scalar_index vertex1, Scalar_index vertex2) = 0;
+    // Другие методы, если необходимо
+};
+
+// Интерфейс St_set
+template <typename T>
+class St_set {
+public:
+    virtual void insert(const T& value) = 0;
+    virtual void erase(const T& value) = 0;
+    virtual bool contains(const T& value) const = 0;
+    virtual std::size_t size() const = 0;
+};
+
+// Класс Edge_list_hashtable
 class Edge_list_hashtable : public Edge_list, public St_set<Vertex_pair> {
 private:
     std::unordered_set<Vertex_pair, Vertex_pair_hash> container;
@@ -33,27 +53,6 @@ public:
     void add_edge(Scalar_index vertex1, Scalar_index vertex2) override {
         Vertex_pair new_edge(vertex1, vertex2);
         container.insert(new_edge);
-    }
-
-    void remove_edge(Scalar_index vertex1, Scalar_index vertex2) override {
-        Vertex_pair edge_to_remove(vertex1, vertex2);
-        container.erase(edge_to_remove);
-    }
-
-    bool has_edge(Scalar_index vertex1, Scalar_index vertex2) const override {
-        Vertex_pair edge_to_find(vertex1, vertex2);
-        return container.find(edge_to_find) != container.end();
-    }
-
-    void clear_edges() override {
-        container.clear();
-    }
-
-    void print_edges() const override {
-        std::cout << "Edges in the hashtable:" << std::endl;
-        for (const auto& edge : container) {
-            std::cout << "(" << edge.first << ", " << edge.second << ")" << std::endl;
-        }
     }
 
     // Реализация методов интерфейса St_set
@@ -72,6 +71,14 @@ public:
     std::size_t size() const override {
         return container.size();
     }
+
+    // Метод для вывода всех рёбер
+    void print_edges() const {
+        std::cout << "Edges in the hashtable:" << std::endl;
+        for (const auto& edge : container) {
+            std::cout << "(" << edge.first << ", " << edge.second << ")" << std::endl;
+        }
+    }
 };
 
-} 
+}
