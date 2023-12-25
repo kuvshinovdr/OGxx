@@ -1,72 +1,77 @@
+#include <ogxx/io_head.hpp>
+#include <ogxx/edge_list.hpp>
 #include <unordered_set>
 #include <iostream>
-#include <functional>
 
 namespace ogxx {
 
-// Определение типа Vertex_pair
 struct Vertex_pair {
-    int first;
-    int second;
+    Scalar_index first;
+    Scalar_index second;
 
-    // Добавим default конструктор
-    Vertex_pair() : first(0), second(0) {}
+    Vertex_pair(Scalar_index f, Scalar_index s) : first(f), second(s) {}
 
-    // Конструктор для удобства
-    Vertex_pair(int f, int s) : first(f), second(s) {}
-
-    // Оператор сравнения для использования в std::unordered_set
     bool operator==(const Vertex_pair& other) const {
         return first == other.first && second == other.second;
     }
 };
 
-// Хэш-функция для типа Vertex_pair
 struct Vertex_pair_hash {
     std::size_t operator()(const Vertex_pair& p) const {
-        std::hash<int> h;
+        std::hash<Scalar_index> h;
         return h(p.first) * 15485863 ^ h(p.second);
     }
 };
 
-// Класс Edge_list_hashtable
-class Edge_list_hashtable {
+class Edge_list_hashtable : public Edge_list, public St_set<Vertex_pair> {
 private:
     std::unordered_set<Vertex_pair, Vertex_pair_hash> container;
 
 public:
-    // Конструктор, который принимает параметры для инициализации
-    Edge_list_hashtable(std::size_t table_size)
-        : container(table_size) {}  
+    Edge_list_hashtable() = default;
 
-    // Метод для добавления ребра в список
-    void add_edge(int vertex1, int vertex2) {
+    void add_edge(Scalar_index vertex1, Scalar_index vertex2) override {
         Vertex_pair new_edge(vertex1, vertex2);
-
-        // Используем хэш-таблицу для добавления ребра
         container.insert(new_edge);
     }
 
-    // Метод для вывода всех рёбер
-    void print_edges() const {
+    void remove_edge(Scalar_index vertex1, Scalar_index vertex2) override {
+        Vertex_pair edge_to_remove(vertex1, vertex2);
+        container.erase(edge_to_remove);
+    }
+
+    bool has_edge(Scalar_index vertex1, Scalar_index vertex2) const override {
+        Vertex_pair edge_to_find(vertex1, vertex2);
+        return container.find(edge_to_find) != container.end();
+    }
+
+    void clear_edges() override {
+        container.clear();
+    }
+
+    void print_edges() const override {
         std::cout << "Edges in the hashtable:" << std::endl;
         for (const auto& edge : container) {
             std::cout << "(" << edge.first << ", " << edge.second << ")" << std::endl;
         }
     }
+
+    // Реализация методов интерфейса St_set
+    void insert(const Vertex_pair& value) override {
+        container.insert(value);
+    }
+
+    void erase(const Vertex_pair& value) override {
+        container.erase(value);
+    }
+
+    bool contains(const Vertex_pair& value) const override {
+        return container.find(value) != container.end();
+    }
+
+    std::size_t size() const override {
+        return container.size();
+    }
 };
 
-} // namespace ogxx
-
-int main() {
-    ogxx::Edge_list_hashtable graph(10); 
-
-    // Add edges to the graph
-    graph.add_edge(1, 2);
-    graph.add_edge(3, 4);
-    graph.add_edge(1, 2); 
-
-    graph.print_edges();
-
-    return 0;
-}
+} 
