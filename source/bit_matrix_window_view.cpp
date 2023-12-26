@@ -52,27 +52,29 @@ namespace ogxx
     auto iterate_row(Scalar_index row) const
       -> Basic_iterator_uptr<bool> override
     {
-      // TODO: throw that the method is unimplimented
+       throw std::logic_error("Method iterate_row is unimplemented");
     }
 
     auto iterate_col(Scalar_index col) const
       -> Basic_iterator_uptr<bool> override
     {
-      // TODO: throw that the method is unimplimented
+        throw std::logic_error("Method iterate_col is unimplemented");
     }
 
     auto view(Matrix_window window) const
       -> Bit_matrix_const_uptr      override
     {
-        auto window_view = std::make_unique<Bit_matrix_window_view>(window, *_matrix);
-        return matrix_view;
+        window.position.row += _window.position.row;
+        window.position.col += _window.position.col;
+        return _matrix->view(window);
     }
 
     auto view(Matrix_window window)
       -> Bit_matrix_uptr override
     {
-        auto window_view = std::make_unique<Bit_matrix_window_view>(window, *_matrix);
-        return matrix_view;
+        window.position.row += _window.position.row;
+        window.position.col += _window.position.col;
+        return _matrix->view(window);
     }
 
     auto copy(Matrix_window window) const
@@ -113,7 +115,7 @@ namespace ogxx
     auto iterate() const
       -> Basic_iterator_uptr<bool> override
     {
-      // TODO: throw that the method is unimplemented
+        throw std::logic_error("Method iterate is unimplemented");
     }
 
   private:
