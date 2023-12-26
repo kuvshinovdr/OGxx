@@ -1,4 +1,4 @@
-/// @file is_star.cpp
+﻿/// @file is_star.cpp
 /// @brief Identify the graph is a star
 /// @author Artemenko I.V
 #include <ogxx/iterator.hpp>
