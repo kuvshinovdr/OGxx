@@ -16,7 +16,13 @@ namespace ogxx
   /// @tparam T     item type
   /// @tparam It    iterator type
   /// @tparam Sent  sentinel type
-  template <typename T, typename It, typename Sent = It>
+  template <
+    typename T, 
+    typename It, 
+    typename Sent = It,
+    T (*convert)(typename std::iter_reference_t<It>) 
+      = [](typename std::iter_reference_t<It> item) -> T { return item; }
+  >
   class Stl_iterator 
     : public Basic_iterator<T>
   {
@@ -47,7 +53,7 @@ namespace ogxx
       if (current == end) 
         return false;
       
-      out_item = *current;
+      out_item = convert(*current);
       ++current;
       
       return true;

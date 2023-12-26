@@ -4,7 +4,7 @@
 #ifndef OGXX_ITERATOR_HPP_INCLUDED
 #define OGXX_ITERATOR_HPP_INCLUDED
 
-#include "primitive_definitions.hpp"
+#include <ogxx/primitive_definitions.hpp>
 
 
 /// Root namespace of the OGxx library.
@@ -65,6 +65,17 @@ namespace ogxx
   /// @brief An owning pointer to a float iterator object.
   using Float_iterator_uptr = std::unique_ptr<Float_iterator>;
 
+  /// @brief Create a linear dense bit iterator returning bools.
+  /// @param word
+  /// @param firstbit
+  /// @param endbit
+  /// @param stride
+  /// @return
+  [[nodiscard]] auto new_dense_bit_iterator(
+    unsigned const* word,
+    size_t          firstbit,
+    size_t          endbit,
+    size_t          stride = 1) -> Bit_iterator_uptr;
 }
 
 #endif//OGXX_ITERATOR_HPP_INCLUDED
