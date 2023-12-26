@@ -1,84 +1,57 @@
-#include <ogxx/io_head.hpp>
-#include <ogxx/edge_list.hpp>
-#include <unordered_set>
-#include <iostream>
+#include <unordered_set>  // for std::unordered_set
+#include <algorithm>      // for std::max_element
+#include <utility>        // for std::pair (if Vertex_pair is std::pair)
+
+#include <ogxx/edge_list.hpp>  // for ogxx::Edge_list
+#include <ogxx/st_set.hpp>     // for ogxx::St_set
+#include <ogxx/vertex_pair.hpp> // if Vertex_pair is defined in this file
+
+// Define the hash function for Vertex_pair
+namespace std {
+  template <typename T1, typename T2>
+  struct hash<pair<T1, T2>> {
+    auto operator()(const pair<T1, T2> &p) const -> size_t {
+      return hash<T1>{}(p.first) ^ hash<T2>{}(p.second);
+    }
+  };
+}
 
 namespace ogxx {
-
-// Определение типа Vertex_pair
-struct Vertex_pair {
-    Scalar_index first;
-    Scalar_index second;
-
-    Vertex_pair(Scalar_index f, Scalar_index s) : first(f), second(s) {}
-
-    bool operator==(const Vertex_pair& other) const {
-        return first == other.first && second == other.second;
-    }
-};
-
-// Хэш-функция для типа Vertex_pair
-struct Vertex_pair_hash {
-    std::size_t operator()(const Vertex_pair& p) const {
-        std::hash<Scalar_index> h;
-        return h(p.first) * 15485863 ^ h(p.second);
-    }
-};
-
-// Интерфейс Edge_list
-class Edge_list {
-public:
-    virtual void add_edge(Scalar_index vertex1, Scalar_index vertex2) = 0;
-    // Другие методы, если необходимо
-};
-
-// Интерфейс St_set
-template <typename T>
-class St_set {
-public:
-    virtual void insert(const T& value) = 0;
-    virtual void erase(const T& value) = 0;
-    virtual bool contains(const T& value) const = 0;
-    virtual std::size_t size() const = 0;
-};
-
-// Класс Edge_list_hashtable
-class Edge_list_hashtable : public Edge_list, public St_set<Vertex_pair> {
-private:
-    std::unordered_set<Vertex_pair, Vertex_pair_hash> container;
-
-public:
-    Edge_list_hashtable() = default;
-
-    void add_edge(Scalar_index vertex1, Scalar_index vertex2) override {
-        Vertex_pair new_edge(vertex1, vertex2);
-        container.insert(new_edge);
+  class Edge_list_hashtable : public Edge_list, public St_set<Vertex_pair> {
+  public:
+    auto contains(Vertex_pair item) const noexcept -> bool override {
+      return edges.count(item) > 0;
     }
 
-    // Реализация методов интерфейса St_set
-    void insert(const Vertex_pair& value) override {
-        container.insert(value);
+    auto insert(Vertex_pair item) -> bool override {
+      auto [iter, inserted] = edges.insert(item);
+      return inserted;
     }
 
-    void erase(const Vertex_pair& value) override {
-        container.erase(value);
+    auto erase(Vertex_pair item) -> bool override {
+      return edges.erase(item) > 0;
     }
 
-    bool contains(const Vertex_pair& value) const override {
-        return container.find(value) != container.end();
+    auto find(Vertex_pair edge) const noexcept -> Scalar_index override {
+      auto iter = edges.find(edge);
+      if (iter != edges.end()) {
+        return std::distance(edges.begin(), iter);
+      }
+      return ogxx::npos;
     }
 
-    std::size_t size() const override {
-        return container.size();
+    auto max_vertex_index() const noexcept -> Vertex_index override {
+      if (edges.empty()) {
+        return -1;
+      }
+      auto max_index_iter = std::max_element(edges.begin(), edges.end(),
+        [](const Vertex_pair& a, const Vertex_pair& b) {
+          return std::max(a.first, a.second) < std::max(b.first, b.second);
+        });
+      return std::max(max_index_iter->first, max_index_iter->second);
     }
 
-    // Метод для вывода всех рёбер
-    void print_edges() const {
-        std::cout << "Edges in the hashtable:" << std::endl;
-        for (const auto& edge : container) {
-            std::cout << "(" << edge.first << ", " << edge.second << ")" << std::endl;
-        }
-    }
-};
-
+  private:
+    std::unordered_set<Vertex_pair> edges;
+  };
 }
