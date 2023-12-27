@@ -2,49 +2,29 @@
 
 namespace ogxx
 {
-    void ogxx::cartesian_product(Graph_view const& g, Graph_view const& h, Graph_view& product)
+  void cartesian_product(Graph_view const& g, Graph_view const& h, Graph_view& product)
+  {
+    // 1. Set the vertex count of the product graph
+    // The vertex count of the product graph is the product of the vertex counts of g and h
+    Scalar_size vertexCount = g.vertex_count() * h.vertex_count();
+    product.set_vertex_count(vertexCount);
+
+    // 2. Add edges to the product graph
+    // Iterate through all possible pairs of vertices from g and h
+    for (Vertex_index gVertex = 0; gVertex < g.vertex_count(); ++gVertex)
     {
-    // Получаем количество вершин в графах g и h
-    Scalar_size g_vertex_count = g.vertex_count();
-    Scalar_size h_vertex_count = h.vertex_count();
+      for (Vertex_index hVertex = 0; hVertex < h.vertex_count(); ++hVertex)
+      {
+        // Get the corresponding vertex index in the product graph
+        Vertex_index productVertex = gVertex * h.vertex_count() + hVertex;
 
-    // Устанавливаем количество вершин в графе product
-    Scalar_size product_vertex_count = g_vertex_count * h_vertex_count;
-    product.set_vertex_count(product_vertex_count);
-
-    // Добавляем ребра декартова произведения
-    for (Vertex_index g_vertex = 0; g_vertex < g_vertex_count; ++g_vertex)
-    {
-        for (Vertex_index h_vertex = 0; h_vertex < h_vertex_count; ++h_vertex)
+        // Check if there is an edge between the current vertices in g or h
+        if (g.are_connected(gVertex, gVertex) || h.are_connected(hVertex, hVertex))
         {
-        // Получаем индекс вершины в графе product
-        Vertex_index product_vertex = g_vertex * h_vertex_count + h_vertex;
-
-        // Проверяем, есть ли ребро между соответствующими вершинами в графах g и h
-        if (g.are_connected(g_vertex, g_vertex) || h.are_connected(h_vertex, h_vertex))
-        {
-            // Добавляем ребро в граф product
-            product.connect(product_vertex, product_vertex);
+          // Add an edge between the current vertices in the product graph
+          product.connect(productVertex, productVertex);
         }
-        }
+      }
     }
-    }
-}
-
-#include <ogxx/graph_view.hpp>
-#include <iostream>
-
-int main()
-{
-  ogxx::Graph_view_uptr g = std::make_unique<ogxx::Graph_view>();
-  ogxx::Graph_view_uptr h = std::make_unique<ogxx::Graph_view>();
-  ogxx::Graph_view_uptr product = std::make_unique<ogxx::Graph_view>();
-
-  // Add vertices and edges to g and h
-
-  ogxx::cartesian_product(*g, *h, *product);
-
-  // Print the vertices and edges of the product graph
-
-  return 0;
+  }
 }
