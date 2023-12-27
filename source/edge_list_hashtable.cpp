@@ -44,11 +44,8 @@ namespace ogxx {
       if (edges.empty()) {
         return -1;
       }
-      auto max_index_iter = std::max_element(edges.begin(), edges.end(),
-        [](const Vertex_pair& a, const Vertex_pair& b) {
-          return std::max(a.first, a.second) < std::max(b.first, b.second);
-        });
-      return std::max(max_index_iter->first, max_index_iter->second);
+      auto max_index_iter = std:max(std:max(edges.begin().first, edges.end().first), std::max(edges.begin().second, edges.end().second));
+      return max_index_iter;
     }
 
   private:
