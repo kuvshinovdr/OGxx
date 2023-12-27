@@ -9,9 +9,10 @@
 // Define the hash function for Vertex_pair
 namespace std {
   template <typename T1, typename T2>
-  struct hash<pair<T1, T2>> {
-    auto operator()(const pair<T1, T2> &p) const -> size_t {
-      return hash<T1>{}(p.first) ^ hash<T2>{}(p.second);
+  struct hash<ogxx::Vertex_pair> {
+    auto operator()(ogxx::Vertex_pair p) const noexcept {
+        hash<ogxx::Scalar_index> h;
+        return h(p.first) * sqr(15485863, h(p.second));
     }
   };
 }
