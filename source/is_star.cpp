@@ -6,10 +6,9 @@
 #include <optional>
 #include <vector>
 
-
 namespace ogxx
 {
-    auto get_deg_vertex(Vertex_index index, std::vector<int>& vertex, int len, Graph_view const& gv) { // Get the degree of the vertex
+    auto get_deg_vertex(Vertex_index index, std::vector<Vertex_index>& vertex, int len, Graph_view const& gv) { // Get the degree of the vertex
         int deg=0;
         for (int j = 0; j < len; j++) {
             if (gv.are_connected(*vertex[index], *vertex[j])) {
