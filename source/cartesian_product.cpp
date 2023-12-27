@@ -1,28 +1,43 @@
 #include <ogxx/graph_view.hpp>
-
 namespace ogxx
 {
   void cartesian_product(Graph_view const& g, Graph_view const& h, Graph_view& product)
   {
-    // 1. Set the vertex count of the product graph
-    // The vertex count of the product graph is the product of the vertex counts of g and h
-    Scalar_size vertexCount = g.vertex_count() * h.vertex_count();
-    product.set_vertex_count(vertexCount);
+    // Set the vertex count of the product graph
+    Scalar_size g_vertex_count = g.vertex_count();
+    Scalar_size h_vertex_count = h.vertex_count();
+    Scalar_size product_vertex_count = g_vertex_count * h_vertex_count;
+    product.set_vertex_count(product_vertex_count);
 
-    // 2. Add edges to the product graph
-    // Iterate through all possible pairs of vertices from g and h
-    for (Vertex_index gVertex = 0; gVertex < g.vertex_count(); ++gVertex)
+    // Add edges to the product graph
+    for (Scalar_size i = 0; i < g_vertex_count; ++i)
     {
-      for (Vertex_index hVertex = 0; hVertex < h.vertex_count(); ++hVertex)
+      for (Scalar_size j = 0; j < h_vertex_count; ++j)
       {
-        // Get the corresponding vertex index in the product graph
-        Vertex_index productVertex = gVertex * h.vertex_count() + hVertex;
-
-        // Check if there is an edge between the current vertices in g or h
-        if (g.are_connected(gVertex, gVertex) || h.are_connected(hVertex, hVertex))
+        // Iterate through the edges of g
+        auto g_edge_iter = g.iterate_edges();
+        for (Vertex_pair g_edge; g_edge_iter->next(g_edge);)
         {
-          // Add an edge between the current vertices in the product graph
-          product.connect(productVertex, productVertex);
+          Vertex_index g_from = g_edge.first;
+          Vertex_index g_to = g_edge.second;
+
+          // Add the corresponding edge to the product graph
+          Vertex_index product_from = i * h_vertex_count + j;
+          Vertex_index product_to = g_to * h_vertex_count + j;
+          product.connect(product_from, product_to);
+        }
+
+        // Iterate through the edges of h
+        auto h_edge_iter = h.iterate_edges();
+        for (Vertex_pair h_edge; h_edge_iter->next(h_edge);)
+        {
+          Vertex_index h_from = h_edge.first;
+          Vertex_index h_to = h_edge.second;
+
+          // Add the corresponding edge to the product graph
+          Vertex_index product_from = i * h_vertex_count + j;
+          Vertex_index product_to = i * h_vertex_count + h_to;
+          product.connect(product_from, product_to);
         }
       }
     }
