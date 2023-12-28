@@ -21,8 +21,8 @@ namespace ogxx
     auto is_star(Index_iterator_uptr vertices, Graph_view const& gv)
         -> std::optional<Vertex_index> {
         std::vector <Vertex_index> vertex;
-        for (Vertex_index new; vertices->next(new)) {
-            vertex.emplace_back(new);
+        for (Vertex_index v; vertices->next(v);) {
+            vertex.emplace_back(v);
         }
         auto const len = vertex.size();
         if (len < 3)
@@ -30,7 +30,7 @@ namespace ogxx
         size_t sum = 0;
 		Vertex_index center = -1;
         for (auto index : vertex) {
-            auto deg = get_deg_vertex(index, vertex, len, gv);
+            auto deg = get_deg_vertex(index, vertex, gv);
             sum += deg;
             if (deg != 1 && deg != len - 1) {
                 return {};
@@ -43,6 +43,10 @@ namespace ogxx
 
             }
         }
-        (sum / 2 == len - 1) ? return center : return {};
+        
+        if (sum / 2 == len - 1)
+          return center;
+        
+        return {};
     }
 }
