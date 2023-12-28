@@ -36,6 +36,7 @@ namespace ogxx {
     auto find(Vertex_pair edge) const noexcept -> Scalar_index override {
       auto iter = edges.find(edge);
       if (iter != edges.end()) {
+		  // TODO: this is (a worser) linear search, can we do better?
         return std::distance(edges.begin(), iter);
       }
       return ogxx::npos;
@@ -45,9 +46,12 @@ namespace ogxx {
       if (edges.empty()) {
         return -1;
       }
+	  // TODO: this will not compile
       auto max_index_iter = std:max(std:max(edges.begin().first, edges.end().first), std::max(edges.begin().second, edges.end().second));
       return max_index_iter;
     }
+	
+	// TODO: not all methods are overriden.
 
   private:
     std::unordered_set<Vertex_pair> edges;
