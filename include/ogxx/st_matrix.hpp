@@ -96,7 +96,7 @@ namespace ogxx
     /// @brief Make a copy of a window of the matrix into a separate matrix object.
     /// @param window the region to copy
     /// @return a separate ST matrix object
-    [[nodiscard]] virtual auto copy(Matrix_window window)
+    [[nodiscard]] virtual auto copy(Matrix_window window) const
       -> St_matrix_uptr<ST> = 0;
 
     /// @brief Make a copy of the full matrix.

@@ -93,7 +93,7 @@ namespace ogxx
 			throw std::logic_error("St_matrix::view: not implemented");
 		}
 
-		St_matrix_uptr<ST> copy(Matrix_window window) override {
+		St_matrix_uptr<ST> copy(Matrix_window window) const override {
 			if (!shape_.check_and_correct(window.position))
 				throw std::out_of_range("Dense_st_matrix::copy: invalid window position");
 			
