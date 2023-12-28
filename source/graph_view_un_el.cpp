@@ -35,12 +35,7 @@ namespace ogxx {
                     return _as_set->contains(edge) || _as_set->contains(er);
                 
                 // Check by iterating.
-                auto it = edge_list.iterate();
-                for (Vertex_pair e; it->next(e);)
-                    if (e == edge && e == er)
-                        return true;
-
-                return false;
+                return edge_list.find(edge) != npos || edge_list.find(er) != npos;
         }
 
         void set_vertex_count(Scalar_size count) override
