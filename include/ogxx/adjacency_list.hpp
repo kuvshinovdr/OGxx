@@ -94,6 +94,17 @@ namespace ogxx
   };
 
 
+  /// @brief Owning pointer to an object of an adjacency list.
+  using Adjacency_list_uptr = std::unique_ptr<Adjacency_list>;
+  /// @brief Owning pointer to a read-only object of an adjacency list.
+  using Adjacency_list_const_uptr = std::unique_ptr<Adjacency_list const>;
+
+  /// @brief Create an empty adjacency list based upon a hashtable.
+  /// @return An owning pointer to an Adjacency_list_hashtable object.
+  [[nodiscard]] auto new_adjacency_list_hashtable()
+    -> Adjacency_list_uptr;
+
+
   /// Directed graph facilities.
   namespace directed
   {
