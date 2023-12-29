@@ -12,33 +12,22 @@ namespace ogxx
     // Add edges to the product graph
     for (Scalar_size i = 0; i < g_vertex_count; ++i)
     {
-      for (Scalar_size j = 0; j < h_vertex_count; ++j)
+      auto const ig = i * h_vertex_count;
+      auto edges = h.iterate_edges();
+      for (Vertex_pair e; edges->iterate(e);)
       {
-        // Iterate through the edges of g
-        auto g_edge_iter = g.iterate_edges();
-        for (Vertex_pair g_edge; g_edge_iter->next(g_edge);)
-        {
-          Vertex_index g_from = g_edge.first;
-          Vertex_index g_to = g_edge.second;
+        auto const [h1, h2] = e;
+        product.connect(ig + h1, ig + h2);
+      }
+    }
 
-          // Add the corresponding edge to the product graph
-          Vertex_index product_from = i * h_vertex_count + j;
-          Vertex_index product_to = g_to * h_vertex_count + j;
-          product.connect(product_from, product_to);
-        }
-
-        // Iterate through the edges of h
-        auto h_edge_iter = h.iterate_edges();
-        for (Vertex_pair h_edge; h_edge_iter->next(h_edge);)
-        {
-          Vertex_index h_from = h_edge.first;
-          Vertex_index h_to = h_edge.second;
-
-          // Add the corresponding edge to the product graph
-          Vertex_index product_from = i * h_vertex_count + j;
-          Vertex_index product_to = i * h_vertex_count + h_to;
-          product.connect(product_from, product_to);
-        }
+    for (Scalar_size j = 0; j < h_vertex_count; ++j)
+    {
+      auto edges = g.iterate_edges();
+      for (Vertex_pair e; edges->iterate(e);)
+      {
+        auto const [g1, g2] = e;
+        product.connect(g1 * h_vertex_count + j, g2 * h_vertex_count + j);
       }
     }
   }
