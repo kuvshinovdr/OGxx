@@ -16,6 +16,17 @@ namespace ogxx
     public:
         ~Edge_list_vector() noexcept override = default;
 
+        Edge_list_vector() = default;
+
+        explicit Edge_list_vector(Vertex_pair_iterator_uptr edges)
+        {
+            for (Vertex_pair vp; edges->next(vp);)
+                _edges.emplace_back(vp);
+        }
+
+        explicit Edge_list_vector(std::initializer_list<Vertex_pair> vp)
+            : _edges(vp) {}
+
         // From Edge_list:
         auto find(Vertex_pair edge) const noexcept
             -> Scalar_index override
@@ -126,5 +137,15 @@ namespace ogxx
     auto new_edge_list_vector() -> Edge_list_uptr
     {
         return std::make_unique<Edge_list_vector>();
+    }
+
+    auto new_edge_list_vector(Vertex_pair_iterator_uptr vp) -> Edge_list_uptr
+    {
+        return std::make_unique<Edge_list_vector>(std::move(vp));
+    }
+
+    auto new_edge_list_vector(std::initializer_list<Vertex_pair> vp) -> Edge_list_uptr
+    {
+        return std::make_unique<Edge_list_vector>(vp);
     }
 }  // namespace ogxx
