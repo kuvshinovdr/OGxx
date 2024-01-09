@@ -3,7 +3,6 @@
 
 #include <ogxx/edge_list_io.hpp>
 
-#include <sstream>
 #include <iostream>
 #include <stdexcept>
 
