@@ -3,7 +3,8 @@
 ///@author Krukovich Sonya
 
 #include <ogxx/iterator.hpp>
-#include <ogxx/graph_view.hpp>
+#include <ogxx/subgraph_checks.hpp>
+
 
 namespace ogxx {
 

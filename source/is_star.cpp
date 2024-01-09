@@ -2,23 +2,29 @@
 /// @brief Identify the graph is a star
 /// @author Artemenko I.V
 #include <ogxx/iterator.hpp>
-#include <ogxx/graph_view.hpp>
-#include <optional>
+#include <ogxx/subgraph_checks.hpp>
+
 #include <vector>
 
 namespace ogxx
 {
-    auto get_deg_vertex(Vertex_index index, std::vector<Vertex_index>& vertex, Graph_view const& gv) { // Get the degree of the vertex
-        size_t deg=0;
-        for (auto v: vertex) {
-            if (gv.are_connected(index, v)) {
-                deg++;
+
+    namespace
+    {
+        // Get the degree of the vertex
+        auto get_deg_vertex(Vertex_index index, std::vector<Vertex_index>& vertex, Graph_view const& gv) {
+            size_t deg=0;
+            for (auto v: vertex) {
+                if (gv.are_connected(index, v)) {
+                    deg++;
+                }
             }
+            return deg;
         }
-        return deg;
     }
 	
-    auto is_star(Index_iterator_uptr vertices, Graph_view const& gv)
+
+    auto is_star(Graph_view const& gv, Index_iterator_uptr vertices)
         -> std::optional<Vertex_index> {
         std::vector <Vertex_index> vertex;
         for (Vertex_index v; vertices->next(v);) {
@@ -28,7 +34,8 @@ namespace ogxx
         if (len < 3)
             return {};
         size_t sum = 0;
-		Vertex_index center = -1;
+		
+        Vertex_index center = -1;
         for (auto index : vertex) {
             auto deg = get_deg_vertex(index, vertex, gv);
             sum += deg;

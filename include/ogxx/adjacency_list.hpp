@@ -105,7 +105,7 @@ namespace ogxx
     -> Adjacency_list_uptr;
 
 
-  /// Directed graph facilities.
+  /// @brief Directed graph facilities.
   namespace directed
   {
 
@@ -123,7 +123,7 @@ namespace ogxx
 
   }
 
-  /// Undirected graph facilities.
+  /// @brief Undirected graph facilities.
   namespace undirected
   {
 

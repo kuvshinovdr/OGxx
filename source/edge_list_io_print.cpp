@@ -1,5 +1,6 @@
-// edge_list_io.cpp
-// Implementation of edge list IO functions
+/// @file edge_list_io.cpp
+/// @brief Implementation of edge list IO functions
+/// @author Zworygin R.S.
 
 #include <ogxx/edge_list_io.hpp>
 
