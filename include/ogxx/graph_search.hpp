@@ -121,6 +121,16 @@ namespace ogxx
     Graph_search_controller_uptr controller
   ) -> bool;
 
+
+  // Utility functions
+
+  /// @brief Convert a predecessor list (zero-based array) into a forest represented by a graph view.
+  /// @param preds  an iterator enumerating predecessor indices for vertices 0, 1, ...
+  /// @param gv     a graph view where the tree is added (connecting in the direction from a root to leaves)
+  /// @return       quantity of roots (trees in the forest)
+  auto pred_list_to_tree(Index_iterator_uptr preds, Graph_view& gv)
+    -> Scalar_size;
+
 }
 
 #endif//OGXX_GRAPH_SEARCH_HPP_INCLUDED
