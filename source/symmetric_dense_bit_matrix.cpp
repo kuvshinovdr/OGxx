@@ -8,17 +8,22 @@
 
 namespace ogxx {
 
+    /// @brief Symmetric dense bit matrix stores only one half without the main diagonal.
     class Symmetric_dense_bit_matrix : public Bit_matrix {
     public:
 
+        /// @brief Make an empty matrix.
         Symmetric_dense_bit_matrix() = default;
 
+        /// @brief Make a matrix of the specified size.
+        /// @param n the size of the matrix (the matrix is square)
         Symmetric_dense_bit_matrix(Scalar_size n)
         {
             reshape({ n, n });
         }
 
-        // Возвращает размерность матрицы
+        /// @brief Get the matrix shape.
+        /// @return the matrix is square, i.e. shape rows == shape cols
         Matrix_shape shape() const noexcept override {
             return _shape;
         }

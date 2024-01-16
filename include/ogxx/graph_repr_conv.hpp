@@ -18,7 +18,7 @@
 namespace ogxx
 {
 
-  /// Directed graph conversion.
+  /// @brief Directed graph conversion.
   namespace directed::convert
   {
 
@@ -77,7 +77,7 @@ namespace ogxx
 
   }
 
-  /// Undirected graph conversion.
+  /// @brief Undirected graph conversion.
   namespace undirected::convert
   {
 

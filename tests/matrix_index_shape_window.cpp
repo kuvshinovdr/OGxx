@@ -34,14 +34,14 @@ TEST_SUITE("Matrix_shape")
     s.cols = 222;
     CHECK(s.element_count() == 100*222);
     s.rows = -10;
-    CHECK_THROWS_AS(s.element_count(), std::out_of_range);
+    CHECK_THROWS_AS((void)(s.element_count() != 0), std::out_of_range);
 
     constexpr auto BIG = std::numeric_limits<Scalar_size>::max() / 14;
     s.rows = s.cols = BIG;
-    CHECK_THROWS_AS(s.element_count(), std::out_of_range);
+    CHECK_THROWS_AS((void)(s.element_count() != 0), std::out_of_range);
     s.rows = 7;
     CHECK(s.element_count() == 7*BIG);
     s.rows = 15;
-    CHECK_THROWS_AS(s.element_count(), std::out_of_range);
+    CHECK_THROWS_AS((void)(s.element_count() != 0), std::out_of_range);
   }
 }

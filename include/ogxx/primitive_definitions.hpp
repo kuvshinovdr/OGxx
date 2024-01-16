@@ -9,6 +9,7 @@
 #include <bit>
 #include <limits>
 #include <type_traits>
+#include <initializer_list>
 #include <memory>
 #include <utility>
 #include <stdexcept>
@@ -42,6 +43,9 @@ namespace ogxx
 
   /// @brief Infinity float value for convenience.
   constexpr Float infinity = std::numeric_limits<Float>::infinity();
+
+  /// @brief Not-a-number constant.
+  constexpr Float not_a_number = std::numeric_limits<Float>::quiet_NaN();
 
 
   /////////////////////////////////////////////////////////////////////////////

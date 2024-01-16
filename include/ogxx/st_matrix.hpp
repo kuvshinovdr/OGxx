@@ -67,7 +67,7 @@ namespace ogxx
 
     /// @brief Assigns all elements of the matrix the same value.
     /// @param value the value to be assigned, the default one (ST{}) if not passed explicitly
-    virtual void fill(ST value = ST{}) noexcept = 0;
+    virtual void fill(ST value = ST{}) = 0;
 
     /// @brief Go through all elements in a row.
     /// @param row index of the row to iterate through
@@ -96,7 +96,7 @@ namespace ogxx
     /// @brief Make a copy of a window of the matrix into a separate matrix object.
     /// @param window the region to copy
     /// @return a separate ST matrix object
-    [[nodiscard]] virtual auto copy(Matrix_window window)
+    [[nodiscard]] virtual auto copy(Matrix_window window) const
       -> St_matrix_uptr<ST> = 0;
 
     /// @brief Make a copy of the full matrix.

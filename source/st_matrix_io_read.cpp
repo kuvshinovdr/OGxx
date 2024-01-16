@@ -27,34 +27,49 @@ namespace ogxx::io
       using Row = std::vector<Item>;
       std::vector<Row> data;
 
-      // Main reading loop, reads everything to data.
-      for (Item value; !util::accept_tokens(in, format.matrix_close);)
+    open_:
+      if (util::accept_tokens(in, format.matrix_close))
+        goto finish_;
+
+      if (util::accept_tokens(in, format.row_sep))
       {
-        if (in.empty())
-          return false; // and we lose any data that have been parsed!
+        data.emplace_back();
+        goto open_;
+      }
 
-        // New row.
-        if (util::accept_tokens(in, format.row_sep))
+      goto item_;
+      
+    after_:
+      if (util::accept_tokens(in, format.matrix_close))
+        goto finish_;
+
+      if (util::accept_tokens(in, format.row_sep))
+      {
+        data.emplace_back();
+        goto open_;
+      }
+      
+      if (!util::accept_tokens(in, format.column_sep))
+        return false;
+
+    item_:
+      {
+        if (auto opt_val = util::read<Item>(in))
         {
-          data.emplace_back();
-          continue;
-        }
-
-        do // row items.
-        {
-          auto [ptr, ec] = std::from_chars(in.data(), in.data() + in.size(), value);
-          if (ec != std::errc{})
-            break;
-
-          in.remove_prefix(ptr - in.data());
-
           if (data.empty())
             data.emplace_back();
 
-          data.back().push_back(value);
-        } while (util::accept_tokens(in, format.column_sep));
+          data.back().push_back(*opt_val);
+        }
+        else
+        {
+          return false;
+        }
       }
 
+      goto after_;
+
+    finish_:
       // Find the resulting matrix shape.
       Matrix_shape const shape
       {
