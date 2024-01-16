@@ -11,5 +11,5 @@
 #include "st_matrix_io_read.cpp"
 #include "adjacency_list_io_read.cpp"
 //#include "adjacency_list_io_print.cpp"
-//#include "bit_matrix_io_print.cpp"
+#include "bit_matrix_io_print.cpp"
 #include "edge_list_io_print.cpp"
