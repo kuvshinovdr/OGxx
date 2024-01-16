@@ -10,18 +10,23 @@ TEST_SUITE("print")
 {
   TEST_CASE("print")
   {
-    Matrix_shape _shape = {2, 3};
+    Matrix_shape _shape {3, 7};
     Bit_matrix_uptr bm = new_dense_bit_matrix(_shape);
     bm->fill(1);
-    bm->set(1,1,0);
+    bm->set(1,1, 0);
+    bm->set(2,2, 0);
+    bm->set(0,4, 0);
+    bm->set(2,6, 0);
+
     std::ostringstream os;
     io::print(os, *bm);
-    CHECK(os.str() == 
+    auto result = os.str();
+    CHECK(result == 
 "bit_matrix\n\
 {\n\
-0100 01\n\
-1011 00\n\
-0110 01\n\
-}" );
+1111 011\n\
+1011 111\n\
+1101 110\n\
+}\n" );
   }
 }

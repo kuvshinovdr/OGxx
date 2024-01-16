@@ -32,16 +32,15 @@ namespace ogxx::io
         os<<format.matrix_open;
         for (;position.row < shape.rows; ++position.row)
         {
-            for(;position.col < shape.cols; ++position.col)
+            for(position.col = 0; position.col < shape.cols; ++position.col)
             {
 
                 os<<(bm.get(position)? format.one : format.zero);
-                if ((position.col +1) % format.column_stride == 0 && position.col != shape.cols -1 )
+                if ((position.col + 1) % format.column_stride == 0 && position.col != shape.cols -1 )
                     os<<' ';
 
             }
             os<<'\n';
-        
         }
         os<<format.matrix_close;
         return os;
