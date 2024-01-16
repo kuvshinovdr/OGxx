@@ -12,6 +12,7 @@
 
 namespace ogxx::io
 {
+
   auto read(string_view& in, ogxx::Edge_list& el, Edge_list_format const& format)
     -> bool
   {
@@ -21,38 +22,33 @@ namespace ogxx::io
 
     for (; !util::accept_tokens(util::ltrim(in), format.list_close);)
     {
-      util::accept_tokens(util::ltrim(in), format.pair_open);
-      if (in.empty()) return false;
+      if (!util::accept_tokens(util::ltrim(in), format.pair_open) || in.empty()) 
+        return false;
 
-      std::vector<Scalar_index> temp;
-      Scalar_index t = 0;
-      do
-      {
-        in = util::ltrim(in);
-        auto [ptr, ec] = std::from_chars(in.data(), in.data() + in.size(), t);
-        if (ec != std::errc{}) return false;
+      Vertex_index u, v;
+      auto opt = util::read<Vertex_index>(in);
+      if (!opt || !util::accept_tokens(util::ltrim(in), format.pair_sep))
+        return false;
 
-        in.remove_prefix(ptr - in.data());
+      u = *opt;
+      opt = util::read<Vertex_index>(in);
+      if (!opt)
+        return false;
 
-        temp.push_back(t);
-      } while (util::accept_tokens(util::ltrim(in), format.pair_sep));
-      
-      if (temp.size() != 2) return false;
-      Vertex_pair value;
-      value.first = temp[0];
-      value.second = temp[1];
-      data.push_back(value);
-      util::accept_tokens(util::ltrim(in), format.pair_close);
+      v = *opt;
+      data.emplace_back(u, v);
+      if (!util::accept_tokens(util::ltrim(in), format.pair_close))
+        return false;
     }
 
-    if(!data.empty())
+    if (!data.empty())
     {
       //Remove repetitions
       sort(data.begin(), data.end());
       data.erase(unique(data.begin(), data.end()), data.end());
-
-      Scalar_size size = data.size();
-      for (Scalar_index i = 0; i < size; ++i) el.put(data[i]);
+      
+      for (auto vp: data)
+        el.put(vp);
     }
 
     return true;

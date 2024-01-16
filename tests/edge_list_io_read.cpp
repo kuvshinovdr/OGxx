@@ -9,33 +9,78 @@
 #include <string_view>
 #include <sstream>
 #include <vector>
+#include <cctype>
+#include <algorithm>
+
+namespace
+{
+	bool only_ws(std::string_view s)
+	{
+		return std::all_of(s.begin(), s.end(), 
+			[](char ch) { return std::isspace(static_cast<unsigned char>(ch)); });
+	}
+}
+
 
 namespace ogxx
 {
 	TEST_SUITE("edge_list_io_read_test")
 	{
-		TEST_CASE("read")
+		TEST_CASE("empty")
 		{
-			auto 
-				el1 = new_edge_list_vector(), 
-				el2 = new_edge_list_vector(),
-				el3 = new_edge_list_vector();
+			auto el = new_edge_list_vector();
 
-			io::Edge_list_format format;
+			std::string_view in = "edge_list{}";
+			CHECK(io::read(in, *el, io::Edge_list_format{}));
+			CHECK(el->size() == 0);
+			CHECK(in.size() == 0);
+		}
 
-			std::string_view test_in1 = "edge_list\n{\n  (1, 2)\n  (2, 3)\n  (3, 4)\n  (4, 5)\n  (5, 6)\n}\n",
-											 test_in2 = "edge_list\n{\n  (1, 2)\n  (2, 3)\n  (3, 4)\n  (4,5)\n  (5, 6)\n}\n",
-											 test_in3 = "edge_list\n{\n (1,2)\n(2,3)\n(3,4)\n(4,5)\n(5,6)\n}\n",
-											 test_in4 = "edge_list\n{\n}\n",
-											 test_in5 = "{\n(1,2)\n(2,3)\n(3,4)\n(4,5)\n(5,6)\n}\n",
-											 test_in6 = "ege_list\n{\n(1,2)\n(2,3)\n(3,4)\n(4,5)\n(5,6)\n}\n";
+		TEST_CASE("good")
+		{
+			std::string_view const inputs[]
+			{
+				"edge_list\n{\n  (1, 2)\n  (2, 3)\n  (3, 4)\n  (4, 5)\n  (5, 6)\n}\n",
+				"edge_list\t{  (1,\n2)\n  (2,\t3)\n  (3,4)\t  (4,5)  (5, 6)\n}    ",
+				"edge_list{(1,2)(2,3)(3,4)(4,5)(5,6)}"
+			};
 
-			CHECK(io::read(test_in1, *el1, format));
-			CHECK(io::read(test_in2, *el2, format));
-			CHECK(io::read(test_in3, *el3, format));
-			CHECK(io::read(test_in4, *el3, format));
-			CHECK(!io::read(test_in5, *el3, format));
-			CHECK(!io::read(test_in6, *el3, format));
+			Vertex_pair const ref[]
+			{
+				{ 1, 2 }, { 2, 3 }, { 3, 4 }, { 4, 5 }, { 5, 6 }
+			};
+
+			for (auto in: inputs)
+			{
+				auto el = new_edge_list_vector();
+				CHECK(io::read(in, *el, io::Edge_list_format{}));
+				CHECK(only_ws(in));
+				CHECK(el->size() == 5);
+				CHECK(el->max_vertex_index() == 6);
+				
+				auto it = el->iterate();
+				size_t i = 0;
+				for (Vertex_pair vp; it->next(vp); ++i)
+				{
+					REQUIRE(i < std::size(ref));
+					auto const [u, v] = ref[i];
+					CHECK(vp.first == u);
+					CHECK(vp.second == v);
+				}
+			}
+		}
+
+		TEST_CASE("bad")
+		{
+			std::string_view const inputs[]
+			{
+				"{\n(1,2)\n(2,3)\n(3,4)\n(4,5)\n(5,6)\n}\n",
+				"ege_list\n{\n(1,2)\n(2,3)\n(3,4)\n(4,5)\n(5,6)\n}\n"
+			};
+
+			auto el = new_edge_list_vector();
+			for (auto in: inputs)
+				CHECK(!io::read(in, *el, io::Edge_list_format{}));
 		}
 	}
 }
