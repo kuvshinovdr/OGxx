@@ -47,7 +47,7 @@ namespace ogxx::io::util
   /// @param input  a sequence of characters to be tested, maximal coinciding prefix will be removed from input
   /// @param tokens a sequence of tokens that are expected in the input
   /// @return true if all tokens have been found in input, false otherwise
-  inline auto accept__tokens(string_view& input, string_view tokens) noexcept///
+  inline auto accept_tokens(string_view& input, string_view tokens) noexcept
     -> bool
   {
     for (string_view token; !(token = extract_next_token(tokens)).empty();)
@@ -57,16 +57,6 @@ namespace ogxx::io::util
       input.remove_prefix(token.size());
     }
 
-    return true;
-  }
-
-  ///Version by Chaplygin M.D.
-  inline auto accept_tokens(string_view& input, string_view tokens) noexcept
-    -> bool
-  {
-    if (!input.starts_with(tokens)) return false;
-
-    input.remove_prefix(tokens.size());
     return true;
   }
   

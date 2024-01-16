@@ -21,23 +21,19 @@ namespace ogxx
 			Edge_list_vector el1, el2, el3;
 			io::Edge_list_format format;
 
-			/*std::string in, temp;
-			std::ifstream input("input.txt");
-			while (input)
-			{
-				input >> temp;
-				in += temp;
-				if (temp == "{") break;
-			}
-			std::string_view test_in = in;*/
-
 			std::string_view test_in1 = "edge_list\n{\n  (1, 2)\n  (2, 3)\n  (3, 4)\n  (4, 5)\n  (5, 6)\n}\n",
-											 test_in2 = "edge_list\n{\n  (1, 2)\n  (2, 3)\n  (3, 4)\n  (4,5)\n  (5, 6)\n}\n",//Uncorrect format in 4th brackets.
-											 test_in3 = "edge_list\n{\n}\n";//Empty list.
+											 test_in2 = "edge_list\n{\n  (1, 2)\n  (2, 3)\n  (3, 4)\n  (4,5)\n  (5, 6)\n}\n",
+											 test_in3 = "edge_list\n{\n (1,2)\n(2,3)\n(3,4)\n(4,5)\n(5,6)\n}\n",
+											 test_in4 = "edge_list\n{\n}\n",
+											 test_in5 = "{\n(1,2)\n(2,3)\n(3,4)\n(4,5)\n(5,6)\n}\n",
+											 test_in6 = "ege_list\n{\n(1,2)\n(2,3)\n(3,4)\n(4,5)\n(5,6)\n}\n";
 
 			CHECK(io::read(test_in1, el1, format));
-			CHECK(!io::read(test_in2, el2, format));
+			CHECK(io::read(test_in2, el2, format));
 			CHECK(io::read(test_in3, el3, format));
+			CHECK(io::read(test_in4, el3, format));
+			CHECK(!io::read(test_in5, el3, format));
+			CHECK(!io::read(test_in6, el3, format));
 		}
 	}
 }
