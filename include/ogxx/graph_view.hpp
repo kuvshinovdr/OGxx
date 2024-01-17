@@ -118,6 +118,15 @@ namespace ogxx
   /// @brief Read-only graph view object owning pointer.
   using Graph_view_const_uptr = std::unique_ptr<Graph_view const>;
 
+
+  // Additional operations (IDK where else to put it).
+
+  /// @brief Compute a graph Cartesian product in O(g_verts*h_edges + g_edges*h_verts)-time with vertex index remapping by the formula: product_index(g_index, h_index) == g_index * h_verts + h_index.
+  /// @param g        the first argument of the product
+  /// @param h        the second argument of the product
+  /// @param product  the graph where to append the edges of the Cartesian product of g and h
+  void cartesian_product(Graph_view const& g, Graph_view const& h, Graph_view& product);
+
 }
 
 #endif//OGXX_GRAPH_VIEW_HPP_INCLUDED

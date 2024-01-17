@@ -24,6 +24,9 @@ namespace ogxx
   /// @brief An owning pointer to a Vertex_pair_iterator object.
   using Vertex_pair_iterator_uptr = std::unique_ptr<Vertex_pair_iterator>;
 
+  [[nodiscard]] constexpr auto edge_reverse(Vertex_pair edge) noexcept
+    -> Vertex_pair { return { edge.second, edge.first }; }
+
 }
 
 #endif//OGXX_VERTEX_PAIR_HPP_INCLUDED

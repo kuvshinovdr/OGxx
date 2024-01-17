@@ -2,9 +2,11 @@
 /// @brief ogxx::functions, that check a subgraph of the graph gv contains (contour) on the vertices enumerated by the vertices iterator.
 /// @author Artemenko I.V
 
-#include <ogxx/graph_view.hpp>
 #include <ogxx/iterator.hpp>
+#include <ogxx/subgraph_checks.hpp>
+
 #include <vector>
+
 
 namespace ogxx {
 

@@ -6,6 +6,13 @@
 #include "matrix_index_shape_window.cpp"
 #include "dense_st_matrix.cpp"
 #include "index_set_sortedvector.cpp"
+//#include "testing_index_set_bitvector.cpp"
 
 #include "st_matrix_io_read.cpp"
 #include "adjacency_list_io_read.cpp"
+//#include "adjacency_list_io_print.cpp"
+#include "bit_matrix_io_print.cpp"
+#include "edge_list_io_print.cpp"
+#include "edge_list_io_read.cpp"
+
+#include "cartesian_product.cpp"
