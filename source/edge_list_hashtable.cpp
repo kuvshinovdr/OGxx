@@ -7,20 +7,18 @@
 #include <unordered_set>
 #include <algorithm>
 
-
+// Define the hash function for Vertex_pair
+namespace std {
+  template <>
+  struct hash<ogxx::Vertex_pair> {
+    auto operator()(const ogxx::Vertex_pair& p) const noexcept {
+      std::hash<ogxx::Scalar_index> h;
+      return h(p.first) * 15485863 ^ h(p.second);
+    }
+  };
+}
 
 namespace ogxx {
-
-    // Define the hash function for Vertex_pair
-    namespace std {
-        template <>
-        struct hash<Vertex_pair> {
-            auto operator()(const Vertex_pair& p) const noexcept {
-                std::hash<Scalar_index> h;
-                return h(p.first) * 15485863 ^ h(p.second);
-            }
-        };
-    }
 
     class Edge_list_hashtable : public Edge_list, public St_set<Vertex_pair> {
     public:
