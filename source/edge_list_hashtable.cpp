@@ -1,9 +1,13 @@
+#include <ogxx/edge_list.hpp>
+#include <ogxx/st_set.hpp>
+
+#include <ogxx/stl_iterator.hpp>
+
+
 #include <unordered_set>
 #include <algorithm>
-#include <utility>
-#include <memory>
-#include <iostream>
-#include <vector>
+
+
 
 namespace ogxx {
 
@@ -43,7 +47,7 @@ namespace ogxx {
 
         auto max_vertex_index() const noexcept -> Vertex_index override {
             if (edges.empty()) {
-                return -1;
+                return npos;
             }
             auto max_index_iter = std::max_element(edges.begin(), edges.end(),
                 [](const Vertex_pair& a, const Vertex_pair& b) {
@@ -52,57 +56,38 @@ namespace ogxx {
             return std::max(max_index_iter->first, max_index_iter->second);
         }
 
+        void put(Pass_by<Vertex_pair> item) override {
+            edges.emplace(item);
+        }
+
+        auto take() -> Pass_by<Vertex_pair> override {
+            Vertex_pair result { npos, npos };
+            if (!edges.empty()) {
+                result = *edges.begin();
+                edges.erase(edges.begin());
+            }
+
+            return result;
+        }
+
+        void clear() override {
+            edges.clear();
+        }
+
+        auto size() const noexcept -> Scalar_size override {
+            return static_cast<Scalar_size>(edges.size());
+        }
+
+        auto iterate() const -> Vertex_pair_iterator_uptr override {
+            return new_stl_iterator(edges);
+        }
+
+        virtual auto is_empty() const noexcept -> bool override {
+            return edges.empty();
+        }
+
     private:
         std::unordered_set<Vertex_pair, std::hash<Vertex_pair>> edges;
     };
 
-    class Graph_view {
-    public:
-        virtual void view() const = 0;
-    };
-
-    class Directed_graph_view : public Graph_view {
-    public:
-        void view() const override {
-
-            std::cout << "This is a directed graph" << std::endl;
-        }
-    };
-
-    class Undirected_graph_view : public Graph_view {
-    public:
-        void view() const override {
-
-            std::cout << "This is an undirected graph" << std::endl;
-        }
-    };
-
-    using Edge_list_uptr = std::unique_ptr<Edge_list>;
-    using Edge_list_const_uptr = std::unique_ptr<const Edge_list>;
-    using Graph_view_uptr = std::unique_ptr<Graph_view>;
-    using Graph_view_const_uptr = std::unique_ptr<const Graph_view>;
-
-    [[nodiscard]] auto new_edge_list_vector() -> Edge_list_uptr {
-        return std::make_unique<Edge_list_hashtable>();
-    }
-
-    namespace directed {
-        [[nodiscard]] auto graph_view(Edge_list const& el) -> Graph_view_const_uptr {
-            return std::make_unique<Directed_graph_view>();
-        }
-
-        [[nodiscard]] auto graph_view(Edge_list& el) -> Graph_view_uptr {
-            return std::make_unique<Directed_graph_view>();
-        }
-    }
-
-    namespace undirected {
-        [[nodiscard]] auto graph_view(Edge_list const& el) -> Graph_view_const_uptr {
-            return std::make_unique<Undirected_graph_view>();
-        }
-
-        [[nodiscard]] auto graph_view(Edge_list& el) -> Graph_view_uptr {
-            return std::make_unique<Undirected_graph_view>();
-        }
-    }
 }
