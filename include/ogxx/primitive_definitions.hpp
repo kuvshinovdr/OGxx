@@ -9,6 +9,7 @@
 #include <bit>
 #include <limits>
 #include <type_traits>
+#include <initializer_list>
 #include <memory>
 #include <utility>
 #include <stdexcept>
