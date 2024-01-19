@@ -1,21 +1,24 @@
+/// @file edge_list_hashtable.cpp
+/// @brief Edge_list implementation based upon std::unordered_set.
+
 #include <ogxx/edge_list.hpp>
 #include <ogxx/st_set.hpp>
 
 #include <ogxx/stl_iterator.hpp>
 
-
 #include <unordered_set>
 #include <algorithm>
 
+
 // Define the hash function for Vertex_pair
-namespace std {
-  template <>
-  struct hash<ogxx::Vertex_pair> {
-    auto operator()(const ogxx::Vertex_pair& p) const noexcept {
-      std::hash<ogxx::Scalar_index> h;
-      return h(p.first) * 15485863 ^ h(p.second);
-    }
-  };
+namespace {
+    struct Vertex_pair_hash {
+        auto operator()(const ogxx::Vertex_pair& p) const noexcept -> size_t {
+            std::hash<ogxx::Scalar_index> h;
+            auto const h1 = h(p.first), h2 = h(p.second);
+            return (h1 << 13) ^ (h1 >> 17) ^ h2;
+        }
+    };
 }
 
 namespace ogxx {
@@ -47,11 +50,12 @@ namespace ogxx {
             if (edges.empty()) {
                 return npos;
             }
-            auto max_index_iter = std::max_element(edges.begin(), edges.end(),
-                [](const Vertex_pair& a, const Vertex_pair& b) {
-                    return std::max(a.first, a.second) < std::max(b.first, b.second);
-                });
-            return std::max(max_index_iter->first, max_index_iter->second);
+
+            Vertex_index max_index = 0;
+            for (auto [u, v]: edges)
+                max_index = std::max({max_index, u, v});
+
+            return max_index;
         }
 
         void put(Pass_by<Vertex_pair> item) override {
@@ -60,6 +64,7 @@ namespace ogxx {
 
         auto take() -> Pass_by<Vertex_pair> override {
             Vertex_pair result { npos, npos };
+
             if (!edges.empty()) {
                 result = *edges.begin();
                 edges.erase(edges.begin());
@@ -80,12 +85,36 @@ namespace ogxx {
             return new_stl_iterator(edges);
         }
 
-        virtual auto is_empty() const noexcept -> bool override {
+        auto is_empty() const noexcept -> bool override {
             return edges.empty();
         }
 
+
+        Edge_list_hashtable() = default;
+
+        Edge_list_hashtable(std::initializer_list<Vertex_pair> vp_il)
+            : edges(vp_il) {}
+
+        explicit Edge_list_hashtable(Vertex_pair_iterator_uptr vp_it) {
+            for (Vertex_pair vp; vp_it->next(vp);)
+                edges.emplace(vp);
+        }
+
     private:
-        std::unordered_set<Vertex_pair, std::hash<Vertex_pair>> edges;
+        std::unordered_set<Vertex_pair, Vertex_pair_hash> edges;
     };
+
+
+    auto new_edge_list_hashtable() -> Edge_list_uptr {
+        return std::make_unique<Edge_list_hashtable>();
+    }
+
+    auto new_edge_list_hashtable(Vertex_pair_iterator_uptr vp_it) -> Edge_list_uptr {
+        return std::make_unique<Edge_list_hashtable>(std::move(vp_it));
+    }
+
+    auto new_edge_list_hashtable(std::initializer_list<Vertex_pair> vp_il) -> Edge_list_uptr {
+        return std::make_unique<Edge_list_hashtable>(vp_il);
+    }
 
 }

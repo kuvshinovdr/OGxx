@@ -37,14 +37,32 @@ namespace ogxx
   /// @brief Owning pointer to a read-only edge list.
   using Edge_list_const_uptr = std::unique_ptr<Edge_list const>;
 
+  
   /// @brief Create an empty edge list represented by an std::vector<Vertex_pair>.
-  [[nodiscard]] auto new_edge_list_vector() -> Edge_list_uptr;
+  [[nodiscard]] auto new_edge_list_vector() 
+    -> Edge_list_uptr;
 
   /// @brief Create an edge list represented by a std::vector of Vertex_pairs listed by the iterator.
-  [[nodiscard]] auto new_edge_list_vector(Vertex_pair_iterator_uptr) -> Edge_list_uptr;
+  [[nodiscard]] auto new_edge_list_vector(Vertex_pair_iterator_uptr) 
+    -> Edge_list_uptr;
 
   /// @brief Create an edge list represented by a std::vector of Vertex_pairs provided by the list.
-  [[nodiscard]] auto new_edge_list_vector(std::initializer_list<Vertex_pair>) -> Edge_list_uptr;
+  [[nodiscard]] auto new_edge_list_vector(std::initializer_list<Vertex_pair>) 
+    -> Edge_list_uptr;
+
+
+  /// @brief Create an empty edge list represented by an std::unordered_set<Vertex_pair>.
+  [[nodiscard]] auto new_edge_list_hashtable() 
+    -> Edge_list_uptr;
+
+  /// @brief Create an edge list represented by a std::unordered_set of Vertex_pairs listed by the iterator.
+  [[nodiscard]] auto new_edge_list_hashtable(Vertex_pair_iterator_uptr)
+    -> Edge_list_uptr;
+
+  /// @brief Create an edge list represented by a std::unordered_set of Vertex_pairs provided by the list.
+  [[nodiscard]] auto new_edge_list_hashtable(std::initializer_list<Vertex_pair>) 
+    -> Edge_list_uptr;
+
 
   /// Directed graph facilities.
   namespace directed
