@@ -113,7 +113,7 @@ namespace ogxx
 
   private:
     Pass_by<Item>* _begin = nullptr;
-    Pass_by<Item>* _end = nullptr;
+    Pass_by<Item>* _end   = nullptr;
   };
 
   
