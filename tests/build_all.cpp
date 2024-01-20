@@ -3,6 +3,7 @@
 
 #include "is_within_clamp_min_max.cpp"
 #include "stl_iterator_and_iterator_algorithms.cpp"
+#include "iterable_span.cpp"
 #include "matrix_index_shape_window.cpp"
 #include "dense_st_matrix.cpp"
 #include "index_set_sortedvector.cpp"

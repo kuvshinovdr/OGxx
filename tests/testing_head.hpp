@@ -9,7 +9,7 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #endif//OGXX_TESTING_BUILD
 
-#include "doctest/doctest.h"
+#include <doctest/doctest.h>
 #include <ogxx/primitive_definitions.hpp>
 using namespace ogxx;
 

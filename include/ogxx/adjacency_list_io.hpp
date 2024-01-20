@@ -52,7 +52,7 @@ namespace ogxx::io
   /// @param al      the Adjacency_list object being filled with the edges read from in
   /// @param format  the adjacency list format description
   /// @return true on successful reading, false otherwise
-  auto read(std::string_view& in, ogxx::Adjacency_list& el, Adjacency_list_format const& format)
+  auto read(std::string_view& in, ogxx::Adjacency_list& al, Adjacency_list_format const& format)
     -> bool;
 
 }

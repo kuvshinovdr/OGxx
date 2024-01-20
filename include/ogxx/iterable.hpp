@@ -52,6 +52,10 @@ namespace ogxx
     Iterable& operator=(Iterable&&) noexcept      = default;
   };
 
+  /// @brief An owning pointer to an Iterable object.
+  template <typename Item>
+  using Iterable_uptr = std::unique_ptr<Iterable<Item>>;
+
 
   /// @brief Not only iterable but we know in advance, how many items it contains.
   /// @tparam Item the type of the object items that can be iterated
@@ -65,6 +69,10 @@ namespace ogxx
     [[nodiscard]] virtual auto size() const noexcept
       -> Scalar_size = 0;
   };
+
+  /// @brief An owning pointer to a Sized_iterable object.
+  template <typename Item>
+  using Sized_iterable_uptr = std::unique_ptr<Sized_iterable<Item>>;
 
 
   /// @brief Finally, the linear zero-based integer-indexed iterable collection.
@@ -87,6 +95,10 @@ namespace ogxx
     virtual auto set(Scalar_index index, Pass_by<Item> value)
       -> Pass_by<Item> = 0;
   };
+
+  /// @brief An owning pointer to an Indexed_iterable object.
+  template <typename Item>
+  using Indexed_iterable_uptr = std::unique_ptr<Indexed_iterable<Item>>;
 
 
   /// @brief Generic container interface with inserts and erases but no fixed ordering of items.

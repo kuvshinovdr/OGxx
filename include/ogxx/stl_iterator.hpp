@@ -12,6 +12,30 @@
 namespace ogxx
 {
 
+  namespace impl
+  {
+
+    template <typename Item>
+    [[nodiscard]] inline auto invert_pass_by(Item const& item)
+      noexcept(std::is_nothrow_copy_constructible_v<Item>)
+      -> Item { return item; }
+
+    template <typename T>
+    [[nodiscard]] inline auto invert_pass_by(std::unique_ptr<T>& item) noexcept
+      -> T* { return item.get(); }
+
+    template <typename T>
+    [[nodiscard]] inline auto invert_pass_by(std::unique_ptr<T> const& item) noexcept
+      -> T const* { return item.get(); }
+
+  }
+
+  /// @brief Provide access by value for non-unique_ptr types, otherwise extract the pointer (impl::invert_pass_by).
+  template <typename T>
+  using Inverse_pass_by = decltype(impl::invert_pass_by(std::declval<T>()));
+
+
+
   /// @brief STL iterator wrapper providing ogxx::Basic_iterator interface.
   /// @tparam T     item type
   /// @tparam It    iterator type
@@ -21,7 +45,7 @@ namespace ogxx
     typename It, 
     typename Sent = It,
     T (*convert)(typename std::iter_reference_t<It>) 
-      = [](typename std::iter_reference_t<It> item) -> T { return item; }
+      = [](typename std::iter_reference_t<It> item) -> T { return impl::invert_pass_by(item); }
   >
   class Stl_iterator 
     : public Basic_iterator<T>
